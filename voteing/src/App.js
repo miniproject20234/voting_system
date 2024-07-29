@@ -1,8 +1,31 @@
 import React from 'react';
-import './App.css';
+import {BrowserRouter,Routes,Route}from 'react-router-dom';
+
+import './css/App.css';
+
+
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Votepage from './pages/Votepage';
+
 function App() {
   return (
-    <div className='App'>welcome to chan app</div>
+    <>
+    <BrowserRouter>
+    <Routes>
+
+      <Route path='/register' element={<Register/>} exact/>
+
+      
+      <Route path='/login' element={<Login/>} />
+      <Route path='/votepage' element={<Votepage/>} />
+ 
+      
+    </Routes>
+    
+    </BrowserRouter>
+    
+    </>
   )
 }
 
