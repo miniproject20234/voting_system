@@ -1,8 +1,8 @@
-import React from 'react'
-
+import React from 'react';
+import './App.css';
 function App() {
   return (
-    <div>welcome to chan app</div>
+    <div className='App'>welcome to chan app</div>
   )
 }
 
