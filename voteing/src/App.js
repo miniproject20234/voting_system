@@ -1,15 +1,29 @@
 
-import './App.css';
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './css/App.css';
 
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Votepage from './pages/Votepage'
 
 function App() {
   return (
-    <div>  
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-    <h1 className="text-4xl font-bold text bg-green-500">Hello, Tailwind CSS!</h1>
-  </div> 
-  </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+
+        <Route path='/' element={<Register />} exact />
+        <Route path='/login' element={<Login />} />
+        <Route path='/votepage' element={<Votepage />} />
+
+
+         
+        </Routes>
+      </BrowserRouter>
+
+    </>
+
   )
 }
 
