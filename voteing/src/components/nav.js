@@ -3,7 +3,7 @@ import React from 'react'
 const nav = () => {
   return (
     <>
-     <div className='App'>nav</div>
+     <div className=' text-center text-green-500'>nav</div>
     </>
   
   )
