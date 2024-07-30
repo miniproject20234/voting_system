@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter,Routes,Route}from 'react-router-dom';
 
 import './css/App.css';
-
+import './css/index.css';
 
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
     <Routes>
 
-      <Route path='/register' element={<Register/>} exact/>
+      <Route path='/' element={<Register/>} exact/>
 
       
       <Route path='/login' element={<Login/>} />
