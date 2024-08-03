@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import '../css/index.css'
 
 const register = () => {
-  return (
+  return ( 
     <>
-    <div className='App'>register</div>
+    <div className="text-center text-green-500">register</div>
     </>
   )
 }

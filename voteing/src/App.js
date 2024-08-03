@@ -1,31 +1,29 @@
+
 import React from 'react';
-import {BrowserRouter,Routes,Route}from 'react-router-dom';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './css/App.css';
-
 
 import Register from './pages/Register';
 import Login from './pages/Login';
-import Votepage from './pages/Votepage';
+import Votepage from './pages/Votepage'
 
 function App() {
   return (
     <>
-    <BrowserRouter>
-    <Routes>
+      <BrowserRouter>
+        <Routes>
 
-      <Route path='/register' element={<Register/>} exact/>
+        <Route path='/' element={<Register />} exact />
+        <Route path='/login' element={<Login />} />
+        <Route path='/votepage' element={<Votepage />} />
 
-      
-      <Route path='/login' element={<Login/>} />
-      <Route path='/votepage' element={<Votepage/>} />
- 
-      
-    </Routes>
-    
-    </BrowserRouter>
-    
+
+         
+        </Routes>
+      </BrowserRouter>
+
     </>
+
   )
 }
 

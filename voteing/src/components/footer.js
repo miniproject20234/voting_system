@@ -2,7 +2,9 @@ import React from 'react'
 
 const footer = () => {
   return (
-    <div className='App'>footer</div>
+    <>
+    <div className="text-center">footer</div>
+    </>
   )
 }
 
