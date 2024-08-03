@@ -1,30 +1,13 @@
-
+// src/App.js
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './css/App.css';
+import Login from './login';
 
-import Register from './pages/Register';
-import Login from './pages/Login';
-import Votepage from './pages/Votepage'
-
-function App() {
+const App = () => {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
+    <div>
+      <Login />
+    </div>
+  );
+};
 
-        <Route path='/' element={<Register />} exact />
-        <Route path='/login' element={<Login />} />
-        <Route path='/votepage' element={<Votepage />} />
-
-
-         
-        </Routes>
-      </BrowserRouter>
-
-    </>
-
-  )
-}
-
-export default App
+export default App;

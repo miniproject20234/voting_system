@@ -1,17 +1,13 @@
-import React from 'react'
-import Navbar from '../components/nav';
-import Logincom from '../components/login';
-import Footer from '../components/footer';
+import React from 'react';
 
-const Login = () => {
-  return (
-    <>
-     <Navbar/>
-    <Logincom/>
-    <Footer/>
-    
-    </>
-  )
-}
+import { Router } from '@reach/router';
 
-export default Login
+import LoginView from './views/LoginView';
+
+const App = () => (
+  <Router>
+    <LoginView path="/login" />
+  </Router>
+);
+
+export default App;
