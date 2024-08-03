@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Router } from '@reach/router';
+//router la import panna vena
 
-import LoginView from './views/LoginView';
+import LoginView from '../components/login'; //error iruthuchi
 
 const App = () => (
-  <Router>
+  <>
     <LoginView path="/login" />
-  </Router>
+    </>
 );
 
 export default App;

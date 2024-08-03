@@ -1,13 +1,27 @@
-// src/App.js
+
 import React from 'react';
-import Login from './login';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './css/App.css';
 
-const App = () => {
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Votepage from './pages/Votepage';
+
+function App() {
   return (
-    <div>
-      <Login />
-    </div>
-  );
-};
+    <>
+      <BrowserRouter>
+        <Routes>
 
-export default App;
+        <Route path='/' element={<Register />} exact />
+        <Route path='/login' element={<Login />} />
+        <Route path='/votepage' element={<Votepage />} />
+        </Routes>
+      </BrowserRouter>
+
+    </>
+
+  )
+}
+
+export default App
