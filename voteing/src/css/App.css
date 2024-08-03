@@ -24,5 +24,11 @@ h2, p {
 a:hover {
     color: #1445e8;
 }
+.App {
+    text-align: center;
+    color: brown;  
+  }
+  
+
 
 
