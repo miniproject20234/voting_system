@@ -1,8 +1,8 @@
 import React from 'react';
 
-//router la import panna vena
 
-import LoginView from '../components/login'; //error iruthuchi
+
+import LoginView from '../components/login';
 
 const App = () => (
   <>
