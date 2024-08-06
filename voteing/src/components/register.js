@@ -1,6 +1,6 @@
 import React from 'react';
 // import '../css/login.css'; 
-import RegisterImage from '../assets/girl.png';
+import RegisterImage from '../assets/register.png';
 
 const Register = () => {
   return (
@@ -12,16 +12,16 @@ const Register = () => {
           <form className="flex flex-col gap-2" action="">
             <input className="p-1 mt-2 rounded-xl border focus:outline-none" type="text" name="Name" placeholder="Your Name" />
             <div >
-              <input className="p-1 rounded-xl border w-full focus:outline-none" type="Email" name="Email" placeholder="Your Email" />
+              <input className="p-1 rounded-xl border w-full focus:outline-none" type="Email" name="Email" placeholder="Email" />
             </div>
             <div >
-              <input className="p-1  rounded-xl border w-full focus:outline-none" type="password" name="password" placeholder="Your password" />
+              <input className="p-1  rounded-xl border w-full focus:outline-none" type="password" name="password" placeholder="password" />
             </div>
             <div >
-              <input className="p-1 rounded-xl border w-full focus:outline-none" type="Password" name="Confirm password" placeholder="Your Confirm password" />
+              <input className="p-1 rounded-xl border w-full focus:outline-none" type="Password" name="Confirm password" placeholder="Confirm password" />
             </div>
             <div >
-              <input className="p-1 rounded-xl border w-full focus:outline-none" type="number" name="Phone No" placeholder="Your Phone No" />
+              <input className="p-1 rounded-xl border w-full focus:outline-none" type="number" name="Phone No" placeholder="Phone No" />
             </div>
             <button className="Login-button rounded-xl text-white py-2">Register</button>
           </form>
@@ -33,8 +33,8 @@ const Register = () => {
           </div>
         </div>
 
-        <div className="md:w-3/4 flex img_hid items-center justify-center">
-          <img className="w-full rounded-xl" src={RegisterImage} alt="REGISTER IMAGE" />
+        <div className="md:w-1/2   border flex img_hid items-center justify-center">
+          <img className="  rounded-xl" src={RegisterImage} alt="REGISTER IMAGE" width={400} height={500} />
         </div>
       </div>
     </section>
