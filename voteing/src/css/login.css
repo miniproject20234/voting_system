@@ -40,8 +40,19 @@ a:hover {
 
   }
   .login-bg{
-    background-image: url('../assets/vote.jpg');
+    background-image: url('../assets/voteh.jpg');
     background-position: center;
    
   }
+
+  /* Hide password toggle icons for WebKit browsers (like Safari) */
+input[type="password"]::-webkit-text-security {
+  -webkit-text-security: disc;
+}
+
+/* Hide password toggle icons for Microsoft Edge */
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
 
