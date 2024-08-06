@@ -1,6 +1,6 @@
 import React from 'react';
 // import '../css/login.css'; 
-import RegisterImage from '../assets/Register.png';
+import RegisterImage from '../assets/girl.png';
 
 const Register = () => {
   return (
