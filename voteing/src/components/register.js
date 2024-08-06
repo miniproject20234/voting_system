@@ -9,10 +9,19 @@ const Register = () => {
         <div className="sm:w-1/2 px-16">
           <h2 className="font-bold text-2xl text-blue-500 text-center">Register</h2>
           <p className="text-sm mt-7 text-black text-opacity-70 text-center">If you already a member, easily log in</p>
-          <form className="flex flex-col gap-4" action="">
-            <input className="p-2 mt-8 rounded-xl border focus:outline-none" type="text" name="email" placeholder="Your email" />
-            <div className="">
-              <input className="p-2 mt-1 rounded-xl border w-full focus:outline-none" type="password" name="password" placeholder="Your password" />
+          <form className="flex flex-col gap-2" action="">
+            <input className="p-1 mt-2 rounded-xl border focus:outline-none" type="text" name="Name" placeholder="Your Name" />
+            <div >
+              <input className="p-1 rounded-xl border w-full focus:outline-none" type="Email" name="Email" placeholder="Your Email" />
+            </div>
+            <div >
+              <input className="p-1  rounded-xl border w-full focus:outline-none" type="password" name="password" placeholder="Your password" />
+            </div>
+            <div >
+              <input className="p-1 rounded-xl border w-full focus:outline-none" type="Password" name="Confirm password" placeholder="Your Confirm password" />
+            </div>
+            <div >
+              <input className="p-1 rounded-xl border w-full focus:outline-none" type="number" name="Phone No" placeholder="Your Phone No" />
             </div>
             <button className="Login-button rounded-xl text-white py-2">Register</button>
           </form>
@@ -20,12 +29,11 @@ const Register = () => {
             <p>
               <a href="#" className=''>Forgot Password?</a>
             </p>
-            
             <button className="py-2 px-5 text-white Login-button rounded-xl">Register</button>
           </div>
         </div>
 
-        <div className="md:w-1/2 flex img_hid items-center justify-center">
+        <div className="md:w-3/4 flex img_hid items-center justify-center">
           <img className="w-full rounded-xl" src={RegisterImage} alt="REGISTER IMAGE" />
         </div>
       </div>

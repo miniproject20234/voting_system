@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,500;1,300&display=swap');
+
+
+.Login-button {
+    background: linear-gradient(to right, #5234b3,#03a9f4);
+}
+
+
+.Login-button:hover {
+    background: linear-gradient(to   right, #8138f6ad, #03a8f4ab);
+}
+
+
+h2, p {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Changes color when hovering the mouse over the link */
+a:hover {
+    color: #1445e8;
+}
+.App {
+    text-align: center;
+    color: brown;  
+  }
+  
+
+  @media screen and (max-width: 640px){
+
+  
+  .img_hid{
+    display: none;
+    
+  }
+
+  }
+  .login-bg{
+    background-image: url('../assets/vote.jpg');
+    background-position: center;
+   
+  }
+
