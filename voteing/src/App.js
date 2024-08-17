@@ -6,6 +6,7 @@ import './css/Register.css';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Votepage from './pages/Votepage'
+import AuthForm from './components/login';
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <Routes>
 
         <Route path='/' element={<Register />} exact />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<AuthForm />} />
         <Route path='/votepage' element={<Votepage />} />
+        
         </Routes>
       </BrowserRouter>
 
