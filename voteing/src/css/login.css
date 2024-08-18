@@ -6,15 +6,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,500;1,300&display=swap');
 
 
+
+
+
 .Login-button {
     background: linear-gradient(to right, #5234b3,#03a9f4);
+	
+	
 }
-
 
 .Login-button:hover {
     background: linear-gradient(to   right, #8138f6ad, #03a8f4ab);
 }
-
 
 h2, p {
     font-family: 'Poppins', sans-serif;
@@ -26,10 +29,28 @@ a:hover {
 }
 .App {
     text-align: center;
-    color: brown;  
+    color: rgb(28, 184, 176);  
   }
   
+/* Add this CSS to your existing stylesheet */
 
+.glow-effect {
+	background-color: #1f1feda2;
+	padding: 4px;
+	font-size: 20px;
+	filter:drop-shadow(0 0 10px #fffdef);
+	font-family: Arial, Helvetica, sans-serif;
+	cursor: pointer;
+	transition: box-shadow 0.3s ease-in-out;
+}
+
+.glow-effect:hover {
+	box-shadow:  0 0 20px #0d0c0d;
+}
+
+
+  
+  
   @media screen and (max-width: 640px){
 
   
@@ -40,9 +61,10 @@ a:hover {
 
   }
   .login-bg{
-    background-image: url('../assets/voteh.jpg');
-    background-position: center;
-   
+    /* background-image: url('../assets/new wal.jpg'); */
+     background-image: url('../assets/boom.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;	
   }
 
   /* Hide password toggle icons for WebKit browsers (like Safari) */
@@ -54,5 +76,4 @@ input[type="password"]::-webkit-text-security {
 input[type="password"]::-ms-reveal {
   display: none;
 }
-
 
