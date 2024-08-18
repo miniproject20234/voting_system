@@ -1,6 +1,7 @@
 import React from 'react';
 // import '../css/login.css'; 
 import RegisterImage from '../assets/register.png';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   return (
@@ -40,7 +41,7 @@ const Register = () => {
               <a href="#" className=''>Forgot Password?</a>
             </p>
 
-            <button className="py-2 px-5 text-white Login-button rounded-xl">Register</button>
+            <Link to="/login" className="py-2 px-5 text-white Login-button rounded-xl">Login</Link>
 
           </div>  
 

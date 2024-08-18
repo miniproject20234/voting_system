@@ -1,15 +1,15 @@
 import React from 'react';
-import Navbar from '../components/nav';
+//import Navbar from '../components/nav';
 import Logincom from '../components/login';
-import Footer from '../components/footer';
-import Login from '../components/login';
+//import Footer from '../components/footer';
 
-const login= () => {
+
+const Login= () => {
   return (
     <>
-    <Navbar/>
+    
     <Logincom/>
-    <Footer/>
+    
     </>
   )
 }
