@@ -15,7 +15,7 @@ function App() {
         <Routes>
 
         <Route path='/' element={<Register />} exact />
-        <Route path='/login' element={<AuthForm />} />
+        <Route path='/login' element={<Login/>} />
         <Route path='/votepage' element={<Votepage />} />
         
         </Routes>

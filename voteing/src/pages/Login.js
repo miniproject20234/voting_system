@@ -2,13 +2,14 @@ import React from 'react';
 import Navbar from '../components/nav';
 import Logincom from '../components/login';
 import Footer from '../components/footer';
-import AuthForm from '../components/login';
+import Login from '../components/login';
 
-const Login = () => {
+const login= () => {
   return (
     <>
-    
-    <AuthForm/>
+    <Navbar/>
+    <Logincom/>
+    <Footer/>
     </>
   )
 }
