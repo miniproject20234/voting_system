@@ -31,7 +31,7 @@ const Register = () => {
               <input className="p-1 rounded-xl border w-full focus:outline-none" type="number" name="Phone No" placeholder="Phone No" />
             </div>
 
-            <button className="Login-button rounded-xl text-white py-2">Register</button>
+            <button className="Login-button rounded-x1 text-white py-2">Register</button>
           </form>
 
           <div className="mt-3 text-xs flex justify-between items-center">
@@ -42,7 +42,7 @@ const Register = () => {
 
             <button className="py-2 px-5 text-white Login-button rounded-xl">Register</button>
 
-          </div>
+          </div>  
 
         </div>
 

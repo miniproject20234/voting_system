@@ -4,6 +4,7 @@ import Navbar from '../components/nav';
 import Registercom from '../components/register';
 import Footer from '../components/footer';
 
+
 const Register = () => {
   return (
     <>
