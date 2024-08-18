@@ -14,7 +14,7 @@ const PasswordInput = () => {
   <button className="Login-button glow-effect rounded-xl text-black py-2">Login</button>
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <FontAwesomeIcon
         icon={isPasswordVisible ? faUnlock : faLock}
         className="absolute right-3 top-2/4 transform -translate-y-1/2 text-blue-400 cursor-pointer"
