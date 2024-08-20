@@ -53,7 +53,7 @@ const Login = () => {
               />
             </div>
             <PasswordInput />
-            <button className="glow-effect rounded-full text-white ">Login</button>
+            <button className="Login-button p-2  rounded-full text-white ">Login</button>
 
           </form>
 
