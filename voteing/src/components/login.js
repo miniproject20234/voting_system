@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import login_img from '../assets/girl.png';
+// import { Link } from 'react-router-dom';
+
+
 
 
 const PasswordInput = () => {
@@ -34,7 +37,7 @@ const Login = () => {
   return (
     
     <section className="bg-grey-500 login-bg min-h-screen flex items-center justify-center">
-      <div className="bg-[#fffcfd80] flex rounded-2xl shadow-lg max-w-3xl p-4">
+      <div className="bg-[#fffcfd2d] flex rounded-2xl shadow-lg max-w-3xl p-4">
         <div className="sm:w-1/2 px-16">
           <h2 className="font-bold text-2xl text-blue-500 text-center">Login</h2>
           <p className="text-sm mt-7 text-black text-opacity-70 text-center">
@@ -61,8 +64,14 @@ const Login = () => {
             <p>
                 Forgot Password?
             </p>
+            {/* <p> */}
+  {/* <Link to="/forgot-password" className="text-blue-500 hover:none mt-5 text-xs flex justify-between items-center "> */}
+    {/* Forgot Password?
+  </Link>
+</p> */}
             <button className="py-2 px-4 text-white Login-button rounded-xl">Register</button>
           </div>
+          
         </div>
         
          

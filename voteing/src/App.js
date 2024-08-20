@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './css/login.css';
+// import ForgotPassword from './components/ForgotPassword';
 
 
 import Register from './pages/Register';
@@ -17,6 +18,7 @@ function App() {
         <Route path='/' element={<Register />} exact />
         <Route path='/login' element={<Login />} />
         <Route path='/votepage' element={<Votepage />} />
+        {/* <Route path='/forgot-password'component={ForgotPassword} /> */}
         </Routes>
       </BrowserRouter>
 

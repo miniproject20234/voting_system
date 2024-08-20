@@ -63,9 +63,13 @@ a:hover {
   .login-bg{
     /* background-image: url('../assets/new wal.jpg'); */
 
-     background-image: url(''),url('../assets/boy.png');
-	   background-position: right bottom , left bottom;
-     background-repeat: no-repeat, no-repeat;
+     background-image: url('../assets/new\ wal2.gif');
+	   background-position-x: center;
+     background-repeat: no-repeat;
+     /* background-size: cover; */
+     /* background-position:right;      */
+     /* background-size: contain; */
+     
      
 
   }
