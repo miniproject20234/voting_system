@@ -7,8 +7,6 @@
 
 
 
-
-
 .Login-button {
     background: linear-gradient(to right, #5234b3,#03a9f4);
 	
@@ -38,7 +36,7 @@ a:hover {
 
   
   
-  @media screen and (max-width: 639px){
+  @media screen and (max-width: 600px){
 
   
   .img_hid{
@@ -50,12 +48,14 @@ a:hover {
   .login-bg{
     /* background-image: url('../assets/new wal.jpg'); */
 
-     background-image: url('../assets/new\ wal2.gif');
-	   background-position-x: center;
+     background-image: url('../assets/purple.jpg'),url('../assets/bg\ boy.png');
+	   /* background-position-x: center; */
      background-repeat: no-repeat;
-     /* background-size: cover; */
-     /* background-position:right;      */
+     background-size:cover;
+     background-position:center,bottom left; 
      /* background-size: contain; */
+     /* background-size: 500px; */
+     /* background-color:rgba(52, 155, 215, 0.509); */
      
      
 
@@ -70,4 +70,3 @@ input[type="password"]::-webkit-text-security {
 input[type="password"]::-ms-reveal {
   display: none;
 }
-
