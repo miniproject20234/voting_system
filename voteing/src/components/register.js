@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import RegisterImage from '../assets/register.png';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -53,7 +55,11 @@ const Register = () => {
   };
 
   return (
+    <>
+    <FontAwesomeIcon icon={faEnvelope} className="absolute right-3 top-2/3 transform -translate-y-1/2 text-blue-400" />
+              
     <section className="bg-grey-500 login-bg min-h-screen flex items-center justify-center">
+      
       <div className="bg-[#fffcfd80] flex rounded-2xl shadow-lg max-w-3xl p-4">
         <div className="sm:w-1/2 px-16">
           <h2 className="font-bold text-2xl text-blue-500 text-center">Register</h2>
@@ -68,7 +74,7 @@ const Register = () => {
                 autoComplete='off'
                 onChange={handleChange}
               />
-              {errors.username && <span className="text-red-500">{errors.username}</span>}
+              {errors.username && <span className="text-red-600 text-bold-500">{errors.username}</span>}
             </div>
 
             <div>
@@ -79,7 +85,7 @@ const Register = () => {
                 placeholder=" Your Email"
                 onChange={handleChange}
               />
-              {errors.email && <span className="text-red-500">{errors.email}</span>}
+              {errors.email && <span className="text-red-600 text-bold-500">{errors.email}</span>}
             </div>
 
             <div>
@@ -90,7 +96,7 @@ const Register = () => {
                 placeholder="Password"
                 onChange={handleChange}
               />
-              {errors.password && <span className="text-red-500">{errors.password}</span>}
+              {errors.password && <span className="text-red-600 text-bold-500">{errors.password}</span>}
             </div>
 
             <div>
@@ -101,7 +107,7 @@ const Register = () => {
                 placeholder="Confirm Password"
                 onChange={handleChange}
               />
-              {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword}</span>}
+              {errors.confirmPassword && <span className="text-red-600 text-bold-500">{errors.confirmPassword}</span>}
             </div>
 
             <div>
@@ -112,18 +118,16 @@ const Register = () => {
                 placeholder="Phone No"
                 onChange={handleChange}
               />
-              {errors.phoneNo && <span className="text-red-500">{errors.phoneNo}</span>}
+              {errors.phoneNo && <span className="text-red-600 text-bold-500">{errors.phoneNo}</span>}
             </div>
 
-            <button className=" py-2 text-white Login-button rounded-x1 ">Register</button>
-          </form>
+            <button className="py-2 px-4 text-white Login-button rounded-xl">Register</button>         
+             </form>
 
           <div className="mt-3 text-xs flex justify-between items-center">
-            <p>
-              <a href="#" className=''>Forgot Password?</a>
-            </p>
-            <Link to="/login" className="py-2 px-5 text-white Login-button rounded-xl">Login</Link>
-          </div>
+
+           <button className="py-2 px-4 text-white Login-button rounded-xl">Login</button>
+           </div>
         </div>
 
         <div className="md:w-1/2 border flex img_hid items-center justify-center">
@@ -131,6 +135,7 @@ const Register = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
