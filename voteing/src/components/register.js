@@ -38,12 +38,18 @@ const Register = () => {
       validationErrors.password = "Password is required";
     } else if (formData.password.length < 6) {
       validationErrors.password = "Password should be at least 6 characters";
-    }
-
-    if (formData.confirmPassword !== formData.password) {
+    }else if (formData.confirmPassword !== formData.password) {
       validationErrors.confirmPassword = "Passwords do not match";
     }
+    if (!formData.phoneNo.trim()) {
+      validationErrors.phoneNo = "PhoneNo is required";
+    }else if (formData.phoneNo.length!==11) {
+      validationErrors.phoneNo = "Enter 10 digit PhoneNo";
+    }
 
+
+
+    
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
@@ -76,7 +82,7 @@ const Register = () => {
           <form onSubmit={handleSubmit} className="flex flex-col gap-2">
             <div>
               <input
-                className="p-1 mt-2 rounded-xl border focus:outline-none"
+                className="p-1 rounded-lg border border-gray-300 w-full focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 shadow-sm transition-all duration-300"
                 type="text"
                 name="username"
                 placeholder="Your Name"
@@ -88,7 +94,7 @@ const Register = () => {
             </div>
             <div className='shadow hover:shadow-lg'>
               <input
-                className="p-1 rounded-xl border w-full focus:outline-none "
+                className="p-1 rounded-lg border border-gray-300 w-full focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 shadow-sm transition-all duration-300 "
                 type="email"
                 name="email"
                 placeholder="Your Email"
@@ -99,7 +105,7 @@ const Register = () => {
             </div>
             <div>
               <input
-                className="p-1 rounded-xl border w-full focus:outline-none"
+                className="p-1 rounded-lg border border-gray-300 w-full focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 shadow-sm transition-all duration-300"
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -110,18 +116,18 @@ const Register = () => {
             </div>
             <div>
               <input
-                className="p-1 rounded-xl border w-full focus:outline-none"
-                type="password"
+                className="p-1 rounded-lg border border-gray-300 w-full focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 shadow-sm transition-all duration-300 "          
+                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 onChange={handleChange}
                 value={formData.confirmPassword}
               />
-              {errors.confirmPassword && <span className="text-red-600 text-bold-500">{errors.confirmPassword}</span>}
+              {errors.confirmPassword && <span className="text-red-600 font-bold-500">{errors.confirmPassword}</span>}
             </div>
             <div>
               <input
-                className="p-1 rounded-xl border w-full focus:outline-none"
+                className="p-1 rounded-lg border border-gray-300 w-full focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 shadow-sm transition-all duration-300"
                 type="text"
                 name="phoneNo"
                 placeholder="Phone No"
