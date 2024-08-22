@@ -56,14 +56,15 @@ const Register = () => {
 
   return (
     <>
-    <FontAwesomeIcon icon={faEnvelope} className="absolute right-3 top-2/3 transform -translate-y-1/2 text-blue-400" />
-              
+               
     <section className="bg-grey-500 login-bg min-h-screen flex items-center justify-center">
       
       <div className="bg-[#fffcfd80] flex rounded-2xl shadow-lg max-w-3xl p-4">
         <div className="sm:w-1/2 px-16">
           <h2 className="font-bold text-2xl text-blue-500 text-center">Register</h2>
+          <div className="font-bold">
           <p className="text-sm mt-7 text-black text-opacity-70 text-center">If you are already a member, easily log in</p>
+          </div>
           <form onSubmit={handleSubmit} className="flex flex-col gap-2">
             <div>
               <input
@@ -130,8 +131,8 @@ const Register = () => {
            </div>
         </div>
 
-        <div className="md:w-1/2 border flex img_hid items-center justify-center">
-          <img className="rounded-xl" src={RegisterImage} alt="REGISTER IMAGE" width={400} height={500} />
+        <div className="md:w-1/2 border flex img_hid items-center justify-">
+          <img className="rounded-xl" src={RegisterImage} alt="REGISTER IMAGE" width={400} height={700} />
         </div>
       </div>
     </section>
