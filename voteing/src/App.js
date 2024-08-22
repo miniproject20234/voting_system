@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Votepage from './pages/Votepage'
 import AuthForm from './components/login';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (

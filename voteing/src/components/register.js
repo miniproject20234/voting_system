@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import RegisterImage from '../assets/register.png';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import RegisterImage from '../assets/key-removebg.png';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -51,19 +48,30 @@ const Register = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       alert("Form submitted successfully");
+
+      // Reset form data
+      setFormData({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        phoneNo: ''
+      });
+
+      // Optionally reset errors as well
+      setErrors({});
     }
   };
 
   return (
-    <>
-               
     <section className="bg-grey-500 login-bg min-h-screen flex items-center justify-center">
-      
       <div className="bg-[#fffcfd80] flex rounded-2xl shadow-lg max-w-3xl p-4">
         <div className="sm:w-1/2 px-16">
           <h2 className="font-bold text-2xl text-blue-500 text-center">Register</h2>
           <div className="font-bold">
-          <p className="text-sm mt-7 text-black text-opacity-70 text-center">If you are already a member, easily log in</p>
+            <p className="text-sm mt-7 text-black text-opacity-70 text-center">
+              If you are already a member, easily log in
+            </p>
           </div>
           <form onSubmit={handleSubmit} className="flex flex-col gap-2">
             <div>
@@ -72,23 +80,23 @@ const Register = () => {
                 type="text"
                 name="username"
                 placeholder="Your Name"
-                autoComplete='off'
+                
                 onChange={handleChange}
+                value={formData.username}
               />
               {errors.username && <span className="text-red-600 text-bold-500">{errors.username}</span>}
             </div>
-
-            <div>
+            <div className='shadow hover:shadow-lg'>
               <input
-                className="p-1 rounded-xl border w-full focus:outline-none"
+                className="p-1 rounded-xl border w-full focus:outline-none "
                 type="email"
                 name="email"
-                placeholder=" Your Email"
+                placeholder="Your Email"
                 onChange={handleChange}
+                value={formData.email}
               />
               {errors.email && <span className="text-red-600 text-bold-500">{errors.email}</span>}
             </div>
-
             <div>
               <input
                 className="p-1 rounded-xl border w-full focus:outline-none"
@@ -96,10 +104,10 @@ const Register = () => {
                 name="password"
                 placeholder="Password"
                 onChange={handleChange}
+                value={formData.password}
               />
               {errors.password && <span className="text-red-600 text-bold-500">{errors.password}</span>}
             </div>
-
             <div>
               <input
                 className="p-1 rounded-xl border w-full focus:outline-none"
@@ -107,10 +115,10 @@ const Register = () => {
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 onChange={handleChange}
+                value={formData.confirmPassword}
               />
               {errors.confirmPassword && <span className="text-red-600 text-bold-500">{errors.confirmPassword}</span>}
             </div>
-
             <div>
               <input
                 className="p-1 rounded-xl border w-full focus:outline-none"
@@ -118,25 +126,21 @@ const Register = () => {
                 name="phoneNo"
                 placeholder="Phone No"
                 onChange={handleChange}
+                value={formData.phoneNo}
               />
               {errors.phoneNo && <span className="text-red-600 text-bold-500">{errors.phoneNo}</span>}
             </div>
-
-            <button className="py-2 px-4 text-white Login-button rounded-xl">Register</button>         
-             </form>
-
+            <button className="py-2 px-4 text-white Login-button rounded-xl">Register</button>
+          </form>
           <div className="mt-3 text-xs flex justify-between items-center">
-
-           <button className="py-2 px-4 text-white Login-button rounded-xl">Login</button>
-           </div>
+            <button className="py-2 px-4 text-white Login-button rounded-xl">Login</button>
+          </div>
         </div>
-
         <div className="md:w-1/2 border flex img_hid items-center justify-">
           <img className="rounded-xl" src={RegisterImage} alt="REGISTER IMAGE" width={400} height={700} />
         </div>
       </div>
     </section>
-    </>
   );
 };
 
