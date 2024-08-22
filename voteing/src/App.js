@@ -17,6 +17,8 @@ function App() {
         
         <Route path='/login' element={<Login />} />
         <Route path='/votepage' element={<Votepage />}  />
+        <Route path='*' element={<h1>Not found</h1>}  />
+        
         
         
         </Routes>
