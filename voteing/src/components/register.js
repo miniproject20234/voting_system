@@ -75,10 +75,10 @@ const Register = () => {
         <div className="sm:w-1/2 px-16">
           <h2 className="font-bold text-2xl text-blue-500 text-center">Register</h2>
           <div className="font-bold">
-            <p className="text-sm mt-7 text-black text-opacity-70 text-center">
+            <p className="text-bold mt-7 py-2 text-black text-opacity-70 text-center">
               If you are already a member, easily log in
             </p>
-          </div>
+          </div> 
           <form onSubmit={handleSubmit} className="flex flex-col gap-2">
             <div>
               <input
