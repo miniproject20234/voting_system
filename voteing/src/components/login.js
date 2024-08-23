@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock, faUnlock } from '@fortawesome/free-solid-svg-icons';
-import login_img from '../assets/girl work.gif';
+import login_img from '../assets/girl.png';
 // import { Link } from 'react-router-dom';
+
+
 
 
 const PasswordInput = () => {
@@ -11,54 +13,6 @@ const PasswordInput = () => {
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
-
-  // const Register = () => {
-  //   const [formData, setFormData] = useState({
-    
-  //     email: '',
-  //     password: '',
-      
-  //   });
-  
-  //   const [errors, setErrors] = useState({});
-  
-  //   const handleChange = (e) => {
-  //     const { name, value } = e.target;
-  //     setFormData({
-  //       ...formData,
-  //       [name]: value
-  //     });
-  //   };
-  
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     const validationErrors = {};
-  
-  
-  //     if (!formData.email.trim()) {
-  //       validationErrors.email = "Email is required";
-  //     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-  //       validationErrors.email = "Email is not valid";
-  //     }
-  
-  //     if (!formData.password.trim()) {
-  //       validationErrors.password = "Password is required";
-  //     } else if (formData.password.length < 6) {
-  //       validationErrors.password = "Password should be at least 6 characters";
-  //     }
-  
-  
-  //     setErrors(validationErrors);
-  
-  //     if (Object.keys(validationErrors).length === 0) {
-  //       alert("Form submitted successfully");
-  //     }
-  //   };
-
-
-
-
-
   
   <button className="Login-button glow-effect rounded-xl text-black py-2">Login</button>
 
@@ -121,14 +75,13 @@ const Login = () => {
         </div>
         
          
-        {/* .....image..... */}
         
         <div className="md:w-1/2 flex img_hid items-center justify-center">
-          <img className="w-full rounded-xl" src={login_img} alt='loginimage'/>
+          <img className="w-full rounded-xl" src={login_img} alt='loginimage' />
         </div>
       </div>
     </section>
   );
 };
-                        
+
 export default Login;
