@@ -57,5 +57,5 @@ reguserShema.statics.login = async function (email, password) {
 
 
 
-const regUsers = mongoose.model('Reg_users', reguserShema);
+const regUsers = mongoose.model('Registered_users', reguserShema);
 module.exports = regUsers;

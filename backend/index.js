@@ -1,5 +1,8 @@
 var express = require("express");
 const mongoose = require("mongoose")
+const authRoutes = require('./routes/authRouters')
+const cookieParser = require('cookie-parser');
+const { requireAuth, checkUser } = require('./middleware/authmiddleware');
 
 
 
@@ -11,7 +14,7 @@ const app = express();
 
 //middleware
 app.use(express.json());
-
+app.use(cookieParser());
 
 const uri = process.env.ATLAS_URI;
 const port=process.env.PORT || 5000;
@@ -24,6 +27,8 @@ mongoose.connect(uri)
     console.error('Error connecting to MongoDB:', err);
   });
 
+
+  app.use(authRoutes);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
