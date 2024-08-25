@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from 'axios';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
@@ -92,15 +94,39 @@ const Register = () => {
     return Object.keys(validationErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
     if (validate()) {
-      // Handle successful validation and submission
-      alert("Registered successfully!");
+        try {
+            const response = await axios.post('http://localhost:5000/register', {
+                username: userName,
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword,
+                phonenumber: phoneNumber,
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+            });
+
+            // Handle successful registration
+            alert('Registered successfully!');
+            window.location.reload(); // This will refresh the page
+            console.log(response.data);
+        } catch (error) {
+            // Handle validation or server errors
+            if (error.response && error.response.data.errors) {
+                setErrors(error.response.data.errors);
+               
+            } else {
+                console.error('Something went wrong', error);
+            }
+        }
     } else {
-      alert("Please enter the valid details before submitting.");
+        alert('Please enter the valid details before submitting.');
     }
-  };
+};
 
   return (
     <div className="flex h-screen items-center justify-center custom-padding">

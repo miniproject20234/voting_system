@@ -5,12 +5,16 @@ import {
   faLock,
   faUnlock,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import login_img from "../assets/girl.png";
+
 import {
   isValidEmail,
   isValidPassword,
   handleBlur,
 } from "./validationUtils";
+import axios from "axios";
 
 const PasswordInput = ({ value, onChange, error, onBlur }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -23,7 +27,7 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
     <div className="relative">
       <FontAwesomeIcon
         icon={isPasswordVisible ? faUnlock : faLock}
-        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+        className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
         onClick={togglePasswordVisibility}
       />
       <input
@@ -66,15 +70,36 @@ const Login = () => {
     return Object.keys(formErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
+
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (validate()) {
-      // Handle successful validation and submission
-      alert("Login successful!");
+      try {
+        const response = await axios.post("http://localhost:5000/login", {
+          email: email,
+          password: password,
+        });
+  
+        if (response.status === 200) {
+          alert("Login successful!");
+          navigate('/votepage');
+          
+        }
+      } catch (error) {
+        if (error.response && error.response.data.errors) {
+          setErrors(error.response.data.errors );
+          
+        }
+        else {
+          alert("An error occurred. Please try again.");
+        }
+      }
     } else {
       alert("Please enter the valid details before submitting.");
     }
   };
+  
 
   return (
     <div className="p-5 flex h-screen items-center justify-center">

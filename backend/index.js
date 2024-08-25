@@ -1,38 +1,34 @@
-var express = require("express");
-const mongoose = require("mongoose")
-const authRoutes = require('./routes/authRouters')
+const express = require("express");
+const mongoose = require("mongoose");
+const authRoutes = require('./routes/authRouters');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authmiddleware');
 
-
-
-//for conect mongodb
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config(); // Load environment variables
 
 const app = express();
 app.use(cors());
-
-//middleware
 app.use(express.json());
 app.use(cookieParser());
 
 const uri = process.env.ATLAS_URI;
-const port=process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
 mongoose.connect(uri)
-  .then(() => {
-    console.log('Connected to MongoDB successfully');
-  })
-  .catch((err) => {
-    console.error('Error connecting to MongoDB:', err);
-  });
+  .then(() => console.log('Connected to MongoDB successfully'))
+  .catch(err => console.error('Error connecting to MongoDB:', err));
 
+// Apply middleware
+app.use(checkUser);
 
-  app.use(authRoutes);
+// Protect the `/votepage` route with `requireAuth`
+app.get('/votepage', requireAuth, (req, res) => {
+  res.json({ message: "Welcome to the voting page!" });
+});
+
+app.use(authRoutes);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
-})
-
+});
