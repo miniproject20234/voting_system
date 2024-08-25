@@ -10,6 +10,18 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
+/* for padding in the first div */
+.custom-padding {
+  padding: 1.25rem; /* Equivalent to Tailwind's p-5 */
+}
+
+@media (max-width: 400px) {
+  .custom-padding {
+    padding: 10px;
+  }
+}
+
+
 
 
 
