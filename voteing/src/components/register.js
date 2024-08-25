@@ -43,7 +43,7 @@ const Register = () => {
     }
     if (!formData.phoneNo.trim()) {
       validationErrors.phoneNo = "PhoneNo is required";
-    }else if (formData.phoneNo.length!==11) {
+    }else if (formData.phoneNo.length!==10) {
       validationErrors.phoneNo = "Enter 10 digit PhoneNo";
     }
 
@@ -136,7 +136,7 @@ const Register = () => {
               />
               {errors.phoneNo && <span className="text-red-600 text-bold-500">{errors.phoneNo}</span>}
             </div>
-            <button className="py-2 px-4 text-white Login-button rounded-xl">Register</button>
+            <button className="py-2 px-4 text-white Register-button rounded-xl">Register</button>
           </form>
           <div className="mt-3 text-xs flex justify-between items-center">
             <button className="py-2 px-4 text-white Login-button rounded-xl">Login</button>
