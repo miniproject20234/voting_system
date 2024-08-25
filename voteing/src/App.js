@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './css/App.css';
 
-import Register from './pages/Register';
-import Login from './pages/Login';
+import Auth from './pages/Auth';
+// import Login from './pages/Login';
 import Votepage from './pages/Votepage'
 
 
@@ -13,9 +13,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-        <Route path='/' element={<Register />} exact />
+        <Route path='/' element={<Auth />} exact />
         
-        <Route path='/login' element={<Login />} />
         <Route path='/votepage' element={<Votepage />}  />
         <Route path='*' element={<h1>Not found</h1>}  />
         
