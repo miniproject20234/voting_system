@@ -1,7 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import './css/App.css';
+import './css/Auth.css';
+import './css/SignUpForm.css';
+import './css/SignInForm.css';
+
 
 import Auth from './pages/Auth';
 // import Login from './pages/Login';

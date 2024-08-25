@@ -1,0 +1,45 @@
+/* For Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* For Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+
+
+.Login-button {
+    background: linear-gradient(to right, #5234b3,#03a9f4);
+}
+
+
+.Login-button:hover {
+  display: block;
+  filter: drop-shadow(0 0 10px #fffdef);
+}
+
+
+h2, p {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* media query for image hide  */
+  @media screen and (max-width: 600px){
+
+  
+  .img_hid{
+    display: none;
+    
+  }
+  .placeholder-small::placeholder {
+    font-size: 14px; /* This will override the font size within the media query */
+  }
+
+  }
+  
+

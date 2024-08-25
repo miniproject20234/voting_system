@@ -8,6 +8,7 @@ import Footer from '../components/footer';
 const Register = () => {
   return (
     <>
+       
     <Authcom/>
 
     </>

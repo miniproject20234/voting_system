@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.Login-button {
+    background: linear-gradient(to right, #5234b3,#03a9f4);
+	
+	
+}
+
+.Login-button:hover {
+  /* box-shadow: 0 2px 3px rgba(0, 0, 0, 0.7); */
+ 
+	transition: box-shadow 0.3s ease-in-out;
+ 
+}
+
+h2, p {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+  /* media query for image hide  */
+  @media screen and (max-width: 600px){
+
+  .img_hid{
+    display: none;
+    
+  }
+  .placeholder-small::placeholder {
+    font-size: 14px; /* This will override the font size within the media query */
+  }
+  }
+  .placeholder-small::placeholder {
+    color:black
+  }
+
+  
+  /* Hide password toggle icons for WebKit browsers (like Safari) */
+input[type="password"]::-webkit-text-security {
+  -webkit-text-security: disc;
+}
+
+/* Hide password toggle icons for Microsoft Edge */
+input[type="password"]::-ms-reveal {
+  display: none;
+}
