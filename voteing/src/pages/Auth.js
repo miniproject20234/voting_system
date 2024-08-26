@@ -10,7 +10,7 @@ const Auth = ({ email }) => {
     <>
        <Navbar  email={email} />
        <Authcom/>
-
+       <Footer/>
     </>
   )
 }
