@@ -1,9 +1,19 @@
-import React from 'react'
+// src/SomeComponent.js
+import React  from 'react';
+import Nav from './toolsforcom/navUtils'; // Adjust the path if needed
 
-const nav = () => {
+const Navvbars = ({ email }) => {
+  
+
   return (
-    <div className='text-green-500'>nav</div>
-  )
-}
+    <>
+       
+       <div className=''>
+       <Nav email={email} />
+      </div>  
+      
+    </>
+  );
+};
 
-export default nav
+export default Navvbars;

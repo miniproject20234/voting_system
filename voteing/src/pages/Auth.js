@@ -5,14 +5,14 @@ import Footer from '../components/footer';
 
 
 
-const Register = () => {
+const Auth = ({ email }) => {
   return (
     <>
-       
-    <Authcom/>
+       <Navbar  email={email} />
+       <Authcom/>
 
     </>
   )
 }
 
-export default Register;
+export default Auth;

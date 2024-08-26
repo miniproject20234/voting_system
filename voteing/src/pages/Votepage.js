@@ -1,9 +1,18 @@
-import React from 'react'
+import React from 'react';
+import Navbar from '../components/nav';
+import Vote from '../components/votepage';
+import Footer from '../components/footer';
 
-const Votepage = () => {
+
+
+const Votepage = ({ email }) => {
   return (
-    <div>Votepage</div>
+    <>
+       <Navbar  email={email} />
+       <Vote/>
+
+    </>
   )
 }
 
-export default Votepage
+export default Votepage;

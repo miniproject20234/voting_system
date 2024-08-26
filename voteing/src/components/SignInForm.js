@@ -5,15 +5,15 @@ import {
   faLock,
   faUnlock,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import login_img from "../assets/girl.png";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   isValidEmail,
   isValidPassword,
   handleBlur,
-} from "./validationUtils";
+} from "./toolsforcom/validationUtils";
 import axios from "axios";
 
 const PasswordInput = ({ value, onChange, error, onBlur }) => {
@@ -40,6 +40,7 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        autoComplete="current-password"
       />
       {error && <span className="text-red-500 text-sm">{error}</span>}
     </div>
@@ -70,8 +71,8 @@ const Login = () => {
     return Object.keys(formErrors).length === 0;
   };
 
-
   const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validate()) {
@@ -80,26 +81,28 @@ const Login = () => {
           email: email,
           password: password,
         });
-  
+
         if (response.status === 200) {
-          alert("Login successful!");
-          navigate('/votepage');
-          
+          toast.success("Login successfull! 👍");
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("email", email); // Store email
+
+          setTimeout(() => {
+            navigate("/votepage");
+            window.location.reload();
+          }, 2000);
         }
       } catch (error) {
         if (error.response && error.response.data.errors) {
-          setErrors(error.response.data.errors );
-          
-        }
-        else {
+          setErrors(error.response.data.errors);
+        } else {
           alert("An error occurred. Please try again.");
         }
       }
     } else {
-      alert("Please enter the valid details before submitting.");
+      toast.error("Please enter registered details before submitting 👎");
     }
   };
-  
 
   return (
     <div className="p-5 flex h-screen items-center justify-center">
@@ -128,7 +131,16 @@ const Login = () => {
                   placeholder="Enter email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  onBlur={(e) => handleBlur(e.target.name, e.target.value, errors, setErrors, password)}
+                  onBlur={(e) =>
+                    handleBlur(
+                      e.target.name,
+                      e.target.value,
+                      errors,
+                      setErrors,
+                      password
+                    )
+                  }
+                  autoComplete="email"
                 />
                 {errors.email && (
                   <span className="text-red-500 text-sm">{errors.email}</span>
@@ -138,7 +150,15 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 error={errors.password}
-                onBlur={(e) => handleBlur(e.target.name, e.target.value, errors, setErrors, password)}
+                onBlur={(e) =>
+                  handleBlur(
+                    e.target.name,
+                    e.target.value,
+                    errors,
+                    setErrors,
+                    password
+                  )
+                }
               />
               <button
                 type="submit"
@@ -157,6 +177,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 };

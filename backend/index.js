@@ -3,12 +3,17 @@ const mongoose = require("mongoose");
 const authRoutes = require('./routes/authRouters');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const { requireAuth, checkUser } = require('./middleware/authmiddleware');
+const { requireAuth } = require('./middleware/authmiddleware');
 
-require('dotenv').config(); // Load environment variables
+require('dotenv').config(); 
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  origin: 'http://localhost:3000', 
+  credentials: true, 
+}));
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -20,7 +25,7 @@ mongoose.connect(uri)
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
 // Apply middleware
-app.use(checkUser);
+// app.use(checkUser);
 
 // Protect the `/votepage` route with `requireAuth`
 app.get('/votepage', requireAuth, (req, res) => {

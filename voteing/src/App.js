@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
 
 import './css/Auth.css';
 import './css/SignUpForm.css';
@@ -15,31 +15,39 @@ function ProtectedRoute({ component: Component, ...rest }) {
 
   useEffect(() => {
     const checkAuth = async () => {
-      try {
-        await axios.get('http://localhost:5000/votepage'); // This should hit your protected route
-        setAuth(true);
-      } catch (err) {
-        console.log('Not authenticated:', err.message);
+      const token = localStorage.getItem("token");
+     
+
+      if (!token) {
         setAuth(false);
-        alert('login to get the access');
-        navigate('/auth'); // Redirect to login page if not authenticated
+        navigate("/");
+      } else {
+        setAuth(true);
+     
+        navigate("/votepage");
       }
     };
 
     checkAuth();
   }, [navigate]);
 
-  return auth ? <Component /> : <Auth />;
+  return auth ? <Component email={email} /> : <Auth />;
 }
+const email = localStorage.getItem("email");
 
 function App() {
   return (
+    <>
+ 
+
     <Routes>
-      <Route path='/' element={<Auth />} />
-      <Route path='/auth' element={<Auth />} />
-      <Route path='/votepage' element={<ProtectedRoute component={Votepage} />} />
+      <Route path='/' element={<Auth email={email}/>} />
+      <Route path='/auth' element={<Auth email={email} />} />
+      <Route path='/votepage' element={<ProtectedRoute component={Votepage} email={email} />} />
       <Route path='*' element={<h1>Not found</h1>} />
     </Routes>
+    </>
+  
   );
 }
 

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,7 +18,7 @@ import {
   isValidPhoneNumber,
   isValidPassword,
   handleBlur,
-} from "./validationUtils";
+} from "./toolsforcom/validationUtils";
 
 const PasswordInput = ({ value, onChange, error, onBlur }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -42,6 +44,7 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        autoComplete="new-password"
       />
       {error && <span className="text-red-500 text-sm">{error}</span>}
     </div>
@@ -98,35 +101,35 @@ const Register = () => {
     event.preventDefault();
 
     if (validate()) {
-        try {
-            const response = await axios.post('http://localhost:5000/register', {
-                username: userName,
-                email: email,
-                password: password,
-                confirmPassword: confirmPassword,
-                phonenumber: phoneNumber,
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-            });
+      try {
+        await axios.post("http://localhost:5000/register", {
+          username: userName,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,
+          phonenumber: phoneNumber,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-            // Handle successful registration
-            alert('Registered successfully!');
-            window.location.reload(); // This will refresh the page
-            console.log(response.data);
-        } catch (error) {
-            // Handle validation or server errors
-            if (error.response && error.response.data.errors) {
-                setErrors(error.response.data.errors);
-               
-            } else {
-                console.error('Something went wrong', error);
-            }
+        // Show toast notification for successful registration
+        toast.success(" Registered successfully! 👍");
+        setTimeout(() => {
+          window.location.reload(); // This will refresh the page
+        }, 2000);
+      } catch (error) {
+        // Handle validation or server errors
+        if (error.response && error.response.data.errors) {
+          setErrors(error.response.data.errors);
+        } else {
+          console.error("Something went wrong", error);
         }
+      }
     } else {
-        alert('Please enter the valid details before submitting.');
+      toast.error(" Please enter the valid details before submitting👎");
     }
-};
+  };
 
   return (
     <div className="flex h-screen items-center justify-center custom-padding">
@@ -155,12 +158,19 @@ const Register = () => {
                   placeholder="Enter Name"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
-                  onBlur={(e) => handleBlur(e.target.name, e.target.value, errors, setErrors, password)}
+                  onBlur={(e) =>
+                    handleBlur(
+                      e.target.name,
+                      e.target.value,
+                      errors,
+                      setErrors,
+                      password
+                    )
+                  }
+                  autoComplete="name"
                 />
                 {errors.userName && (
-                  <div className="text-red-500 text-sm">
-                    {errors.userName}
-                  </div>
+                  <div className="text-red-500 text-sm">{errors.userName}</div>
                 )}
               </div>
               <div className="relative">
@@ -177,7 +187,16 @@ const Register = () => {
                   placeholder="Enter Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  onBlur={(e) => handleBlur(e.target.name, e.target.value, errors, setErrors, password)}
+                  onBlur={(e) =>
+                    handleBlur(
+                      e.target.name,
+                      e.target.value,
+                      errors,
+                      setErrors,
+                      password
+                    )
+                  }
+                  autoComplete="email"
                 />
                 {errors.email && (
                   <div className="text-red-500 text-sm">{errors.email}</div>
@@ -187,7 +206,15 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 error={errors.password}
-                onBlur={(e) => handleBlur(e.target.name, e.target.value, errors, setErrors, password)}
+                onBlur={(e) =>
+                  handleBlur(
+                    e.target.name,
+                    e.target.value,
+                    errors,
+                    setErrors,
+                    password
+                  )
+                }
               />
               <div className="relative">
                 <FontAwesomeIcon
@@ -203,7 +230,16 @@ const Register = () => {
                   placeholder="Confirm Password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  onBlur={(e) => handleBlur(e.target.name, e.target.value, errors, setErrors, password)}
+                  onBlur={(e) =>
+                    handleBlur(
+                      e.target.name,
+                      e.target.value,
+                      errors,
+                      setErrors,
+                      password
+                    )
+                  }
+                  autoComplete="new-password"
                 />
                 {errors.confirmPassword && (
                   <div className="text-red-500 text-sm">
@@ -225,7 +261,16 @@ const Register = () => {
                   placeholder="Phone Number"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  onBlur={(e) => handleBlur(e.target.name, e.target.value, errors, setErrors, password)}
+                  onBlur={(e) =>
+                    handleBlur(
+                      e.target.name,
+                      e.target.value,
+                      errors,
+                      setErrors,
+                      password
+                    )
+                  }
+                  autoComplete="tel"
                 />
                 {errors.phoneNumber && (
                   <div className="text-red-500 text-sm">
@@ -246,6 +291,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 };
