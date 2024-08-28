@@ -1,30 +1,54 @@
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './css/Register.css';
 
-import Register from './pages/Register';
-import Login from './pages/Login';
-import Votepage from './pages/Votepage'
-import AuthForm from './components/login';
-import 'react-toastify/dist/ReactToastify.css';
+import './css/Auth.css';
+import './css/SignUpForm.css';
+import './css/SignInForm.css';
+
+import Auth from './pages/Auth';
+import Votepage from './pages/Votepage';
+
+function ProtectedRoute({ component: Component, ...rest }) {
+  const [auth, setAuth] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const token = localStorage.getItem("token");
+     
+
+      if (!token) {
+        setAuth(false);
+        navigate("/");
+      } else {
+        setAuth(true);
+     
+        navigate("/votepage");
+      }
+    };
+
+    checkAuth();
+  }, [navigate]);
+
+  return auth ? <Component email={email} /> : <Auth />;
+}
+const email = localStorage.getItem("email");
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
+ 
 
-        <Route path='/' element={<Register />} exact />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/votepage' element={<Votepage />} />
-        
-        </Routes>
-      </BrowserRouter>
-
+    <Routes>
+      <Route path='/' element={<Auth email={email}/>} />
+      <Route path='/auth' element={<Auth email={email} />} />
+      <Route path='/votepage' element={<ProtectedRoute component={Votepage} email={email} />} />
+      <Route path='*' element={<h1>Not found</h1>} />
+    </Routes>
     </>
-
-  )
+  
+  );
 }
 
-export default App
+export default App;

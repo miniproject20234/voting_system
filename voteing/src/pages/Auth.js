@@ -1,18 +1,18 @@
 import React from 'react';
 import Navbar from '../components/nav';
-import Vote from '../components/votepage';
+import Authcom from '../components/auth';
 import Footer from '../components/footer';
 
 
 
-const Votepage = ({ email }) => {
+const Auth = ({ email }) => {
   return (
     <>
        <Navbar  email={email} />
-       <Vote/>
-
+       <Authcom/>
+       <Footer/>
     </>
   )
 }
 
-export default Votepage;
+export default Auth;

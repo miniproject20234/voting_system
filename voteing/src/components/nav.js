@@ -1,9 +1,11 @@
 import React from 'react'
-
+//import './navbar.css'
 const nav = () => {
   return (
-    <div className='text-yellow-500 text-center'></div>
+    <div>
+
+    </div>
   )
 }
 
-export default nav;
+export default nav
