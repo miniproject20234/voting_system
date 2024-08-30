@@ -1,9 +1,14 @@
 import React from 'react'
-import Nav from './nav'
+import Navbar from './navbar'
+import homePage from "../assets/vote2.png";
 const homePage = () => {
   return (
     <div>
+        <Navbar/>
+        <>
         
+        
+        </>
     </div>
   )
 }

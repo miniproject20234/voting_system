@@ -8,6 +8,9 @@ import './css/SignInForm.css';
 
 import Auth from './pages/Auth';
 import Votepage from './pages/Votepage';
+import Homepage from './components/homepage';
+
+
 
 function ProtectedRoute({ component: Component, ...rest }) {
   const [auth, setAuth] = useState(false);
@@ -41,8 +44,10 @@ function App() {
  
 
     <Routes>
-      <Route path='/' element={<Auth email={email}/>} />
-      <Route path='/auth' element={<Auth email={email} />} />
+      
+      
+    <Route path='/' element={<Auth email={email}/>} />
+
       <Route path='/votepage' element={<ProtectedRoute component={Votepage} email={email} />} />
       <Route path='*' element={<h1>Not found</h1>} />
     </Routes>

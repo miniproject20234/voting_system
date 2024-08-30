@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../components/nav';
+import Navbar from '../components/navbar';
 import Vote from '../components/votepage';
 import Footer from '../components/footer';
 
