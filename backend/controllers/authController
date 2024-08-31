@@ -8,8 +8,11 @@ const createToken = (id) => {
     return jwt.sign({ id }, process.env.ACCESS_TOKEN, {
         expiresIn: maxAge
     });
+
 };
 
+
+//register post method
 module.exports.register_post = async (req, res) => {
     const { username, email, password, phonenumber, confirmPassword } = req.body;
     let errors = {};
@@ -46,7 +49,7 @@ module.exports.register_post = async (req, res) => {
         res.status(400).json({ errors });
     }
 };
-
+//login post method
 module.exports.login_post = async (req, res) => {
     const { email, password } = req.body;
     let errors = {};
@@ -55,10 +58,7 @@ module.exports.login_post = async (req, res) => {
         const user = await regUser.login(email, password);
         const token = createToken(user._id);
 
-        // console.log('Generated Token during Login:', token); 
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000, sameSite: 'None' });
-
-        // Send the token in the response body as well
         res.status(200).json({ user: user._id, token });
 
     } catch (err) {
@@ -73,7 +73,17 @@ module.exports.login_post = async (req, res) => {
     }
 };
 
-// module.exports.logout_get = (req, res) => {
-//     res.cookie('jwt', '', { maxAge: 1 });
-//     res.status(200).json({ message: 'Logged out successfully' });
-// };
+// Retrieve user details by email
+module.exports.getUserByEmail = async (req, res) => {
+    const { email } = req.query;
+    try {
+        const user = await regUser.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ user });
+    } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+

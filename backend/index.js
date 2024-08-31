@@ -27,10 +27,6 @@ mongoose.connect(uri)
 // Apply middleware
 // app.use(checkUser);
 
-// Protect the `/votepage` route with `requireAuth`
-app.get('/votepage', requireAuth, (req, res) => {
-  res.json({ message: "Welcome to the voting page!" });
-});
 
 app.use(authRoutes);
 

@@ -115,6 +115,7 @@ const Register = () => {
 
         // Show toast notification for successful registration
         toast.success(" Registered successfully! 👍");
+       
         setTimeout(() => {
           window.location.reload(); // This will refresh the page
         }, 2000);
