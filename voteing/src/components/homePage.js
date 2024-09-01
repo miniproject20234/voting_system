@@ -1,65 +1,41 @@
 import React from 'react';
 import Navbar from './navbar';
-//import Homepage from "../assets/vote2.png"; 
+// import Homepage from "../assets/vote2.png"; 
+import home_img from "../assets/home.png";
 
 const Homepage = () => {
   return (
     <>
-      
-      
+      <Navbar />
 
       {/* Main Content Area */}
-      <div className="min-h-screen bg-gradient-to-r from-blue-300 to-blue-500">
-        <main className="flex flex-col items-center justify-center mt-16">
+      <div className="min-h-screen bg-gradient-to-r from-white to-gray-100">
+        <main className="flex flex-col justify-center  mt-16 bg-gray-200 py-16">
+          {/* Main Image */}
+          <img
+            className="rounded-xl md:w-1/2 mb-14 md:mb-0"
+            src={home_img}
+            alt="Home"
+          />
+
           {/* Main Heading */}
-          <h1 className="text-4xl font-bold text-white mb-8">VOTE FOR THE FUTURE!</h1>
+              </main>
 
-                  </main>
-
-        {/* Voting Icons Section */}
-        <section className="mt-16 flex justify-center">
-          <div className="grid grid-cols-5 gap-6">
-            {/* Icon 1 */}
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                {/* Add icon/image here */}
-              </div>
-              <p className="mt-4 text-white">Vote 1</p>
-            </div>
-
-            {/* Icon 2 */}
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                {/* Add icon/image here */}
-              </div>
-              <p className="mt-4 text-white">Voter 2</p>
-            </div>
-
-            {/* Icon 3 */}
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                {/* Add icon/image here */}
-              </div>
-              <p className="mt-4 text-white">Voter 3</p>
-            </div>
-
-            {/* Icon 4 */}
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                {/* Add icon/image here */}
-              </div>
-              <p className="mt-4 text-white">Voter 4</p>
-            </div>
-
-            {/* Icon 5 */}
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                {/* Add icon/image here */}
-              </div>
-              <p className="mt-4 text-white">Voter 5</p>
-            </div>
-          </div>
-        </section>
+        {/* SVG Wave Divider */}
+        <div className="relative">
+          <svg
+            viewBox="0 0 500 150"
+            preserveAspectRatio="none"
+            className="absolute bottom-0 left-0 right-0 w-full h-20"
+          >
+            <path
+              d="M0.00,49.98 C149.99,150.00 349.99,0.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+              style={{ fill: '#f8fafc' }}
+            />
+          </svg>
+        </div>
+        <p className="text-4xl font-bold text-center text-blue-400 mt-4">VOTE FOR THE FUTURE!</p>
+    
       </div>
     </>
   );

@@ -5,6 +5,7 @@ import logo from '../assets/vote1.png'; // Import the logo image
 const Navbar = () => {
   return (
     <>
+    
       {/* Navbar container with gradient background */}
       <div className="bg-gradient-to-r from-blue-300 to-blue-500 shadow-lg">
         <header className="container mx-auto flex justify-between items-center p-4">
