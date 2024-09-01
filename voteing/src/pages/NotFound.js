@@ -1,18 +1,19 @@
 import React from 'react';
 import Navbar from '../components/navbar';
-import Authcom from '../components/auth';
+import NotFound from '../components/Notfound';
 import Footer from '../components/footer';
 
 
 
-const Auth = ({ email }) => {
+const Notfound = ({ email }) => {
   return (
     <>
        <Navbar  email={email} />
-       <Authcom/>
+       <NotFound/>
        <Footer/>
+
     </>
   )
 }
 
-export default Auth;
+export default Notfound;
