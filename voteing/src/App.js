@@ -46,8 +46,8 @@ function App() {
     <Routes>
       
       
-    <Route path='/' element={<Auth email={email}/>} />
-
+   
+    <Route path='/homepage' element={<Homepage />} />
       <Route path='/votepage' element={<ProtectedRoute component={Votepage} email={email} />} />
       <Route path='*' element={<h1>Not found</h1>} />
     </Routes>
