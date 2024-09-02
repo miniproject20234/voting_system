@@ -46,6 +46,14 @@ const Navvbars = ({ email }) => {
         localStorage.removeItem("email");
         navigate('/auth');
     };
+    //for sticky top-0
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleMenuClick = () => {
+      setIsMenuOpen(!isMenuOpen);
+      
+    };
+    
 
     if (loading) {
         return (
@@ -63,22 +71,28 @@ const Navvbars = ({ email }) => {
             </div>
         );
     }
-    // fixed inset-0 bg-gray-100  bg-opacity-75 z-40
+    
+    
     return (
-        <Disclosure as="nav" className="bg-white mb-5"> 
+        
+        <Disclosure as="nav" className={`bg-white mb-5 ${isMenuOpen ? '' : 'sticky top-0'}`}>
             {({ open }) => (
-                <><div className={`max-w-full mx-auto px-4 sm:px-6 lg:px-8  ${open ? 'fixed inset-0 bg-gray-900 bg-opacity-85 z-40' : ''}`}>
+                <div >
+                    <div className={`max-w-full mx-auto px-4 sm:px-6 lg:px-8  ${open ? 'fixed inset-0 bg-gray-900 bg-opacity-85 z-40' : ''}`}>
                     <div   className="bg-white p-1">
                         <div className="flex   justify-between h-16">
                             <div className="flex">
                                 <div className="-ml-2  mr-2 flex items-center sm:hidden">
-                                    <Disclosure.Button className="inline-flex ml-2 border-n items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
-                                        {open ? (
-                                            <XIcon className="block h-6 w-6  text-red-500" aria-hidden="true" />
-                                        ) : (
-                                            <MenuIcon className="block h-6  w-6" aria-hidden="true" />
-                                        )}
-                                    </Disclosure.Button>
+                                <Disclosure.Button
+        className="inline-flex ml-2 border-n items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+        onClick={handleMenuClick}
+      >
+        {isMenuOpen ? (
+          <XIcon className="block h-6 w-6 text-red-500" aria-hidden="true" />
+        ) : (
+          <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+        )}
+      </Disclosure.Button>
                                 </div>
                                 <div className="flex-shrink-0 flex items-center">
                                     <img src={logo} alt="Logo" className="w-16 h-16 rounded-full" />
@@ -322,7 +336,7 @@ const Navvbars = ({ email }) => {
                         </div>
                     </Disclosure.Panel>
                     <ToastContainer />
-                </>
+                </div>
             )}
         </Disclosure>
     );
