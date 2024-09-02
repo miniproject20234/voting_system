@@ -37,7 +37,7 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
         onClick={togglePasswordVisibility}
       />
       <input
-        className={`p-2 pl-1 mt-1 border-b-2 hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
+        className={`p-2 pl-1 mt-1 border-b-2  hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
           error ? "border-red-500" : ""
         }`}
         type={isPasswordVisible ? "text" : "password"}
