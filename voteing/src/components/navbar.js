@@ -63,13 +63,13 @@ const Navvbars = ({ email }) => {
             </div>
         );
     }
-
+    // fixed inset-0 bg-gray-100  bg-opacity-75 z-40
     return (
-        <Disclosure as="nav" className="bg-white">
+        <Disclosure as="nav" className="bg-white sticky top-0 mb-5"> 
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="flex justify-between h-16">
+                    <div   className={`max-w-full mx-auto px-4 sm:px-6 lg:px-8  ${open ? 'fixed inset-0 bg-white bg-opacity-75 z-40' : ''}`}>
+                        <div className="flex   justify-between h-16">
                             <div className="flex">
                                 <div className="-ml-2  mr-2 flex items-center sm:hidden">
                                     <Disclosure.Button className="inline-flex  items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
@@ -86,35 +86,32 @@ const Navvbars = ({ email }) => {
                                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                                     {/* Navigation Links */}
                                     <NavLink
-  to="/"
-  className={({ isActive }) =>
-    `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
-      isActive ? 'border-blue-600 text-gray-900' : 'border-transparent text-gray-500 hover:border-blue-600 hover:text-gray-900'
-    }`
-  }
->
-  Home
-</NavLink>
-<NavLink
-  to="/about"
-  className={({ isActive }) =>
-    `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
-      isActive ? 'border-blue-600 text-gray-900' : 'border-transparent text-gray-500 hover:border-blue-600 hover:text-gray-900'
-    }`
-  }
->
-  About
-</NavLink>
-<NavLink
-  to="/votepage"
-  className={({ isActive }) =>
-    `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
-      isActive ? 'border-blue-600 text-gray-900' : 'border-transparent text-gray-500 hover:border-blue-600 hover:text-gray-900'
-    }`
-  }
->
-  Vote
-</NavLink>
+                                        to="/"
+                                        className={({ isActive }) =>
+                                            `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${isActive ? 'border-blue-600 text-gray-900' : 'border-transparent text-gray-500 hover:border-blue-600 hover:text-blue-600'
+                                            }`
+                                        }
+                                    >
+                                        Home
+                                    </NavLink>
+                                    <NavLink
+                                        to="/about"
+                                        className={({ isActive }) =>
+                                            `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${isActive ? 'border-blue-600 text-gray-900' : 'border-transparent text-gray-500 hover:border-blue-600 hover:text-blue-600'
+                                            }`
+                                        }
+                                    >
+                                        About
+                                    </NavLink>
+                                    <NavLink
+                                        to="/votepage"
+                                        className={({ isActive }) =>
+                                            `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${isActive ? 'border-blue-600 text-gray-900' : 'border-transparent text-gray-500 hover:border-blue-600 hover:text-blue-600'
+                                            }`
+                                        }
+                                    >
+                                        Vote
+                                    </NavLink>
                                 </div>
                             </div>
                             <div className="flex items-center">
@@ -145,186 +142,184 @@ const Navvbars = ({ email }) => {
                                             </Menu.Button>
                                         </div>
                                         {userDetails && (
-                                        <Transition
-                                            as={Fragment}
-                                            leave="transition ease-in duration-100"
-                                            leaveFrom="transform opacity-100 scale-100"
-                                            leaveTo="transform opacity-0 scale-95"
-                                        >  
-                                            <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                
-                                                        <NavLink
-                                                            to="/profile"
-                                                            className='block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100' 
-                                                            
-                                                        >
-                                                            Your Profile
-                                                        </NavLink>
-                                                      
-                                                <Menu.Item>
-                                                    {({ active }) => (
-                                                        <AlertDialog.Root>
-                                                            <AlertDialog.Trigger asChild>
-                                                                <button
-                                                                    className={`block w-full hover:bg-gray-100 text-left px-4 py-2 text-sm text-gray-700 ${active ? 'bg-gray-100' : ''}`}
-                                                                    type="button"
-                                                                >
-                                                                    Sign Out
-                                                                </button>
-                                                            </AlertDialog.Trigger>
-                                                            <AlertDialog.Portal>
-                                                                <AlertDialog.Overlay className="bg-black bg-opacity-50 fixed inset-0" />
-                                                                <AlertDialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg max-w-md w-full z-50">
-                                                                    <AlertDialog.Title className="text-xl font-bold text-gray-900">Confirm Sign Out</AlertDialog.Title>
-                                                                    <AlertDialog.Description className="mt-2 text-gray-600">
-                                                                        Are you sure you want to sign out? You will need to log in again to access your account.
-                                                                    </AlertDialog.Description>
-                                                                    <div className="mt-4 flex justify-end space-x-4">
-                                                                        <AlertDialog.Cancel asChild>
-                                                                            <button
-                                                                                type="button"
-                                                                                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
-                                                                            >
-                                                                                Cancel
-                                                                            </button>
-                                                                        </AlertDialog.Cancel>
-                                                                        <AlertDialog.Action asChild>
-                                                                            <button
-                                                                                onClick={handleLogout}
-                                                                                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700"
-                                                                            >
-                                                                                Log Out
-                                                                            </button>
-                                                                        </AlertDialog.Action>
-                                                                    </div>
-                                                                </AlertDialog.Content>
-                                                            </AlertDialog.Portal>
-                                                        </AlertDialog.Root>
-                                                    )}
-                                                </Menu.Item>
-                                            </Menu.Items>
-                                        </Transition>)}
+                                            <Transition
+                                                as={Fragment}
+                                                leave="transition ease-in duration-100"
+                                                leaveFrom="transform opacity-100 scale-100"
+                                                leaveTo="transform opacity-0 scale-95"
+                                            >
+                                                <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+
+                                                    <NavLink
+                                                        to="/profile"
+                                                        className='block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100'
+
+                                                    >
+                                                        Your Profile
+                                                    </NavLink>
+
+                                                    <Menu.Item>
+                                                        {({ active }) => (
+                                                            <AlertDialog.Root>
+                                                                <AlertDialog.Trigger asChild>
+                                                                    <button
+                                                                        className={`block w-full hover:bg-gray-100 text-left px-4 py-2 text-sm text-gray-700 ${active ? 'bg-gray-100' : ''}`}
+                                                                        type="button"
+                                                                    >
+                                                                        Sign Out
+                                                                    </button>
+                                                                </AlertDialog.Trigger>
+                                                                <AlertDialog.Portal>
+                                                                    <AlertDialog.Overlay className="bg-black bg-opacity-50 fixed inset-0" />
+                                                                    <AlertDialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg max-w-md w-full z-50">
+                                                                        <AlertDialog.Title className="text-xl font-bold text-gray-900">Confirm Sign Out</AlertDialog.Title>
+                                                                        <AlertDialog.Description className="mt-2 text-gray-600">
+                                                                            Are you sure you want to sign out? You will need to log in again to access your account.
+                                                                        </AlertDialog.Description>
+                                                                        <div className="mt-4 flex justify-end space-x-4">
+                                                                            <AlertDialog.Cancel asChild>
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
+                                                                                >
+                                                                                    Cancel
+                                                                                </button>
+                                                                            </AlertDialog.Cancel>
+                                                                            <AlertDialog.Action asChild>
+                                                                                <button
+                                                                                    onClick={handleLogout}
+                                                                                    className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700"
+                                                                                >
+                                                                                    Log Out
+                                                                                </button>
+                                                                            </AlertDialog.Action>
+                                                                        </div>
+                                                                    </AlertDialog.Content>
+                                                                </AlertDialog.Portal>
+                                                            </AlertDialog.Root>
+                                                        )}
+                                                    </Menu.Item>
+                                                </Menu.Items>
+                                            </Transition>)}
                                     </Menu>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <Disclosure.Panel className="sm:hidden ">
-                        <div className="fixed inset-0  bg-black bg-opacity-85 z-50">
-            <div className="pt-2 pb-3 bg-white space-y-1">
-              <NavLink
-                as="NavLink"
-                to="/"
-                className={({ isActive }) =>
-                    `border-transparent text-gray-500 hover:bg-gray-200 hover:border-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6 ${
-                      isActive ? 'bg-blue-100 border-l-4 border-blue-500 text-blue-700  ' : ''
-                    }`
-                  }
-              >
-                Home
-              </NavLink>
-              
-              <NavLink
-  to="/votepage"
-  className={({ isActive }) =>
-    `border-transparent text-gray-500 hover:bg-gray-200 hover:border-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6 ${
-      isActive ? 'bg-blue-100 border-l-4 border-blue-500 text-blue-700  ' : ''
-    }`
-  }
->
-  Voting Page
-</NavLink>
-              <NavLink
-               
-               to="/about"
-               className={({ isActive }) =>
-                `border-transparent text-gray-500 hover:bg-gray-200 hover:border-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6 ${
-                  isActive ? 'bg-blue-100 border-l-4 border-blue-500 text-blue-700  ' : ''
-                }`
-              }
-              >
-                About
-              </NavLink>
-          
-                
-               
-            </div>
-            <div className="pt-4 pb-3 border-t bg-white border-gray-200 ">
-              <div className="flex items-center px-4 sm:px-6">
-              {userDetails && ( <div className="flex-shrink-0">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                </div>)}
-                <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">{email}</div>
-                  
-                </div>
-             
-                {userDetails && (
-                                                <div className="ml-auto flex-shrink-0">
-                                                    
-                                                        <AlertDialog.Root>
-                                                            <AlertDialog.Trigger asChild>
+                        <div className="fixed  z-40   inset-x-0  top-20">
+                            <div className="pt-2 pb-3 bg-white space-y-1">
+                                <NavLink
+                                    as="NavLink"
+                                    to="/"
+                                    className={({ isActive }) =>
+                                        `border-transparent text-gray-500 hover:bg-gray-200 hover:border-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6 ${isActive ? 'bg-blue-100 border-l-4 border-blue-500 text-blue-700  ' : ''
+                                        }`
+                                    }
+                                >
+                                    Home
+                                </NavLink>
+
+                                <NavLink
+                                    to="/votepage"
+                                    className={({ isActive }) =>
+                                        `border-transparent text-gray-500 hover:bg-gray-200 hover:border-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6 ${isActive ? 'bg-blue-100 border-l-4 border-blue-500 text-blue-700  ' : ''
+                                        }`
+                                    }
+                                >
+                                    Voting Page
+                                </NavLink>
+                                <NavLink
+
+                                    to="/about"
+                                    className={({ isActive }) =>
+                                        `border-transparent text-gray-500 hover:bg-gray-200 hover:border-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6 ${isActive ? 'bg-blue-100 border-l-4 border-blue-500 text-blue-700  ' : ''
+                                        }`
+                                    }
+                                >
+                                    About
+                                </NavLink>
+
+
+
+                            </div>
+                            <div className="pt-4 pb-3 border-t bg-white border-gray-200 ">
+                                <div className="flex items-center px-4 sm:px-6">
+                                    {userDetails && ( <div className="flex-shrink-0">
+                                        <img
+                                            className="h-10 w-10 rounded-full"
+                                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                            alt=""
+                                        />
+                                    </div>)}
+                                    <div className="ml-3">
+                                    {userDetails && ( <div className="text-base font-medium text-gray-800">{userDetails.username}</div>)}
+                                        <div className="text-base font-medium text-gray-800">{email}</div>
+                                    
+
+                                    </div>
+
+                                    {userDetails && (
+                                        <div className="ml-auto flex-shrink-0">
+
+                                            <AlertDialog.Root>
+                                                <AlertDialog.Trigger asChild>
+                                                    <button
+                                                        className=" bg-blue-500 text-white font-semibold py-1 px-4 rounded-md hover:bg-blue-600"
+                                                        type="button"
+                                                    >
+                                                        Sign Out
+                                                    </button>
+                                                </AlertDialog.Trigger>
+                                                <AlertDialog.Portal>
+                                                    <AlertDialog.Overlay className="bg-black bg-opacity-50 fixed inset-0" />
+                                                    <AlertDialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg max-w-md w-full z-50">
+                                                        <AlertDialog.Title className="text-xl font-bold text-gray-900">Confirm Sign Out</AlertDialog.Title>
+                                                        <AlertDialog.Description className="mt-2 text-gray-600">
+                                                            Are you sure you want to sign out? You will need to log in again to access your account.
+                                                        </AlertDialog.Description>
+                                                        <div className="mt-4 flex justify-end space-x-4">
+                                                            <AlertDialog.Cancel asChild>
                                                                 <button
-                                                                     className=" bg-blue-500 text-white font-semibold py-1 px-4 rounded-md hover:bg-blue-600"
                                                                     type="button"
+                                                                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
                                                                 >
-                                                                    Sign Out
+                                                                    Cancel
                                                                 </button>
-                                                            </AlertDialog.Trigger>
-                                                            <AlertDialog.Portal>
-                                                                <AlertDialog.Overlay className="bg-black bg-opacity-50 fixed inset-0" />
-                                                                <AlertDialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg max-w-md w-full z-50">
-                                                                    <AlertDialog.Title className="text-xl font-bold text-gray-900">Confirm Sign Out</AlertDialog.Title>
-                                                                    <AlertDialog.Description className="mt-2 text-gray-600">
-                                                                        Are you sure you want to sign out? You will need to log in again to access your account.
-                                                                    </AlertDialog.Description>
-                                                                    <div className="mt-4 flex justify-end space-x-4">
-                                                                        <AlertDialog.Cancel asChild>
-                                                                            <button
-                                                                                type="button"
-                                                                                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
-                                                                            >
-                                                                                Cancel
-                                                                            </button>
-                                                                        </AlertDialog.Cancel>
-                                                                        <AlertDialog.Action asChild>
-                                                                            <button
-                                                                                onClick={handleLogout}
-                                                                                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700"
-                                                                            >
-                                                                                Log Out
-                                                                            </button>
-                                                                        </AlertDialog.Action>
-                                                                    </div>
-                                                                </AlertDialog.Content>
-                                                            </AlertDialog.Portal>
-                                                        </AlertDialog.Root>
-                                                  
-                                                </div>)}
-                                                
-               
-              </div>
-              {userDetails && (<div >
-              <NavLink
-                 
-                 to="/profile"
-                 className={({ isActive }) =>
-                    `border-transparent text-gray-500 mt-2 hover:bg-gray-200 hover:border-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6 ${
-                      isActive ? 'bg-blue-100 border-l-4 border-blue-500 text-blue-700  ' : ''
-                    }`
-                  }
-                    >
-                      Your Profile
-                    </NavLink>
-              </div>)}
-              <ToastContainer />
-            </div>
-            </div>
-          </Disclosure.Panel>
+                                                            </AlertDialog.Cancel>
+                                                            <AlertDialog.Action asChild>
+                                                                <button
+                                                                    onClick={handleLogout}
+                                                                    className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700"
+                                                                >
+                                                                    Log Out
+                                                                </button>
+                                                            </AlertDialog.Action>
+                                                        </div>
+                                                    </AlertDialog.Content>
+                                                </AlertDialog.Portal>
+                                            </AlertDialog.Root>
+
+                                        </div>)}
+
+
+                                </div>
+                                {userDetails && (<div >
+                                    <NavLink
+
+                                        to="/profile"
+                                        className={({ isActive }) =>
+                                            `border-transparent text-gray-500 mt-2 hover:bg-gray-200 hover:border-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6 ${isActive ? 'bg-blue-100 border-l-4 border-blue-500 text-blue-700  ' : ''
+                                            }`
+                                        }
+                                    >
+                                        Your Profile
+                                    </NavLink>
+                                </div>)}
+                                <ToastContainer />
+                            </div>
+                        </div>
+                    </Disclosure.Panel>
                     <ToastContainer />
                 </>
             )}
