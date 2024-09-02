@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './navbar';
 // import Homepage from "../assets/vote2.png"; 
-import home_img from "../assets/home.png";
+//import home_img from "../assets/home.png";
 
 const Homepage = () => {
   return (
@@ -12,12 +12,7 @@ const Homepage = () => {
       <div className="min-h-screen bg-gradient-to-r from-white to-gray-100">
         <main className="flex flex-col justify-center  mt-16 bg-gray-200 py-16">
           {/* Main Image */}
-          <img
-            className="rounded-xl md:w-1/2 mb-14 md:mb-0"
-            src={home_img}
-            alt="Home"
-          />
-
+          
           {/* Main Heading */}
               </main>
 
