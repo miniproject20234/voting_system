@@ -54,7 +54,7 @@ function App() {
           <Route path='/votepage' element={<ProtectedRoute component={Votepage} />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/about' element={<About />} />
-          <Route path='*' element={<NotFound/>} />
+          <Route path='/*' element={<NotFound/>} />
         </Routes>
       </GoogleOAuthProvider>
      

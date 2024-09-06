@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 const Notfund = () => {
   const navigate = useNavigate();
 
-  const Home = () => {
+  const Homepage = () => {
     navigate('/');
   };
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="text-center">
-        <img onClick={Home} className="mx-auto -mt-7" src={NotFound_img} alt="not found" />
-        <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <img onClick={Homepage} className="mx-auto -mt-7" src={NotFound_img} alt="not found" />
+        <button className="mt-4 bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
           Back to Home
         </button>
       </div>
