@@ -6,7 +6,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import './css/Auth.css';
 import './css/SignUpForm.css';
 import './css/SignInForm.css';
-//import './css/Navbar.css';
+
 
 import Auth from './pages/Auth';
 import Votepage from './pages/Votepage';

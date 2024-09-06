@@ -1,18 +1,18 @@
 import React from 'react';
-import Navbar from './navbar';
+//import Navbar from './navbar';
 // import Homepage from "../assets/vote2.png"; 
-//import home_img from "../assets/home.png";
+import home_img from "../assets/home.png";
 
-const Homepage = () => {
+const Home = () => {
   return (
     <>
-      <Navbar />
+    
 
       {/* Main Content Area */}
       <div className="min-h-screen bg-gradient-to-r from-white to-gray-100">
         <main className="flex flex-col justify-center  mt-16 bg-gray-200 py-16">
           {/* Main Image */}
-          
+          <img className="rounded-xl" src={home_img} alt="home" />
           {/* Main Heading */}
               </main>
 
@@ -36,4 +36,4 @@ const Homepage = () => {
   );
 }
 
-export default Homepage;
+export default Home;

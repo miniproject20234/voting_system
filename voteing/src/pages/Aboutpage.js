@@ -1,16 +1,16 @@
-// import React from 'react'
-// import Navbar from '../components/navbar';
-// import About from '../components/Aboutpage';
-// import Footer from '../components/footer';
+import React from 'react'
+import Navbar from '../components/navbar';
+import About from '../components/about';
+import Footer from '../components/footer';
 
-// const Aboutpage = ({email}) => {
-//   return (
-//     <div>
-//     <Navbar  email={email} />
-//     <About/>
-//     <Footer/>
-//     </div>
-//   )
-// }
+const Aboutpage = ({email}) => {
+  return (
+    <div>
+    <Navbar  email={email} />
+    <About/>
+    <Footer/>
+    </div>
+  )
+}
 
-// export default Aboutpage
+export default Aboutpage

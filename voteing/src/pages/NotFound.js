@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../components/navbar';
-import NotFound from './NotFound';
+import NotFound from '../components/Notfound';
 import Footer from '../components/footer';
 
 

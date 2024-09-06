@@ -9,7 +9,8 @@ const Auth = ({ email }) => {
   return (
     <>
        <Navbar  email={email} />
-       <Authcom/>
+       
+       <Authcom />
        <Footer/>
     </>
   )
