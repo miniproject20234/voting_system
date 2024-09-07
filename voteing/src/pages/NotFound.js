@@ -5,10 +5,10 @@ import Footer from '../components/footer';
 
 
 
-const Notfound = ({ email }) => {
+const Notfound = () => {
   return (
     <>
-       <Navbar  email={email} />
+       <Navbar/>
        <NotFound/>
        <Footer/>
 

@@ -5,10 +5,10 @@ import Footer from '../components/footer';
 
 
 
-const Auth = ({ email }) => {
+const Auth = () => {
   return (
     <>
-       <Navbar  email={email} />
+       <Navbar />
        
        <Authcom />
        <Footer/>

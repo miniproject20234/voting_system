@@ -96,7 +96,7 @@ const Login = () => {
         if (error.response && error.response.data.errors) {
           setErrors(error.response.data.errors);
         } else {
-          alert("An error occurred. Please try again.");
+          toast.error("An server error occurred. Please try again later.");
         }
       }
     } else {
@@ -162,7 +162,7 @@ const Login = () => {
               />
               <button
                 type="submit"
-                className="Login-button  p-2 rounded-full bg-blue-500 text-white"
+                className="Login-button  p-2 rounded-full bg-blue-500 text-white  hover:shadow-lg "
               >
                 Login
               </button>

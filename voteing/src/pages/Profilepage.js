@@ -1,13 +1,16 @@
-import React from 'react'
-import Navbar from '../components/navbar';
-import Profile from  '../components/profile';
-import Footer from '../components/footer';
-const Profilepage = ({email}) => {
+import React from "react";
+import Navbar from "../components/navbar";
+import Profile from "../components/profile";
+import Footer from "../components/footer";
+const Profilepage = () => {
   return (
-    <div> <Navbar  email={email} />
-    <Profile/>
-    <Footer/></div>
-  )
-}
+    <div>
+      
+      <Navbar />
+      <Profile />
+      <Footer />
+    </div>
+  );
+};
 
-export default Profilepage
+export default Profilepage;

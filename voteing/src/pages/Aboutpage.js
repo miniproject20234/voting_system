@@ -3,10 +3,10 @@ import Navbar from '../components/navbar';
 import About from '../components/about';
 import Footer from '../components/footer';
 
-const Aboutpage = ({email}) => {
+const Aboutpage = () => {
   return (
     <div>
-    <Navbar  email={email} />
+    <Navbar />
     <About/>
     <Footer/>
     </div>
