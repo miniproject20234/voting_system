@@ -86,7 +86,7 @@ const Login = () => {
           toast.success("Login successfull! 👍");
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("email", email); // Store email
-
+          
           setTimeout(() => {
             navigate("/votepage");
             window.location.reload();
@@ -162,7 +162,7 @@ const Login = () => {
               />
               <button
                 type="submit"
-                className="Login-button p-2 rounded-full bg-blue-500 text-white"
+                className="Login-button  p-2 rounded-full bg-blue-500 text-white"
               >
                 Login
               </button>

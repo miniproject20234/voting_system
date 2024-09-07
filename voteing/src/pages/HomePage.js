@@ -1,14 +1,16 @@
-import React from 'react'
+import React from 'react';
 import Navbar from '../components/navbar';
-import Home from '../components/homePage';
+import Hom from '../components/home';
 import Footer from '../components/footer';
 
-const HomePage = ({email}) => {
+const Homepage = () => {
   return (
-    <div>  <Navbar  email={email} />
-    <Home/>
-    <Footer/></div>
+  <>
+   <Navbar/>
+   <Hom/>
+    <Footer/>
+  </>
   )
 }
 
-export default HomePage
+export default Homepage;

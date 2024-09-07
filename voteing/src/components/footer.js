@@ -2,10 +2,8 @@ import React from 'react'
 
 const footer = () => {
   return (
-    <>
-    <div className="text-center"></div>
-    </>
+    <div className='bg-slate-700 border'><div className="text-white">footer</div></div>
   )
 }
 
-export default footer
+export default footer;

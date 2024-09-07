@@ -10,6 +10,7 @@ const Votepage = ({ email }) => {
     <>
        <Navbar  email={email} />
        <Vote/>
+       <Footer/>
 
     </>
   )

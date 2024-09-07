@@ -1,9 +1,14 @@
+
 import React from 'react'
+const Votepage = () => {
 
-const votepage = () => {
+
   return (
-    <div className='text-center text-yellow-400'>votepage</div>
-  )
-}
+    <div>
+      <h1>Vote Page</h1>
+      {/* Your vote page content goes here */}
+    </div>
+  );
+};
 
-export default votepage
+export default Votepage;

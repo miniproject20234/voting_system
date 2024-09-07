@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -31,11 +33,11 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
     <div className="relative">
       <FontAwesomeIcon
         icon={isPasswordVisible ? faUnlock : faLock}
-        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+        className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
         onClick={togglePasswordVisibility}
       />
       <input
-        className={`p-2 pl-1 mt-1 border-b-2 hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
+        className={`p-2 pl-1 mt-1 border-b-2  hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
           error ? "border-red-500" : ""
         }`}
         type={isPasswordVisible ? "text" : "password"}
@@ -112,8 +114,6 @@ const Register = () => {
             "Content-Type": "application/json",
           },
         });
-
-        // Show toast notification for successful registration
         toast.success(" Registered successfully! 👍");
         setTimeout(() => {
           window.location.reload(); // This will refresh the page
@@ -278,11 +278,27 @@ const Register = () => {
                   </div>
                 )}
               </div>
+
               <button
                 type="submit"
                 className="p-2 Login-button rounded-full bg-blue-500 text-white"
               >
                 Register
+              </button>
+              <button className=" pl-20">
+                <GoogleLogin 
+                  onSuccess={(credentialResponse) => {
+                    const credentialResponseDecoded = jwtDecode(
+                      credentialResponse.credential
+                    );
+                    console.log(credentialResponseDecoded);
+                  }}
+                  onError={() => {
+                    toast.error("Error signing up with Google");
+                    console.log("Login Failed");
+                  }}
+                 
+                />
               </button>
             </form>
           </div>
