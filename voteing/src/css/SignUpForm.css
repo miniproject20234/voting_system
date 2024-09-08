@@ -63,3 +63,8 @@ h2, p {
 .error{
   border:solid red;
 }
+
+
+.bg-banner{
+  background-image: url('../assets/bgBanner.jpeg');
+}

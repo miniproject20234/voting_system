@@ -138,9 +138,9 @@ const Register = () => {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center custom-padding">
-      <div className="bg-grey-500 p-5 shadow-lg flex items-center justify-center">
-        <div className="bg-[#fffcfd2d] flex rounded-2xl max-w-3xl">
+    <div className="flex  h-screen  items-center justify-center custom-padding">
+      <div className="bg-grey-500  p-5 shadow-lg flex items-center justify-center">
+        <div className="bg-[#fffcfd2d]   flex rounded-2xl max-w-3xl">
           <div className="px-16">
             <h2 className="font-bold text-2xl mt-5 text-blue-500 text-center">
               Create Account
