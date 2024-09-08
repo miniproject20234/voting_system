@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { isEmail, isMobilePhone } = require('validator');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const schema = mongoose.Schema;
 
