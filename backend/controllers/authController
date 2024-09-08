@@ -17,7 +17,7 @@ module.exports.register_post = async (req, res) => {
 
   try {
     // Verify email using Hunter API
-    const hunterApiKey = "bfd746001b26869f3839d939ea134f345d8c5c3b";
+    const hunterApiKey = process.env.HUNTER_API_KEY;
     const hunterApiUrl = `https://api.hunter.io/v2/email-verifier?email=${email}&api_key=${hunterApiKey}`;
     const emailVerificationResponse = await axios.get(hunterApiUrl);
 
@@ -99,26 +99,3 @@ module.exports.getUserByEmail = async (req, res) => {
   }
 };
 
-// module.exports.google_login=async (req, res) => {
-//   const { idToken } = req.body;
-
-//   try {
-//     const response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`);
-//     const { sub, email, name } = response.data;
-
-//     let user = await User.findOne({ email });
-//     if (!user) {
-//       // Create a new user if not found
-//       user = new User({ email, name });
-//       await user.save();
-//     }
-
-//     // Generate a JWT token
-//     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-//     res.status(200).json({ token });
-//   } catch (error) {
-//     console.error('Error logging in with Google', error);
-//     res.status(500).json({ error: 'Failed to authenticate with Google' });
-//   }
-// };

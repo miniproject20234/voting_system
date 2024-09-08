@@ -1,17 +1,32 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import logo from "../assets/vote.png";
+import logo from "../assets/blueLogo.jpeg";
 import React, { useEffect, useState } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Unknow from "../assets/Unknown.png";
+const colors = [
+  "#9370db", // medium Indigo
+  "#D81B60", // Dark Pink
+  "#F9A825", // Dark Yellow
+  "#03A9F4", // Light Blue
+  "#8BC34A", // Light Green
+];
+
+// Function to generate a color based on the first letter of the username
+const getColorFromLetter = (letter) => {
+  const index = letter.charCodeAt(0) % colors.length;
+  return colors[index];
+};
 
 const Navvbars = ({ email }) => {
   const navigate = useNavigate();
-  const [userDetails, setUserDetails] = useState(null);
+  const location = useLocation();
+  const [userDetails, setUserDetails] = useState("");
   const [loading, setLoading] = useState(true);
 
   const emailId = localStorage.getItem("email");
@@ -41,6 +56,9 @@ const Navvbars = ({ email }) => {
 
     fetchUserDetails();
   }, [emailId]);
+  //profile
+  const username = userDetails.username;
+  const placeholderLetter = username ? username.charAt(0).toUpperCase() : "";
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -53,6 +71,7 @@ const Navvbars = ({ email }) => {
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  //profile
 
   if (loading) {
     return (
@@ -116,7 +135,7 @@ const Navvbars = ({ email }) => {
                     <img
                       src={logo}
                       alt="Logo"
-                      className="w-16 h-16 rounded-full"
+                      className="w-14 mt-1 h-14 rounded-full"
                     />
                   </div>
                   <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -170,11 +189,18 @@ const Navvbars = ({ email }) => {
                     ) : (
                       <div>
                         <NavLink exact to="/auth">
-                          <button className="inline-flex items-center px-4 py-2 border text-sm font-medium rounded-md text-white bg-blue-600 shadow-sm hover:bg-blue-700 ">
+                          <button
+                            className={`inline-flex items-center px-4 py-2 border text-sm font-medium rounded-md text-white shadow-sm 
+                                ${
+                                  location.pathname === "/auth"
+                                    ? "hidden"
+                                    : "bg-blue-600 hover:bg-blue-700"
+                                }`}
+                          >
                             <b> Log in now!</b>
-                            <span class="relative fle h-2 w-2">
-                              <span class="animate-ping absolute left-4 bottom-4 h-full w-full rounded-full bg-red-800 opacity-75"></span>
-                              <span class="relative inline-flex bottom-6 left-4 rounded-full h-2 w-2 bg-red-400"></span>
+                            <span className="relative fle h-2 w-2">
+                              <span className="animate-ping absolute left-4 bottom-4 h-full w-full rounded-full bg-red-800 opacity-75"></span>
+                              <span className="relative inline-flex bottom-6 left-4 rounded-full h-2 w-2 bg-red-400"></span>
                             </span>
                           </button>
                         </NavLink>
@@ -185,11 +211,31 @@ const Navvbars = ({ email }) => {
                       <div>
                         <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                           <span className="sr-only">Open user menu</span>
-                          <img
-                            className="h-8 w-8 rounded-full"
-                            src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1344&q=80"
-                            alt=""
-                          />
+                          {placeholderLetter ? (
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                height: "45px",
+                                paddingBottom: "3px",
+                                width: "45px",
+                                borderRadius: "50%",
+                                fontSize: "2.25rem",
+                                fontWeight: "bold",
+                                backgroundColor:
+                                  getColorFromLetter(placeholderLetter),
+                              }}
+                            >
+                              {placeholderLetter}
+                            </div>
+                          ) : (
+                            <img
+                              className="h-10 w-10 rounded-full "
+                              src={Unknow}
+                              alt="Default"
+                            />
+                          )}
                         </Menu.Button>
                       </div>
                       {userDetails && (
@@ -290,7 +336,7 @@ const Navvbars = ({ email }) => {
                     }`
                   }
                 >
-                  Vote
+                  Voting Page
                 </NavLink>
                 <NavLink
                   to="/about"
@@ -309,22 +355,42 @@ const Navvbars = ({ email }) => {
                 <div className="flex items-center px-4 sm:px-6">
                   {userDetails && (
                     <div className="flex-shrink-0">
-                      <img
-                        className="h-10 w-10 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
+                     {placeholderLetter ? (
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                height: "45px",
+                                paddingBottom: "3px",
+                                width: "45px",
+                                borderRadius: "50%",
+                                fontSize: "2.25rem",
+                                fontWeight: "bold",
+                                backgroundColor:
+                                  getColorFromLetter(placeholderLetter),
+                              }}
+                            >
+                              {placeholderLetter}
+                            </div>
+                          ) : (
+                            <img
+                              className="h-10 w-10 rounded-full "
+                              src={Unknow}
+                              alt="Default"
+                            />
+                          )}
                     </div>
                   )}
-                  <div className="ml-3 w-full max-w-24">
+                  <div className="ml-3">
                     {userDetails && (
-                      <div className="text-base  font-medium text-gray-800">
-                        
+                      <div className="text-base font-medium text-gray-800">
+                        {" "}
                         <i>{userDetails.username}</i>
                       </div>
                     )}
-                    <div className="text-base  font-medium text-gray-800">
-                      <i>{emailId}</i>
+                    <div className="text-base font-medium text-gray-800">
+                      <i>{email}</i>
                     </div>
                   </div>
 
@@ -389,7 +455,6 @@ const Navvbars = ({ email }) => {
                     </NavLink>
                   </div>
                 )}
-                <ToastContainer />
               </div>
             </div>
           </Disclosure.Panel>

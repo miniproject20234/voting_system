@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer,toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
-import OTPInput, { ResendOTP } from "otp-input-react";
-import { CgSpinner } from "react-icons/cg";
+// import { GoogleLogin } from "@react-oauth/google";
+// import { jwtDecode } from "jwt-decode";
+// import OTPInput, { ResendOTP } from "otp-input-react";
+// import { CgSpinner } from "react-icons/cg";
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -57,8 +57,9 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
 };
 
 const Register = () => {
-  const [ loading, setLoading] =useState(false);
-  const [OTP, setOTP] = useState("");
+  // const [ loading, setLoading] =useState(false);
+  // const [OTP, setOTP] = useState("");
+  
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -283,26 +284,26 @@ const Register = () => {
                   </div>
                 )}
               </div>
-              <label
+              {/* <label
                   htmlFor="otp"
                   className=" text-md text-black text-center"
                 >
-                  Enter your OTP
+                  Enter the verification c  ode
                 </label>
                 <div className="">
-                <OTPInput value={OTP} onChange={setOTP} autoFocus  OTPLength={6} otpType="number" disabled={false} secure className=" flex justify-between  border-black rounded-md gap-1 text-xl" separator={<span className="">-</span>}  placeholder="______  "  errorStyle="error"
+                <OTPInput value={OTP} onChange={setOTP} autoFocus  OTPLength={6} otpType="number" disabled={false} secure className=" flex justify-between  border-black rounded-md  text-xl" separator={<span className="">-</span>}  placeholder="______  "  errorStyle="error"
       successStyle="success"  />
                 <ResendOTP onResendClick={() => console.log("Resend clicked")} />
                </div> 
                <button
                  
-                  className="bg-emerald-600 w-full flex gap-1 items-center justify-center py-2.5 text-white rounded"
+                  className="bg-blue-600 w-full flex gap-1 items-center justify-center p-2 text-white rounded"
                 >
                   {loading && (
                     <CgSpinner size={20} className="mt-1 animate-spin" />
                   )}
                   <span>Verify OTP</span>
-                </button>
+                </button> */}
 
 
               <button
@@ -312,7 +313,7 @@ const Register = () => {
                 Register
               </button>
               <button className=" pl-20">
-                <GoogleLogin 
+                {/* <GoogleLogin 
                   onSuccess={(credentialResponse) => {
                     const credentialResponseDecoded = jwtDecode(
                       credentialResponse.credential
@@ -324,7 +325,7 @@ const Register = () => {
                     console.log("Login Failed");
                   }}
                  
-                />
+                /> */}
               </button>
             </form>
           </div>
