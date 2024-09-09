@@ -47,7 +47,7 @@ const Navvbars = ({ email }) => {
         }
       } catch (err) {
         toast.error(
-          err.response?.data?.message || "Error fetching user details"
+          err.response?.data?.message || "Network problem or Server issue"
         );
       } finally {
         setLoading(false);
