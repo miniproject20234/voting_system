@@ -35,7 +35,7 @@ const Navvbars = ({ email }) => {
     const fetchUserDetails = async () => {
       try {
         if (emailId) {
-          const response = await axios.get("https://vote-backend-e92j.onrender.com/user", {
+          const response = await axios.get("http://localhost:5000/user", {
             params: { email: emailId },
           });
 

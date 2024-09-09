@@ -27,11 +27,11 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
     <div className="relative">
       <FontAwesomeIcon
         icon={isPasswordVisible ? faUnlock : faLock}
-        className="absolute right-0 top-6 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+        className="absolute right-0 top-6 pr-2 transform -translate-y-1/2 text-blue-400 cursor-pointer"
         onClick={togglePasswordVisibility}
       />
       <input
-        className={`p-2 pl-1 mt-1 border-b-2 hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
+        className={`p-2 pl-1 pr-8 mt-1 border-b-2 hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
           error ? "border-red-500" : ""
         }`}
         type={isPasswordVisible ? "text" : "password"}
@@ -77,7 +77,7 @@ const Login = () => {
     event.preventDefault();
     if (validate()) {
       try {
-        const response = await axios.post("https://vote-backend-e92j.onrender.com/login", {
+        const response = await axios.post("http://localhost:5000/login", {
           email: email,
           password: password,
         });
@@ -120,10 +120,10 @@ const Login = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faEnvelope}
-                  className="absolute right-0 top-10 transform -translate-y-1/2 text-blue-400"
+                  className="absolute pr-2 right-0 top-10 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
-                  className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  className={`p-2 pl-1 pr-8 mt-5 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
                     errors.email ? "border-red-500" : ""
                   }`}
                   type="email"
