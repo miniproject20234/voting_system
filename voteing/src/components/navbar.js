@@ -218,7 +218,7 @@ const Navvbars = ({ email }) => {
                                 alignItems: "center",
                                 justifyContent: "center",
                                 height: "45px",
-                                paddingBottom: "3px",
+                                paddingBottom: "1px",
                                 width: "45px",
                                 borderRadius: "50%",
                                 fontSize: "2.25rem",
