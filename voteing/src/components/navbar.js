@@ -120,7 +120,7 @@ const Navvbars = ({ email }) => {
                     >
                       {isMenuOpen ? (
                         <XIcon
-                          className="block h-6 w-6 text-red-500"
+                          className="block h-6 w-6 text-gray-700"
                           aria-hidden="true"
                         />
                       ) : (

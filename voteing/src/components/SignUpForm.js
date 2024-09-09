@@ -36,7 +36,7 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
     <div className="relative">
       <FontAwesomeIcon
         icon={isPasswordVisible ? faUnlock : faLock}
-        className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+        className="absolute right-0 top-6 transform -translate-y-1/2 text-blue-400 cursor-pointer"
         onClick={togglePasswordVisibility}
       />
       <input
@@ -138,7 +138,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex  h-screen  items-center justify-center custom-padding">
+    <div className="flex   items-center justify-center custom-padding">
       <div className="bg-grey-500  p-5 shadow-lg flex items-center justify-center">
         <div className="bg-[#fffcfd2d]   flex rounded-2xl max-w-3xl">
           <div className="px-16">
@@ -153,7 +153,7 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faUser}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 top-10 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
                   className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
@@ -182,7 +182,7 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faEnvelope}
-                  className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 top-6 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
                   className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
@@ -225,7 +225,7 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faLock}
-                  className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 top-6 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
                   className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
@@ -256,7 +256,7 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faPhone}
-                  className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 top-6 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
                   className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
