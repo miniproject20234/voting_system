@@ -9,7 +9,7 @@ require('dotenv').config();
 const app = express();
 
 app.use(cors({
-  origin:"http://localhost:3000",
+  origin:"https://vote-backend-e92j.onrender.com",
   methods:"GET,POST,PUT,DELETE",
   credentials:true
 }));
