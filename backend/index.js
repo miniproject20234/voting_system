@@ -9,7 +9,7 @@ require('dotenv').config();
 const app = express();
 
 app.use(cors({
-  origin:"https://vote-backend-e92j.onrender.com",
+  origin:"https://votevibe.vercel.app",
   methods:"GET,POST,PUT,DELETE",
   credentials:true
 }));
