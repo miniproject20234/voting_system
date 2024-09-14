@@ -138,7 +138,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex h-[75vh]  items-center justify-center custom-padding">
+    <div className="flex   items-center justify-center custom-padding">
       <div className="bg-grey-500  p-5 shadow-lg flex items-center justify-center">
         <div className="bg-[#fffcfd2d]   flex rounded-2xl max-w-3xl">
           <div className="px-16">
