@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {Row,Col,Button,Form} from "react-bootstrap"
 import Profile from "../components/profile"
-import {useDispath,useselector} from " react-redux"
+import {useDispath,useSelector} from " react-redux"
 import ".css/profile.css";
 import ErrorMessage from './ErrorMessage';
 
@@ -16,10 +16,10 @@ const [picMessage,setPicMessage]=useState();
 
 const dispath =useDispath();
 
-const userUpdate =useselector ((state)=> state.userUpdate);
-const {userinfo}=userLogin;
+const userLogin =useSelector ((state)=> state.userUpdate);
+const {userInfo}=userLogin;
 
-const userUpdate =useselector ((state)=> state.userUpdate);
+const userUpdate =useSelector ((state)=> state.userUpdate);
 const {loading,error,success}=userUpdate;
 
 const PostDetails=(pics)=>{
