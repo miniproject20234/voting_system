@@ -10,7 +10,7 @@ const app = express();
 
 app.use(cors({
 
-  origin:"http://localhost:3000",
+  origin:"https://votevibe.vercel.app",
   methods:"GET,POST,PUT,DELETE",
   credentials:true
 }));
@@ -24,10 +24,6 @@ const port = process.env.PORT || 5000;
 mongoose.connect(uri)
   .then(() => console.log('Connected to MongoDB successfully'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
-
-// Apply middleware
-// app.use(checkUser);
-
 
 app.use(authRoutes);
 

@@ -52,7 +52,7 @@ function ResetPassword() {
     setLoading(true);
 
     axios
-      .post(`http://localhost:5000/reset-password/${id}/${token}`, { password })
+      .post(`https://vote-backend-e92j.onrender.com/reset-password/${id}/${token}`, { password })
       .then((res) => {
         setLoading(false);
         if (res.data.Status === "Success") {

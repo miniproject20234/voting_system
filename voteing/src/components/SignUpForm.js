@@ -110,7 +110,7 @@ const Register = () => {
 
     if (validate()) {
       try {
-        await axios.post("http://localhost:5000/register", {
+        await axios.post("https://vote-backend-e92j.onrender.com/register", {
           username: userName,
           email: email,
           password: password,

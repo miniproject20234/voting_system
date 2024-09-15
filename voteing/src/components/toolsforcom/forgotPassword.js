@@ -27,7 +27,7 @@ function ForgotPassword() {
     setMessage('');
     setLoading(true); 
 
-    axios.post('http://localhost:5000/forgot-password', { email })
+    axios.post('https://vote-backend-e92j.onrender.com/forgot-password', { email })
       .then(res => {
         setLoading(false); // Set loading to false
         if (res.data.Status === "Success") {
