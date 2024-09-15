@@ -36,11 +36,11 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
     <div className="relative">
       <FontAwesomeIcon
         icon={isPasswordVisible ? faUnlock : faLock}
-        className="absolute right-0 top-6 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+        className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400 cursor-pointer"
         onClick={togglePasswordVisibility}
       />
       <input
-        className={`p-2 pl-1 mt-1 border-b-2  hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
+        className={`p-2 pl-1 mt-1 border-b-2  pr-8  hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
           error ? "border-red-500" : ""
         }`}
         type={isPasswordVisible ? "text" : "password"}
@@ -110,7 +110,7 @@ const Register = () => {
 
     if (validate()) {
       try {
-        await axios.post("https://vote-backend-e92j.onrender.com/register", {
+        await axios.post("http://localhost:5000/register", {
           username: userName,
           email: email,
           password: password,
@@ -153,10 +153,10 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faUser}
-                  className="absolute right-0 top-10 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 pr-2  top-10 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
-                  className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
                     errors.userName ? "border-red-500" : ""
                   }`}
                   type="text"
@@ -182,10 +182,10 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faEnvelope}
-                  className="absolute right-0 top-6 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
-                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
                     errors.email ? "border-red-500" : ""
                   }`}
                   type="email"
@@ -225,10 +225,10 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faLock}
-                  className="absolute right-0 top-6 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
-                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
                     errors.confirmPassword ? "border-red-500" : ""
                   }`}
                   type="password"
@@ -256,10 +256,10 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faPhone}
-                  className="absolute right-0 top-6 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
-                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
                     errors.phoneNumber ? "border-red-500" : ""
                   }`}
                   type="number"

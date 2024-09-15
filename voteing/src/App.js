@@ -12,6 +12,7 @@ import Homepage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 import About from "./pages/Aboutpage";
 import Profile from "./pages/Profilepage";
+import ResetPassword from "./pages/Resetpassword";
 import ProtectedRoute from "./components/toolsforcom/ProtectedRoute";
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/about" element={<About />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/reset_password/:id/:token" element={<ResetPassword />}></Route>
     </Routes>
   );
 }
