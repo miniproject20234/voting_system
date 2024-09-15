@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ForgotPassword from "./toolsforcom/forgotPassword";
+
 import {
   faEnvelope,
   faLock,
@@ -51,6 +53,13 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+
+  //Forgot password on click
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+
+  const handleForgotPasswordClick = () => {
+    setShowForgotPassword(true); 
+  };
 
   const validate = () => {
     let formErrors = {};
@@ -168,8 +177,17 @@ const Login = () => {
               </button>
             </form>
 
-            <div className="mt-5 text-xs flex justify-between items-center">
-              <p>Forgot Password?</p>
+            <div className="mt-4 text-xs flex justify-between items-center">
+            <div>
+      {!showForgotPassword ? (
+        <p onClick={handleForgotPasswordClick} className="cursor-pointer text-blue-500 hover:bg-slate-100 p-1 rounded-md   ">
+          Forgot Passwords?
+        </p>
+      ) : (
+        <ForgotPassword />
+      )}
+     
+    </div>
             </div>
           </div>
           <div className="w-1/2 flex items-center img_hid justify-center">

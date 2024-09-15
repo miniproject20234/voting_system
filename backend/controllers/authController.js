@@ -1,6 +1,10 @@
 const regUser = require("../model/regUser");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
+const bcrypt=require("bcrypt")
+const nodemailer=require("nodemailer")
+require('dotenv').config(); 
+
 
 // JWT token creation
 const maxAge = 3 * 24 * 60 * 60; // 3 days in seconds
@@ -82,6 +86,68 @@ module.exports.login_post = async (req, res) => {
       errors.general = "An unexpected error occurred";
     }
     res.status(400).json({ errors });
+  }
+};
+
+//forgot password
+module.exports.forgot_password = async (req, res) => {
+  const { email } = req.body;
+  
+  try {
+    const user = await regUser.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ Status: "User not existed" });
+    }
+
+    const token = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN, { expiresIn: '10m' });
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Reset Password Link',
+      text: ` Link is valid for 10min only, Click the link below:
+                 
+      http://localhost:3000/reset_password/${user._id}/${token}`
+    };
+    // Try sending the email
+    try {
+    await transporter.sendMail(mailOptions);
+      res.status(200).json({ Status: "Success" });
+    } catch (err) {
+      console.error('Error sending email:', err); 
+      res.status(500).json({ Status: "Error sending email", error: err.message });
+    }
+  } catch (err) {
+    res.status(500).json({ Status: "Error processing request", error: err.message });
+  }
+};
+
+//reset password  
+    
+module.exports.reset_password= async (req, res) => {
+  const { id, token } = req.params;
+  const { password } = req.body;
+
+  try {
+    jwt.verify(token, process.env.ACCESS_TOKEN, async (err, decoded) => {
+      if (err) {
+        return res.status(400).json({ Status: "Error with token" });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await regUser.findByIdAndUpdate(id, { password: hashedPassword });
+
+      res.status(200).json({ Status: "Success" });
+    });
+  } catch (err) {
+    res.status(500).json({ Status: "Error resetting password", error: err.message });
   }
 };
 
