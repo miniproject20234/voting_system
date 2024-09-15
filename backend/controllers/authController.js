@@ -1,7 +1,7 @@
 const regUser = require("../model/regUser");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
-const bcrypt=require("bcrypt")
+const bcrypt=require("bcryptjs")
 const nodemailer=require("nodemailer")
 require('dotenv').config(); 
 
