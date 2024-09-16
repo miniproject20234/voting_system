@@ -31,8 +31,8 @@ function Profile() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center p-3">
+      <div className="w-full max-w-md p-6 rounded-lg ">
 
         {/* Profile Image with Camera Icon */}
         <div className="relative flex flex-col items-center mb-6">
