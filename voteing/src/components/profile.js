@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
-import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button'; 
-//import { Dialog } from '@headlessui/react';
+import React, { useState, useRef } from 'react';
+import { FaCamera } from 'react-icons/fa'; // Camera icon from react-icons
 
-const Profile = () => {
-  const [image, setImage] = useState("");
-  //const [imagecrop,setImagecrop]=useState("");
-  const [name, setName] = useState(""); 
-  const [email, setEmail] = useState("");  
+function Profile() {
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
-  const [phone_no, setPhone_no] = useState("");  
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [image, setImage] = useState(null);
 
-  // Handle image selection
+  const fileInputRef = useRef(null); // Ref for file input
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file && file.type.substring(0, 5) === "image") {
@@ -21,105 +19,102 @@ const Profile = () => {
     }
   };
 
-  // Handle profile update submission
-  const handleSubmit = () => {
-    // Submit logic here
-    alert("Profile updated!");
+  const handleClick = () => {
+    fileInputRef.current.click(); // Trigger file input on camera icon click
   };
 
   return (
-    <div className="flex justify-center mt-10">
-      <div className="profile_img text-center p-6 bg-white shadow-lg rounded-lg">
-        {/* Profile Image */}
-        <div className="flex flex-col justify-center items-center mb-6">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+
+        {/* Profile Image with Camera Icon */}
+        <div className="relative flex flex-col items-center mb-6">
           <img
-            style={{
-              width: "100px",
-              height: "100px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              border: "4px solid black",
-            }}
-            src={image ? URL.createObjectURL(image) : "default-image.jpg"} 
+            className="h-32 w-32 object-cover rounded-full border-4 border-gray-300"
+            src={image ? URL.createObjectURL(image) : "default-image.jpg"}
             alt=""
           />
-          {/* <Dialog
-  open={imagecrop} // Controls the visibility of the dialog
-  onClose={() => setImagecrop(false)} // Closes the dialog when needed
-  header={() => <p>Crop Image</p>} // Custom header
->
-  {/* Your dialog content goes here */}
-
-
-
-
-
-
-          <InputText
+          
+          {/* Hidden File Input */}
+          <input
             type="file"
             accept="image/*"
-            className="mt-4"
             onChange={handleImageChange}
+            ref={fileInputRef}
+            className="hidden"
+          />
+
+          {/* Camera Icon - Positioned in bottom-right */}
+          <button
+            className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow-md hover:bg-gray-100 focus:outline-none"
+            onClick={handleClick}
+          >
+            <FaCamera className="text-gray-600" size={20} />
+          </button>
+        </div>
+
+        {/* Form Inputs */}
+        <div className="flex flex-col mb-4">
+          <label className="font-semibold mb-1">Name</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
+            placeholder="Enter your name"
           />
         </div>
 
-        {/* Form Inputs for Name, Email,  */}
-        <div className="flex flex-col items-start">
-          <label className="mb-2">Name</label>
-          <InputText 
-            value={name} 
-            onChange={(e) => setName(e.target.value)} 
-            className="w-full p-2 mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500"
-            placeholder="Enter your name"
-          />
-
-          <label className="mb-2">Username</label>
-          <InputText 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
-            className="w-full p-2 mb-3 border-b border-gray-300 focus:outline-none focus:border-blue-500"
+        <div className="flex flex-col mb-4">
+          <label className="font-semibold mb-1">Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
             placeholder="Enter your username"
           />
+        </div>
 
-          <label className="mb-2">Email</label>
-          <InputText 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            className="w-full p-2 mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500"
+        <div className="flex flex-col mb-4">
+          <label className="font-semibold mb-1">Email Address</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
             placeholder="Enter your email"
           />
+        </div>
 
-          <label className="mb-2">Phone No</label>
-          <InputText 
-            value={phone_no} 
-            onChange={(e) => setPhone_no(e.target.value)} 
-            className="w-full p-2 mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500"
+        <div className="flex flex-col mb-4">
+          <label className="font-semibold mb-1">Phone Number</label>
+          <input
+            type="text"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
             placeholder="Enter your phone number"
           />
         </div>
 
-        {/* Submit and Cancel Buttons */}
-        <div className="flex justify-between mt-4">
-          <Button 
-            label="Update Profile" 
-            className="p-button p-button-primary font-blue-400" 
-            onClick={handleSubmit} 
-          />
-          <Button 
-            label="Cancel" 
-            className="p-button p-button-secondary ml-2" 
-            onClick={() => {
-              setImage("");
-              setName("");
-              setUsername("");
-              setEmail("");
-              setPhone_no("");
-            }}
-          />
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row justify-between mt-6">
+          <button
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2 sm:mb-0"
+          >
+            Update Profile
+          </button>
+          
+          <button
+            className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg shadow hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Profile;
