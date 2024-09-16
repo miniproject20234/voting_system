@@ -1,5 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { FaCamera } from 'react-icons/fa'; // Camera icon from react-icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  faUser,
+  faPhone,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Profile() {
   const [name, setName] = useState("");
@@ -52,7 +59,7 @@ function Profile() {
             <FaCamera className="text-gray-600" size={20} />
           </button>
         </div>
-
+        
         {/* Form Inputs */}
         <div className="flex flex-col mb-4">
           <label className="font-semibold mb-1">Name</label>
@@ -63,8 +70,13 @@ function Profile() {
             className="p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
             placeholder="Enter your name"
           />
+        
         </div>
-
+        <div className="relative">
+                <FontAwesomeIcon
+                  icon={faUser}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400"
+                />
         <div className="flex flex-col mb-4">
           <label className="font-semibold mb-1">Username</label>
           <input
@@ -75,7 +87,12 @@ function Profile() {
             placeholder="Enter your username"
           />
         </div>
-
+          </div>
+          <div className="relative">
+          <FontAwesomeIcon
+                  icon={faEnvelope}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400"
+                />
         <div className="flex flex-col mb-4">
           <label className="font-semibold mb-1">Email Address</label>
           <input
@@ -86,6 +103,12 @@ function Profile() {
             placeholder="Enter your email"
           />
         </div>
+        </div>
+        <div className="relative">
+                <FontAwesomeIcon
+                  icon={faPhone}
+                  className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400"
+                />
 
         <div className="flex flex-col mb-4">
           <label className="font-semibold mb-1">Phone Number</label>
@@ -96,6 +119,7 @@ function Profile() {
             className="p-2 border-b border-gray-300 focus:outline-none focus:border-blue-500"
             placeholder="Enter your phone number"
           />
+        </div>
         </div>
 
         {/* Action Buttons */}
