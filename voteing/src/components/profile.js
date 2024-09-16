@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button'; 
+//import { Dialog } from '@headlessui/react';
 
 const Profile = () => {
   const [image, setImage] = useState("");
+  //const [imagecrop,setImagecrop]=useState("");
   const [name, setName] = useState(""); 
   const [email, setEmail] = useState("");  
   const [username, setUsername] = useState("");
@@ -41,6 +43,18 @@ const Profile = () => {
             src={image ? URL.createObjectURL(image) : "default-image.jpg"} 
             alt=""
           />
+          {/* <Dialog
+  open={imagecrop} // Controls the visibility of the dialog
+  onClose={() => setImagecrop(false)} // Closes the dialog when needed
+  header={() => <p>Crop Image</p>} // Custom header
+>
+  {/* Your dialog content goes here */}
+
+
+
+
+
+
           <InputText
             type="file"
             accept="image/*"
@@ -63,7 +77,7 @@ const Profile = () => {
           <InputText 
             value={username} 
             onChange={(e) => setUsername(e.target.value)} 
-            className="w-full p-2 mb-4 border-b border-gray-300 focus:outline-none focus:border-blue-500"
+            className="w-full p-2 mb-3 border-b border-gray-300 focus:outline-none focus:border-blue-500"
             placeholder="Enter your username"
           />
 
