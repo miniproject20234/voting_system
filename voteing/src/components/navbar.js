@@ -56,6 +56,7 @@ const Navvbars = ({ email }) => {
 
     fetchUserDetails();
   }, [emailId]);
+  
   //profile
   const username = userDetails.username;
   const placeholderLetter = username ? username.charAt(0).toUpperCase() : "";
@@ -101,7 +102,7 @@ const Navvbars = ({ email }) => {
   return (
     <Disclosure
       as="nav"
-      className={`bg-white mb-5 ${isMenuOpen ? "" : "sticky top-0"}`}
+      className={`bg-white mb-5 ${isMenuOpen ? "" : "z-40 sticky top-0"}`}
     >
       {({ open }) => (
         <div>
@@ -335,7 +336,7 @@ const Navvbars = ({ email }) => {
                     }`
                   }
                 >
-                  Voting Page
+                  Vote
                 </NavLink>
                 <NavLink
                   to="/about"

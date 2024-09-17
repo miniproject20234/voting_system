@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SignUpForm from './SignUpForm.js';
 import SignInForm from './SignInForm.js';
+import {useNavigate} from 'react-router-dom'
+
 
 const AuthForm = () => {
+const navigate=useNavigate();
+    useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+        
+          navigate("*");
+        }
+      }, [navigate]);
     const [isSignUp, setIsSignUp] = useState(false);
     return (
         <div className="text-center  items-center mt-10">

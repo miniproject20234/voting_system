@@ -1,7 +1,9 @@
 const regUser = require("../model/regUser");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
 const axios = require("axios");
 const bcrypt=require("bcryptjs")
+const path = require("path");
 const nodemailer=require("nodemailer")
 require('dotenv').config(); 
 
@@ -165,3 +167,75 @@ module.exports.getUserByEmail = async (req, res) => {
   }
 };
 
+
+// Set up multer for image uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+const upload = multer({ storage });
+
+// Upload user profile image
+module.exports.uploadProfileImage = (req, res) => {
+  upload.single('profileImage')(req, res, (err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Failed to upload image', error: err.message });
+    }
+    // Assuming user ID is sent in the request body
+    const userId = req.body.userId;
+    const imagePath = req.file.path;
+
+    // Here you should update the user's profile with the new image path
+    regUser.findByIdAndUpdate(userId, { profileImage: imagePath }, { new: true })
+      .then(updatedUser => {
+        if (!updatedUser) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ message: 'Profile image updated successfully!', imagePath });
+      })
+      .catch(error => {
+        res.status(500).json({ message: 'Failed to update profile image', error: error.message });
+      });
+  });
+};
+
+
+module.exports.update_profile = async (req, res) => {
+  const hunterApiKey = process.env.HUNTER_API_KEY;
+  const { email, username, phonenumber } = req.body;
+  const userId = req.params.id; // Assuming user ID is sent as a URL parameter
+
+  // Validate email
+  if (email) {
+    const hunterApiUrl = `https://api.hunter.io/v2/email-verifier?email=${email}&api_key=${hunterApiKey}`;
+    try {
+      const emailVerificationResponse = await axios.get(hunterApiUrl);
+      if (emailVerificationResponse.data.data.result !== 'deliverable') {
+        return res.status(400).json({ errors: { email: 'It is not a valid Email' } });
+      }
+    } catch (error) {
+      return res.status(500).json({ message: 'Failed to verify email' });
+    }
+  }
+
+  try {
+    const updatedUser = await regUser.findByIdAndUpdate(
+      userId,
+      { username, email, phonenumber },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'No user found with the provided ID.' });
+    } else {
+      res.status(200).json({ message: 'Profile updated successfully!' });
+    }
+  } catch (error) {
+    console.error('Profile update error:', error);
+    res.status(500).json({ message: 'Failed to update profile' });
+  }
+};
