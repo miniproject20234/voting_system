@@ -114,7 +114,7 @@ module.exports.forgot_password = async (req, res) => {
       to: email,
       subject: 'Reset Password Link',
       text: `Link is valid for 10min only. Click the link below:
-      http://localhost:3000/reset_password/${user._id}/${token}`
+      https://votevibe.vercel.app/reset_password/${user._id}/${token}`
     };
 
     try {
