@@ -8,7 +8,7 @@ function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -17,31 +17,34 @@ function ForgotPassword() {
 
   const handleSubmit = () => {
     if (!email) {
-      setMessage('Email is required');
+      setEmailError('Email is required');
+      return;
     }
 
     if (!validateEmail(email)) {
-      setMessage('Please enter a valid email');
+      setEmailError('Please enter a valid email');
+      return;
     }
 
+    setEmailError('');
     setMessage('');
-    setLoading(true); 
+    setLoading(true);
 
     axios.post('http://localhost:5000/forgot-password', { email })
       .then(res => {
-        setLoading(false); // Set loading to false
+        setLoading(false);
         if (res.data.Status === "Success") {
           toast.success('Check your mail for the reset link');
           setTimeout(() => {
-            window.location.reload(); 
+            window.location.reload();
           }, 3000);
-        } else {
+        }  else {
           toast.error('Error sending reset link');
         }
       })
       .catch((err) => {
-        setLoading(false); // Set loading to false
-        toast.error('Error occurred, please try again later');
+        setLoading(false);
+        toast.error(err.response?.data?.Status || 'Error occurred, please try again later');
       });
   };
 
@@ -57,9 +60,9 @@ function ForgotPassword() {
 
   return (
     <Dialog.Root open>
-      <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-70" />
-      <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-md w-full p-3">
-        <div className='bg-white p-5 shadow-lg rounded-md'>
+      <Dialog.Overlay className="fixed  inset-0 bg-black  bg-opacity-70" />
+      <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-md w-full border-none outline-none p-3">
+        <div className='bg-white p-5 shadow-lg  rounded-md'>
           <Dialog.Title className="text-2xl font-bold mb-4">Reset Your Password</Dialog.Title>
           <Dialog.Description className="text-sm text-gray-500 mb-6">
             Enter the email to reset your password!

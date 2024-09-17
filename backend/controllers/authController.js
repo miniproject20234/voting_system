@@ -1,7 +1,7 @@
 const regUser = require("../model/regUser");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
-const bcrypt=require("bcrypt")
+const bcrypt=require("bcryptjs")
 const nodemailer=require("nodemailer")
 require('dotenv').config(); 
 
@@ -88,15 +88,14 @@ module.exports.login_post = async (req, res) => {
     res.status(400).json({ errors });
   }
 };
-
 //forgot password
 module.exports.forgot_password = async (req, res) => {
   const { email } = req.body;
-  
+
   try {
     const user = await regUser.findOne({ email });
     if (!user) {
-      return res.status(404).json({ Status: "User not existed" });
+      return res.status(404).json({ Status: "Please enter the registered email" });
     }
 
     const token = jwt.sign({ id: user._id }, process.env.ACCESS_TOKEN, { expiresIn: '10m' });
@@ -108,26 +107,27 @@ module.exports.forgot_password = async (req, res) => {
         pass: process.env.EMAIL_PASS
       }
     });
+
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
       subject: 'Reset Password Link',
-      text: ` Link is valid for 10min only, Click the link below:
-                 
+      text: `Link is valid for 10min only. Click the link below:
       http://localhost:3000/reset_password/${user._id}/${token}`
     };
-    // Try sending the email
+
     try {
-    await transporter.sendMail(mailOptions);
-      res.status(200).json({ Status: "Success" });
+      await transporter.sendMail(mailOptions);
+      return res.status(200).json({ Status: "Success" });
     } catch (err) {
-      console.error('Error sending email:', err); 
-      res.status(500).json({ Status: "Error sending email", error: err.message });
+      console.error('Error sending email:', err);
+      return res.status(500).json({ Status: "Error sending email", error: err.message });
     }
   } catch (err) {
-    res.status(500).json({ Status: "Error processing request", error: err.message });
+    return res.status(500).json({ Status: "Error processing request", error: err.message });
   }
 };
+
 
 //reset password  
     
