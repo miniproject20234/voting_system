@@ -1,17 +1,10 @@
-.profilePic{
-width:60%;
-display: flex;
-align-items: center;
-padding: 20px;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.profileContainer{
-display: flex;
-margin: 20px;
-}
-
-@media only screen and (max-width:768px){
-    .profileContainer{
-        flex-direction: column-reverse;
-    }
+@layer utilities {
+  .drop-shadow-white {
+    @apply drop-shadow-md;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.9));
+  }
 }

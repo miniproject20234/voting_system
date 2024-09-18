@@ -1,16 +1,19 @@
-import React from "react";
-import Navbar from "../components/navbar";
-import NotFound from "../components/Notfound";
-import Footer from "../components/footer";
+import React from 'react';
+import Navbar from '../components/navbar';
+import NotFound from '../components/Notfound';
+import Footer from '../components/footer';
 
-const Notfound = ({ email }) => {
+
+
+const Notfound = () => {
   return (
     <>
-      <Navbar />
-      <NotFound />
-      <Footer />
+       <Navbar/>
+       <NotFound/>
+       <Footer/>
+
     </>
-  );
-};
+  )
+}
 
 export default Notfound;

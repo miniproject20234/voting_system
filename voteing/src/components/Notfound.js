@@ -1,18 +1,21 @@
-import React from 'react'
-import foundImage from '../assets/404-page.png';
-function Notfound() {
-    
+import React from 'react';
+import NotFound_img from "../assets/notFound.png";
+import {  NavLink } from 'react-router-dom';
+
+const Notfund = () => {
+  
   return (
-    <div>
-
-<img className=''  src={foundImage} alt='notfound'/>
-<a href="/"
-   class="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent mt-4">
-   Back To Home
-</a>
-
+    <div className="flex justify-center items-center h-screen">
+      <div className="text-center">
+      <NavLink to='/'>  <img  className="mx-auto -mt-7" src={NotFound_img} alt="not found" /></NavLink>
+       
+        {/* <NavLink to='/' className='cursor-pointer'><button className="mt-4  bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded">
+          Back to Home
+        </button></NavLink> */}
+        
+      </div>
     </div>
-  )
+  );
 }
 
-export default Notfound
+export default Notfund;

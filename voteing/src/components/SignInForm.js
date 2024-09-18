@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ForgotPassword from "./toolsforcom/forgotPassword";
+
 import {
   faEnvelope,
   faLock,
@@ -27,11 +29,11 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
     <div className="relative">
       <FontAwesomeIcon
         icon={isPasswordVisible ? faUnlock : faLock}
-        className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+        className="absolute right-0 top-6 pr-2 transform -translate-y-1/2 text-blue-400 cursor-pointer"
         onClick={togglePasswordVisibility}
       />
       <input
-        className={`p-2 pl-1 mt-1 border-b-2 hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
+        className={`p-2 pl-1 pr-8 mt-1 border-b-2 hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
           error ? "border-red-500" : ""
         }`}
         type={isPasswordVisible ? "text" : "password"}
@@ -51,6 +53,13 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+
+  //Forgot password on click
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+
+  const handleForgotPasswordClick = () => {
+    setShowForgotPassword(true); 
+  };
 
   const validate = () => {
     let formErrors = {};
@@ -96,7 +105,7 @@ const Login = () => {
         if (error.response && error.response.data.errors) {
           setErrors(error.response.data.errors);
         } else {
-          alert("An error occurred. Please try again.");
+          toast.error("An server error occurred. Please try again later.");
         }
       }
     } else {
@@ -105,7 +114,7 @@ const Login = () => {
   };
 
   return (
-    <div className="p-5 flex h-screen items-center justify-center">
+    <div className="p-5 flex h-[75vh] items-center justify-center">
       <div className="bg-grey-500 p-5 shadow-lg flex items-center justify-center">
         <div className="bg-[#fffcfd2d] flex rounded-2xl max-w-3xl">
           <div className="px-16">
@@ -120,10 +129,10 @@ const Login = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faEnvelope}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400"
+                  className="absolute pr-2 right-0 top-10 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
-                  className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  className={`p-2 pl-1 pr-8 mt-5 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
                     errors.email ? "border-red-500" : ""
                   }`}
                   type="email"
@@ -162,14 +171,23 @@ const Login = () => {
               />
               <button
                 type="submit"
-                className="Login-button  p-2 rounded-full bg-blue-500 text-white"
+                className="Login-button  p-2 rounded-full bg-blue-500 text-white  hover:shadow-lg "
               >
                 Login
               </button>
             </form>
 
-            <div className="mt-5 text-xs flex justify-between items-center">
-              <p>Forgot Password?</p>
+            <div className="mt-4 text-xs flex justify-between items-center">
+            <div>
+      {!showForgotPassword ? (
+        <p onClick={handleForgotPasswordClick} className="cursor-pointer text-blue-500 hover:bg-slate-100 p-1 rounded-md   ">
+          Forgot Passwords?
+        </p>
+      ) : (
+        <ForgotPassword />
+      )}
+     
+    </div>
             </div>
           </div>
           <div className="w-1/2 flex items-center img_hid justify-center">

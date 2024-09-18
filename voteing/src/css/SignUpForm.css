@@ -54,4 +54,17 @@ h2, p {
 
   }
   
+/* 
+otp */
 
+.success{
+  border:solid green;
+}
+.error{
+  border:solid red;
+}
+
+
+.bg-banner{
+  background-image: url('../assets/bgBanner.jpeg');
+}

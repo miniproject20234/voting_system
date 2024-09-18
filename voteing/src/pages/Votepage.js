@@ -5,10 +5,10 @@ import Footer from '../components/footer';
 
 
 
-const Votepage = ({ email }) => {
+const Votepage = () => {
   return (
     <>
-       <Navbar  email={email} />
+       <Navbar />
        <Vote/>
        <Footer/>
 

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer,toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+// import { GoogleLogin } from "@react-oauth/google";
+// import { jwtDecode } from "jwt-decode";
+// import OTPInput, { ResendOTP } from "otp-input-react";
+// import { CgSpinner } from "react-icons/cg";
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -33,11 +36,11 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
     <div className="relative">
       <FontAwesomeIcon
         icon={isPasswordVisible ? faUnlock : faLock}
-        className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400 cursor-pointer"
+        className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400 cursor-pointer"
         onClick={togglePasswordVisibility}
       />
       <input
-        className={`p-2 pl-1 mt-1 border-b-2  hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
+        className={`p-2 pl-1 mt-1 border-b-2  pr-8  hover:shadow-lg placeholder-small border-gray-300 focus:outline-none focus:shadow-lg w-full ${
           error ? "border-red-500" : ""
         }`}
         type={isPasswordVisible ? "text" : "password"}
@@ -54,6 +57,9 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
 };
 
 const Register = () => {
+  // const [ loading, setLoading] =useState(false);
+  // const [OTP, setOTP] = useState("");
+  
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -132,11 +138,11 @@ const Register = () => {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center custom-padding">
-      <div className="bg-grey-500 p-5 shadow-lg flex items-center justify-center">
-        <div className="bg-[#fffcfd2d] flex rounded-2xl max-w-3xl">
+    <div className="flex   items-center justify-center custom-padding">
+      <div className="bg-grey-500  p-5 shadow-lg flex items-center justify-center">
+        <div className="bg-[#fffcfd2d]   flex rounded-2xl max-w-3xl">
           <div className="px-16">
-            <h2 className="font-bold text-2xl text-blue-500 text-center">
+            <h2 className="font-bold text-2xl mt-5 text-blue-500 text-center">
               Create Account
             </h2>
             <p className="text-sm mt-7 text-black text-opacity-70 text-center">
@@ -147,10 +153,10 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faUser}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 pr-2  top-10 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
-                  className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
                     errors.userName ? "border-red-500" : ""
                   }`}
                   type="text"
@@ -176,10 +182,10 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faEnvelope}
-                  className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
-                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
                     errors.email ? "border-red-500" : ""
                   }`}
                   type="email"
@@ -219,10 +225,10 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faLock}
-                  className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
-                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
                     errors.confirmPassword ? "border-red-500" : ""
                   }`}
                   type="password"
@@ -250,10 +256,10 @@ const Register = () => {
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faPhone}
-                  className="absolute right-3 top-1/3 transform -translate-y-1/2 text-blue-400"
+                  className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
                 />
                 <input
-                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
                     errors.phoneNumber ? "border-red-500" : ""
                   }`}
                   type="number"
@@ -278,15 +284,36 @@ const Register = () => {
                   </div>
                 )}
               </div>
+              {/* <label
+                  htmlFor="otp"
+                  className=" text-md text-black text-center"
+                >
+                  Enter the verification c  ode
+                </label>
+                <div className="">
+                <OTPInput value={OTP} onChange={setOTP} autoFocus  OTPLength={6} otpType="number" disabled={false} secure className=" flex justify-between  border-black rounded-md  text-xl" separator={<span className="">-</span>}  placeholder="______  "  errorStyle="error"
+      successStyle="success"  />
+                <ResendOTP onResendClick={() => console.log("Resend clicked")} />
+               </div> 
+               <button
+                 
+                  className="bg-blue-600 w-full flex gap-1 items-center justify-center p-2 text-white rounded"
+                >
+                  {loading && (
+                    <CgSpinner size={20} className="mt-1 animate-spin" />
+                  )}
+                  <span>Verify OTP</span>
+                </button> */}
+
 
               <button
                 type="submit"
-                className="p-2 Login-button rounded-full bg-blue-500 text-white"
+                className="p-2 Login-button rounded-full bg-blue-500 text-white hover:shadow-lg"
               >
                 Register
               </button>
               <button className=" pl-20">
-                <GoogleLogin 
+                {/* <GoogleLogin 
                   onSuccess={(credentialResponse) => {
                     const credentialResponseDecoded = jwtDecode(
                       credentialResponse.credential
@@ -298,7 +325,7 @@ const Register = () => {
                     console.log("Login Failed");
                   }}
                  
-                />
+                /> */}
               </button>
             </form>
           </div>

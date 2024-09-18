@@ -1,17 +1,19 @@
-import React from "react";
-import Navbar from "../components/navbar";
-import Authcom from "../components/auth";
-import Footer from "../components/footer";
+import React from 'react';
+import Navbar from '../components/navbar';
+import Authcom from '../components/auth';
+import Footer from '../components/footer';
 
-const Auth = ({ email }) => {
+
+
+const Auth = () => {
   return (
     <>
-      <Navbar email={email} />
-
-      <Authcom />
-      <Footer />
+       <Navbar />
+       
+       <Authcom />
+       <Footer/>
     </>
-  );
-};
+  )
+}
 
 export default Auth;
