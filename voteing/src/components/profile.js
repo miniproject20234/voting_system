@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaCamera } from "react-icons/fa";
+import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,7 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Unknow from "../assets/Unknown.png";
 import { useNavigate } from "react-router-dom";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import axios from "axios";
 import * as Dialog from "@radix-ui/react-dialog";
 import {
@@ -59,45 +60,6 @@ const Profile = () => {
     fetchUserDetails();
   }, [emailId]);
 
-  const handleImageChange = async (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
-      if (!allowedTypes.includes(file.type)) {
-        toast.error('Only .png, .jpg, and .jpeg formats are allowed.');
-        setImage(null);
-        return;
-      }
-      setImage(file);
-      // Create FormData and append the selected file
-      const formData = new FormData();
-      formData.append('photo', file); 
-      setLoading(true);
-      try {
-       await axios.post(`http://localhost:5000/upload-image?email=${emailId}`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        toast.success('Photo uploaded successfully!');
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
-      } catch (err) {
-        const errMsg = err.response ? err.response.data.error : err.message;
-        toast.error('Error uploading photo: ' + errMsg);
-        console.error('Error:', errMsg);
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      toast.error('Please select an image to upload.');
-    }
-  };
-
-
-  
-
   const validate = () => {
     let validationErrors = {};
 
@@ -126,12 +88,63 @@ const Profile = () => {
   const handleEditClick = () => {
     setIsEditable(!isEditable);
   };
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phonenumber: ''
-  });
-  
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const allowedTypes = ["image/png", "image/jpg", "image/jpeg"];
+      if (!allowedTypes.includes(file.type)) {
+        toast.error("Only .png, .jpg, and .jpeg formats are allowed.");
+        setImage(null);
+        return;
+      }
+      setImage(file);
+      const formData = new FormData();
+      formData.append("photo", file);
+      setLoading(true);
+      try {
+        await axios.post(
+          `http://localhost:5000/upload-image?email=${emailId}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        toast.success("Photo uploaded successfully!");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      } catch (err) {
+        const errMsg = err.response ? err.response.data.error : err.message;
+        toast.error("Error uploading photo: " + errMsg);
+        console.error("Error:", errMsg);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      toast.error("Please select an image to upload.");
+    }
+  };
+  const handleRemoveImage = async () => {
+    setLoading(true);
+    try {
+      await axios.delete(`http://localhost:5000/remove-image?email=${emailId}`);
+      toast.success("Photo removed successfully!");
+      setImage(null);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (err) {
+      const errMsg = err.response ? err.response.data.error : err.message;
+      toast.error("Error removing photo: " + errMsg);
+      console.error("Error:", errMsg);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -141,23 +154,43 @@ const Profile = () => {
       return;
     }
 
+    const userId = userDetails._id;
+
+    const formData = {
+      username: username,
+      email: email,
+      phonenumber: phonenumber,
+    };
+
     try {
-      const response = await axios.post(
-        "http://localhost:5000/update-profile",
+      const response = await axios.put(
+        `http://localhost:5000/update-profile/${userId}`,
         formData,
         {
-          headers: { "Content-Type": "application/json" } 
+          headers: { "Content-Type": "application/json" },
         }
       );
-      setFormData(response.data); 
       toast.success("Profile updated successfully!");
+      localStorage.setItem("email", email);
+      setUserDetails(response.data.updatedUser);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (err) {
-      toast.error(err.response?.data?.message || "Failed to update profile");
+      const errorMessages = err.response?.data?.errors;
+      if (errorMessages) {
+        Object.values(errorMessages).forEach((error) => {
+          toast.error(error);
+        });
+      } else {
+        const message = "Failed to update profile";
+        toast.error(message);
+      }
     } finally {
       setLoading(false);
     }
   };
-  
+
   return (
     <>
       <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg pb-5 overflow-hidden mt-5">
@@ -174,22 +207,32 @@ const Profile = () => {
         {/* Profile Picture */}
         <div className="text-center -mt-12">
           <div className="relative inline-block">
-            {userDetails.photo ?(<img
-              className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
-              src={`http://localhost:5000/images/${userDetails.photo}`}
-              alt="profile"
-            />) : (<img
-              className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
-              src={image ? URL.createObjectURL(image) : Unknow}
-              alt="profile"
-            />)
-            }
-            <label
+            {userDetails.photo ? (
+              <img
+                className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
+                src={`http://localhost:5000/images/${userDetails.photo}`}
+                alt="profile"
+              />
+            ) : (
+              <img
+                className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
+                src={image ? URL.createObjectURL(image) : Unknow}
+                alt="profile"
+              />
+            )}
+           
+           {userDetails.photo ?( <label
+              onClick={handleRemoveImage}
+              htmlFor="remove-photo"
+              className="absolute bottom-1 right-0 p-1 bg-white  rounded-full shadow-lg cursor-pointer"
+            >
+              <IoMdRemoveCircleOutline className="text-blue-600" />
+            </label>):( <label
               htmlFor="upload-photo"
               className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-lg cursor-pointer"
             >
               <FaCamera className="text-blue-500" />
-            </label>
+            </label>)}
             <input
               type="file"
               id="upload-photo"
@@ -198,7 +241,7 @@ const Profile = () => {
             />
           </div>
           <h1 className="text-xl font-semibold mt-4">{userDetails.username}</h1>
-          <p className="text-gray-500">{userDetails.email}</p>
+          {/* <p className="text-gray-500">{userDetails.email}</p> */}
         </div>
 
         {/* Profile Form */}
@@ -239,10 +282,14 @@ const Profile = () => {
                         } else if (!validateName(username)) {
                           setErrors((prevErrors) => ({
                             ...prevErrors,
-                            username: "Please enter a valid Name (characters only A to Z)",
+                            username:
+                              "Please enter a valid Name (characters only A to Z)",
                           }));
                         } else {
-                          setErrors((prevErrors) => ({ ...prevErrors, username: "" }));
+                          setErrors((prevErrors) => ({
+                            ...prevErrors,
+                            username: "",
+                          }));
                         }
                       }}
                     />
@@ -302,7 +349,10 @@ const Profile = () => {
                             email: "Please enter a valid email address",
                           }));
                         } else {
-                          setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
+                          setErrors((prevErrors) => ({
+                            ...prevErrors,
+                            email: "",
+                          }));
                         }
                       }}
                     />
@@ -356,7 +406,10 @@ const Profile = () => {
                             phonenumber: "Please enter a valid phone number",
                           }));
                         } else {
-                          setErrors((prevErrors) => ({ ...prevErrors, phonenumber: "" }));
+                          setErrors((prevErrors) => ({
+                            ...prevErrors,
+                            phonenumber: "",
+                          }));
                         }
                       }}
                     />
@@ -381,17 +434,37 @@ const Profile = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-blue-500 text-white px-5 flex py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={loading}
-            >
+            > {loading &&  (
+              <svg
+                className="animate-spin h-5 w-5 mr-3 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 50 50"
+              >
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  d="M25 5C12.3 5 5 12.3 5 25s7.3 20 20 20"
+                >
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from="0 25 25"
+                    to="360 25 25"
+                    dur="1s"
+                    repeatCount="indefinite"
+                  />
+                </path>
+              </svg>
+            )}
               {loading ? "Updating..." : "Update Profile"}
             </button>
           </div>
         </div>
       </div>
-
-     
-   
     </>
   );
 };

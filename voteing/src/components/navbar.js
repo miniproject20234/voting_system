@@ -56,7 +56,7 @@ const Navvbars = ({ email }) => {
 
     fetchUserDetails();
   }, [emailId]);
-  
+
   //profile
   const username = userDetails.username;
   const placeholderLetter = username ? username.charAt(0).toUpperCase() : "";
@@ -212,30 +212,40 @@ const Navvbars = ({ email }) => {
                       <div>
                         <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                           <span className="sr-only">Open user menu</span>
-                          {placeholderLetter ? (
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                height: "45px",
-                                width: "45px",
-                                borderRadius: "50%",
-                                fontSize: "2.25rem",
-                                fontWeight: "bold",
-                                backgroundColor:
-                                  getColorFromLetter(placeholderLetter),
-                              }}
-                            >
-                              {placeholderLetter}
-                            </div>
-                          ) : (
-                            <img
-                              className="h-10 w-10 rounded-full "
-                              src={Unknow}
-                              alt="Default"
-                            />
-                          )}
+                          {userDetails&& userDetails.photo ? (
+                    <img
+                      className="h-10 w-10 rounded-full"
+                      src={`http://localhost:5000/images/${userDetails.photo}`}
+                      alt="Profile"
+                    />
+                  ) : (
+                    <div className="flex-shrink-0">
+                      {placeholderLetter ? (
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            height: "45px",
+                            width: "45px",
+                            borderRadius: "50%",
+                            fontSize: "2.25rem",
+                            fontWeight: "bold",
+                            backgroundColor:
+                              getColorFromLetter(placeholderLetter),
+                          }}
+                        >
+                          {placeholderLetter}
+                        </div>
+                      ) : (
+                        <img
+                          className="h-10 w-10 rounded-full"
+                          src={Unknow} // Assuming `Unknown` is the path to the default image
+                          alt="Default"
+                        />
+                      )}
+                    </div>
+                  )}
                         </Menu.Button>
                       </div>
                       {userDetails && (
@@ -353,35 +363,41 @@ const Navvbars = ({ email }) => {
               </div>
               <div className="pt-4 pb-3 border-t bg-white border-gray-200 ">
                 <div className="flex items-center px-4 sm:px-6">
-                  {userDetails && (
+                  {userDetails&& userDetails.photo ? (
+                    <img
+                      className="h-10 w-10 rounded-full"
+                      src={`http://localhost:5000/images/${userDetails.photo}`}
+                      alt="Profile"
+                    />
+                  ) : (
                     <div className="flex-shrink-0">
-                     {placeholderLetter ? (
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                height: "45px",
-                                paddingBottom: "3px",
-                                width: "45px",
-                                borderRadius: "50%",
-                                fontSize: "2.25rem",
-                                fontWeight: "bold",
-                                backgroundColor:
-                                  getColorFromLetter(placeholderLetter),
-                              }}
-                            >
-                              {placeholderLetter}
-                            </div>
-                          ) : (
-                            <img
-                              className="h-10 w-10 rounded-full "
-                              src={Unknow}
-                              alt="Default"
-                            />
-                          )}
+                      {placeholderLetter ? (
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            height: "45px",
+                            width: "45px",
+                            borderRadius: "50%",
+                            fontSize: "2.25rem",
+                            fontWeight: "bold",
+                            backgroundColor:
+                              getColorFromLetter(placeholderLetter),
+                          }}
+                        >
+                          {placeholderLetter}
+                        </div>
+                      ) : (
+                        <img
+                          className="h-10 w-10 rounded-full"
+                          src={Unknow} // Assuming `Unknown` is the path to the default image
+                          alt="Default"
+                        />
+                      )}
                     </div>
                   )}
+
                   <div className="ml-3">
                     {userDetails && (
                       <div className="text-base font-medium text-gray-800">
@@ -390,7 +406,7 @@ const Navvbars = ({ email }) => {
                       </div>
                     )}
                     <div className="text-base font-medium text-gray-800">
-                      <i>{email}</i>
+                      <i>{userDetails.email}</i>
                     </div>
                   </div>
 

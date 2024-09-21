@@ -64,4 +64,37 @@ const uploadProfileImage = async (req, res) => {
 
 
 
+
+// Function to remove the image
+const removePhoto = async (req, res) => {
+    const { email } = req.query;
+
+    try {
+        // Find the user by email
+        const user = await User.findOne({ email });
+        if (!user || !user.photo) {
+            return res.status(404).json({ error: 'User or photo not found' });
+        }
+
+        // Get the image file path from the user's photo field
+        const imagePath = path.join(__dirname, '..', 'images', user.photo);
+
+        // Remove the image file from the server
+        fs.unlink(imagePath, (err) => {
+            if (err) {
+                console.error('Error removing image file:', err);
+                return res.status(500).json({ error: 'Failed to remove image file' });
+            }
+        });
+        // Unset the photo field in MongoDB
+        await User.findOneAndUpdate({ email }, { $unset: { photo: '' } });
+
+        res.status(200).json({ message: 'Image removed successfully' });
+    } catch (err) {
+        console.error('Error removing image:', err.message);
+        res.status(500).json({ error: 'Failed to remove image' });
+    }
+};
+
 module.exports.uploadProfileImage = [upload.single('photo'), uploadProfileImage];
+module.exports.removePhoto = removePhoto;

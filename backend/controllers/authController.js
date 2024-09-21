@@ -18,7 +18,7 @@ const createToken = (id) => {
 
 //register post method
 module.exports.register_post = async (req, res) => {
-  const { username, email, password, phonenumber, confirmPassword } = req.body;
+  const { username, email, password, phonenumber} = req.body;
   let errors = {};
 
   try {
@@ -38,7 +38,6 @@ module.exports.register_post = async (req, res) => {
       email,
       password,
       phonenumber,
-      confirmPassword,
     });
     const token = createToken(reguser._id);
 
@@ -167,16 +166,53 @@ module.exports.getUserByEmail = async (req, res) => {
   }
 };
 
-
-module.exports.verify_password = async (req, res) => {
-  const {email,  password } = req.body; 
+//update profile
+module.exports.updateProfile = async (req, res) => {
+  const { username, email, phonenumber } = req.body;
+  const { id } = req.params;
+  let errors = {};
   try {
-    // 1. Find the user by email
-    const user = await regUser.findOne({ email });
+
+    // Verify email using Hunter API
+    const hunterApiKey = process.env.HUNTER_API_KEY;
+    const hunterApiUrl = `https://api.hunter.io/v2/email-verifier?email=${email}&api_key=${hunterApiKey}`;
+    const emailVerificationResponse = await axios.get(hunterApiUrl);
+
+    if (emailVerificationResponse.data.data.result !== "deliverable") {
+      errors.email = "It is not a valid Email";
+      return res.status(400).json({ errors });
+    }
+    // Update user information
+    const updatedUser = await regUser.findByIdAndUpdate(
+      id,
+      { username, email, phonenumber },
+      { new: true, runValidators: true } 
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json({ updatedUser });
+  } catch (err) {
+    if (err.code === 11000) {
+        errors.email = "This email is already exists";
+        return res.status(400).json({ errors }); 
+    }
+    console.error(err);
+    return res.status(500).json({ errors });
+}
+
+};
+
+
+
+//verify password
+module.exports.verify_password = async (req, res) => {
+  const { password } = req.body; 
+  try {
+    const user = await regUser.findById(id);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
     // 2. Compare the provided password with the stored password hash
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
