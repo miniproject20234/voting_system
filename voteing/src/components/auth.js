@@ -29,7 +29,7 @@ const navigate=useNavigate();
                 </button>
                 <button
                     onClick={() => setIsSignUp(true)}
-                    className={`p-2 w-full border-b-4 py-2 px-4 ${
+                    className={`p-2 w-full border-b-4 py-2 px-2 ${
                         isSignUp ? ' border-blue-500 ' : 'hover:text-sky-500 border-transparent'
                     }`}
                 >

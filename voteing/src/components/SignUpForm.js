@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { ToastContainer,toast} from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { GoogleLogin } from "@react-oauth/google";
 // import { jwtDecode } from "jwt-decode";
 // import OTPInput, { ResendOTP } from "otp-input-react";
 // import { CgSpinner } from "react-icons/cg";
-
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,7 +15,7 @@ import {
   faUser,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
-import RegisterImage from "../assets/key-removebg.png";
+import RegisterImage from "../assets/signup.jpeg";
 import {
   validateName,
   isValidEmail,
@@ -59,7 +58,7 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
 const Register = () => {
   // const [ loading, setLoading] =useState(false);
   // const [OTP, setOTP] = useState("");
-  
+
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -138,10 +137,13 @@ const Register = () => {
   };
 
   return (
-    <div className="flex   items-center justify-center custom-padding">
-      <div className="bg-grey-500  p-5 shadow-lg flex items-center justify-center">
-        <div className="bg-[#fffcfd2d]   flex rounded-2xl max-w-3xl">
-          <div className="px-16">
+    <div className="flex mt-10  sm:h-[100vh] items-center justify-center custom-padding">
+      <div className="bg-grey-500  p-5 rounded-xl shadow-xl flex items-center justify-center">
+        <div className="bg-[#fffcfd2d] sm:flex  rounded-2xl max-w-md sm:max-w-3xl">
+        <div className="p-3 sm:w-full   sm:flex w-full  ">
+            <img className="rounded-xl " src={RegisterImage} alt="Register" />
+            </div>
+          <div className="px-6   p-3 w-full  items-center">
             <h2 className="font-bold text-2xl mt-5 text-blue-500 text-center">
               Create Account
             </h2>
@@ -149,7 +151,7 @@ const Register = () => {
               Don’t have an account? Sign up and unlock your potential!
             </p>
 
-            <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+            <form className="flex flex-col  mt-2 gap-4" onSubmit={handleSubmit}>
               <div className="relative">
                 <FontAwesomeIcon
                   icon={faUser}
@@ -292,7 +294,7 @@ const Register = () => {
                 </label>
                 <div className="">
                 <OTPInput value={OTP} onChange={setOTP} autoFocus  OTPLength={6} otpType="number" disabled={false} secure className=" flex justify-between  border-black rounded-md  text-xl" separator={<span className="">-</span>}  placeholder="______  "  errorStyle="error"
-      successStyle="success"  />
+                      successStyle="success"  />
                 <ResendOTP onResendClick={() => console.log("Resend clicked")} />
                </div> 
                <button
@@ -304,7 +306,6 @@ const Register = () => {
                   )}
                   <span>Verify OTP</span>
                 </button> */}
-
 
               <button
                 type="submit"
@@ -329,9 +330,9 @@ const Register = () => {
               </button>
             </form>
           </div>
-          <div className="w-1/2 flex items-center img_hid justify-center">
-            <img className="rounded-xl" src={RegisterImage} alt="Register" />
-          </div>
+      
+        
+      
         </div>
       </div>
       <ToastContainer autoClose={2000} />
