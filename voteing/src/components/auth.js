@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SignUpForm from './SignUpForm.js';
 import SignInForm from './SignInForm.js';
+import {useNavigate} from 'react-router-dom'
+
 
 const AuthForm = () => {
+const navigate=useNavigate();
+    useEffect(() => {
+        const storedToken = localStorage.getItem("token");
+        if (storedToken) {
+        
+          navigate("*");
+        }
+      }, [navigate]);
     const [isSignUp, setIsSignUp] = useState(false);
     return (
         <div className="text-center  items-center mt-10">
@@ -19,7 +29,7 @@ const AuthForm = () => {
                 </button>
                 <button
                     onClick={() => setIsSignUp(true)}
-                    className={`p-2 w-full border-b-4 py-2 px-4 ${
+                    className={`p-2 w-full border-b-4 py-2 px-2 ${
                         isSignUp ? ' border-blue-500 ' : 'hover:text-sky-500 border-transparent'
                     }`}
                 >

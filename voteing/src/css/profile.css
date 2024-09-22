@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .drop-shadow-white {
+    @apply drop-shadow-md;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.9));
+  }
+}

@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require('./routes/authRouters');
 const cors = require('cors');
+
+const path = require('path');
 const cookieParser = require('cookie-parser');
 
 require('dotenv').config(); 
@@ -25,7 +27,16 @@ mongoose.connect(uri)
   .then(() => console.log('Connected to MongoDB successfully'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
+<<<<<<< HEAD
+=======
+// Apply middleware
+// app.use(checkUser);
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
+>>>>>>> backend
 app.use(authRoutes);
+// Serve images from the "backend/images" directory
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

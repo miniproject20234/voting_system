@@ -58,7 +58,7 @@ const Login = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const handleForgotPasswordClick = () => {
-    setShowForgotPassword(true); 
+    setShowForgotPassword(true);
   };
 
   const validate = () => {
@@ -95,7 +95,7 @@ const Login = () => {
           toast.success("Login successfull! 👍");
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("email", email); // Store email
-          
+
           setTimeout(() => {
             navigate("/votepage");
             window.location.reload();
@@ -114,10 +114,13 @@ const Login = () => {
   };
 
   return (
-    <div className="p-5 flex h-[75vh] items-center justify-center">
+    <div className="p-5 flex sm:h-[100vh]  items-center justify-center">
       <div className="bg-grey-500 p-5 shadow-lg flex items-center justify-center">
-        <div className="bg-[#fffcfd2d] flex rounded-2xl max-w-3xl">
-          <div className="px-16">
+        <div className="bg-[#fffcfd2d]    sm:flex rounded-2xl sm:max-w-3xl">
+          <div className="w-full flex   sm:hidden p-10 ">
+            <img className="rounded-xl" src={login_img} alt="Login" />
+          </div>
+          <div className="sm:px-16 px-4">
             <h2 className="font-bold text-2xl text-blue-500 text-center">
               Login
             </h2>
@@ -178,19 +181,21 @@ const Login = () => {
             </form>
 
             <div className="mt-4 text-xs flex justify-between items-center">
-            <div>
-      {!showForgotPassword ? (
-        <p onClick={handleForgotPasswordClick} className="cursor-pointer text-blue-500 hover:bg-slate-100 p-1 rounded-md   ">
-          Forgot Passwords?
-        </p>
-      ) : (
-        <ForgotPassword />
-      )}
-     
-    </div>
+              <div>
+                {!showForgotPassword ? (
+                  <p
+                    onClick={handleForgotPasswordClick}
+                    className="cursor-pointer text-blue-500 hover:bg-slate-100 p-1 rounded-md   "
+                  >
+                    Forgot Passwords?
+                  </p>
+                ) : (
+                  <ForgotPassword />
+                )}
+              </div>
             </div>
           </div>
-          <div className="w-1/2 flex items-center img_hid justify-center">
+          <div className="w-1/2   hidden sm:flex justify-center">
             <img className="rounded-xl" src={login_img} alt="Login" />
           </div>
         </div>

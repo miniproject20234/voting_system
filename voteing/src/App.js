@@ -2,6 +2,7 @@
 import "./css/Auth.css";
 import "./css/SignUpForm.css";
 import "./css/SignInForm.css";
+import "./css/profile.css";
 
 
 import React from "react";
