@@ -406,7 +406,7 @@ const Navvbars = ({ email }) => {
                       </div>
                     )}
                     <div className="text-base font-medium text-gray-800">
-                      <i>{userDetails.email}</i>
+                      <i>{email}</i>
                     </div>
                   </div>
 

@@ -30,6 +30,6 @@ router.put('/update-profile/:id', authController.updateProfile);
 
 //verify password
 
-router.post('/verify_password',authController.verify_password);
+// router.post('/verify_password/:id',authController.verify_password);
 
 module.exports = router;

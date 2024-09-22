@@ -26,10 +26,14 @@ const reguserShema = new schema({
 
 // fire a function before doc saved to db  // pre refers to before
 reguserShema.pre('save', async function (next) {
-    const salt = await bcrypt.genSalt();
-    this.password = await bcrypt.hash(this.password, salt);
+    if (this.isModified('password')) {  // Only hash the password if it's new or modified
+        const salt = await bcrypt.genSalt();
+        this.password = await bcrypt.hash(this.password, salt);
+    }
     next();
 });
+
+
 //static method to login user
 
 reguserShema.statics.login = async function (email, password) {

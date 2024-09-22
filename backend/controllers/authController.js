@@ -42,7 +42,7 @@ module.exports.register_post = async (req, res) => {
     const token = createToken(reguser._id);
 
     // console.log('Generated Token during Registration:', token);
-    res.cookie("jwt", token, {
+    res.localstorage("jwt", token, {
       httpOnly: true,
       maxAge: maxAge * 1000,
       sameSite: "None",
@@ -167,12 +167,13 @@ module.exports.getUserByEmail = async (req, res) => {
 };
 
 //update profile
+
 module.exports.updateProfile = async (req, res) => {
-  const { username, email, phonenumber } = req.body;
+  const { username, email, phonenumber, password } = req.body; // Include password in the request body
   const { id } = req.params;
   let errors = {};
-  try {
 
+  try {
     // Verify email using Hunter API
     const hunterApiKey = process.env.HUNTER_API_KEY;
     const hunterApiUrl = `https://api.hunter.io/v2/email-verifier?email=${email}&api_key=${hunterApiKey}`;
@@ -182,46 +183,34 @@ module.exports.updateProfile = async (req, res) => {
       errors.email = "It is not a valid Email";
       return res.status(400).json({ errors });
     }
-    // Update user information
-    const updatedUser = await regUser.findByIdAndUpdate(
-      id,
-      { username, email, phonenumber },
-      { new: true, runValidators: true } 
-    );
-    if (!updatedUser) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    res.status(200).json({ updatedUser });
-  } catch (err) {
-    if (err.code === 11000) {
-        errors.email = "This email is already exists";
-        return res.status(400).json({ errors }); 
-    }
-    console.error(err);
-    return res.status(500).json({ errors });
-}
-
-};
-
-
-
-//verify password
-module.exports.verify_password = async (req, res) => {
-  const { password } = req.body; 
-  try {
+    // Find the user by ID
     const user = await regUser.findById(id);
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
-    // 2. Compare the provided password with the stored password hash
+    // Verify the provided password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Incorrect password' });
     }
-    res.status(200).json({ message: 'Password verified successfully' });
-    
-  } catch (error) {
-    console.error('Error verifying password:', error);
-    res.status(500).json({ message: 'Server error' });
+    // Update user information
+    const updatedUser = await regUser.findByIdAndUpdate(
+      id,
+      { username, email, phonenumber },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ message: 'Profile updated successfully', updatedUser });
+  } catch (err) {
+    if (err.code === 11000) {
+      errors.email = "This email already exists";
+      return res.status(400).json({ errors });
+    }
+    console.error(err);
+    return res.status(500).json({ errors });
   }
 };
