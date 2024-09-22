@@ -215,7 +215,7 @@ const Navvbars = ({ email }) => {
                           {userDetails&& userDetails.photo ? (
                     <img
                       className="h-10 w-10 rounded-full"
-                      src={`http://localhost:5000/images/${userDetails.photo}`}
+                      src={`https://vote-backend-e92j.onrender.com/images/${userDetails.photo}`}
                       alt="Profile"
                     />
                   ) : (
@@ -366,7 +366,7 @@ const Navvbars = ({ email }) => {
                   {userDetails&& userDetails.photo ? (
                     <img
                       className="h-10 w-10 rounded-full"
-                      src={`http://localhost:5000/images/${userDetails.photo}`}
+                      src={`https://vote-backend-e92j.onrender.com/images/${userDetails.photo}`}
                       alt="Profile"
                     />
                   ) : (

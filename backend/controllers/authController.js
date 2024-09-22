@@ -2,11 +2,8 @@ const regUser = require("../model/regUser");
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const bcrypt=require("bcryptjs")
-<<<<<<< HEAD
-=======
 
 
->>>>>>> backend
 const nodemailer=require("nodemailer")
 require('dotenv').config(); 
 
@@ -116,18 +113,8 @@ module.exports.forgot_password = async (req, res) => {
       from: process.env.EMAIL_USER,
       to: email,
       subject: 'Reset Password Link',
-<<<<<<< HEAD
-<<<<<<< HEAD
-      text: ` Link is valid for 10min only, Click the link below:
-                 
-=======
-      text: `Link is valid for 10min only. Click the link below:
->>>>>>> d61cf3274a05e7547018a8a1b80a62034c3c034d
-      https://votevibe.vercel.app/reset_password/${user._id}/${token}`
-=======
       text: `Link is valid for 10min only. Click the link below:
       http://localhost:3000/reset_password/${user._id}/${token}`
->>>>>>> backend
     };
 
     try {
@@ -141,11 +128,8 @@ module.exports.forgot_password = async (req, res) => {
     return res.status(500).json({ Status: "Error processing request", error: err.message });
   }
 };
-<<<<<<< HEAD
 
 
-=======
->>>>>>> d61cf3274a05e7547018a8a1b80a62034c3c034d
 //reset password  
     
 module.exports.reset_password= async (req, res) => {

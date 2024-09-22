@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cors({
 
-  origin:"https://votevibe.vercel.app",
+  origin:"https://votevibe.vercel.app/",
   methods:"GET,POST,PUT,DELETE",
   credentials:true
 }));
@@ -27,13 +27,10 @@ mongoose.connect(uri)
   .then(() => console.log('Connected to MongoDB successfully'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
-<<<<<<< HEAD
-=======
 // Apply middleware
 // app.use(checkUser);
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
->>>>>>> backend
 app.use(authRoutes);
 // Serve images from the "backend/images" directory
 

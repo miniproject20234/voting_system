@@ -50,7 +50,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/user", {
+        const response = await axios.get("https://vote-backend-e92j.onrender.com/user", {
           params: { email: emailId },
         });
         if (response.data.user) {
@@ -82,7 +82,7 @@ const Profile = () => {
       setLoading(true);
       try {
         await axios.post(
-          `http://localhost:5000/upload-image?email=${emailId}`,
+          `https://vote-backend-e92j.onrender.com/upload-image?email=${emailId}`,
           formData,  
           {
             headers: {
@@ -111,7 +111,7 @@ const Profile = () => {
   const handleRemoveImage = async () => {
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/remove-image?email=${emailId}`);
+      await axios.delete(`https://vote-backend-e92j.onrender.com/remove-image?email=${emailId}`);
       toast.success("Photo removed successfully!");
       setImage(null);
       setTimeout(() => {
@@ -178,7 +178,7 @@ const Profile = () => {
     if (validate()) {
       try {
         const response = await axios.put(
-          `http://localhost:5000/update-profile/${userId}`,
+          `https://vote-backend-e92j.onrender.com/update-profile/${userId}`,
           formData,
           {
             headers: { "Content-Type": "application/json" },
@@ -248,7 +248,7 @@ const Profile = () => {
             {userDetails.photo ? (
               <img
                 className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
-                src={`http://localhost:5000/images/${userDetails.photo}`}
+                src={`https://vote-backend-e92j.onrender.com/images/${userDetails.photo}`}
                 alt="profile"
               />
             ) : (
