@@ -11,8 +11,8 @@ const Notfund = () => {
       <div className="relative bg-white h-screen flex flex-col justify-center items-center">
 
         {/* Top-left Circle Image */}
-        <div className="">
-          <img className="" src={NotFund_img} alt="Top left circle" />
+        <div className="absolute top-1 left-0  h-50 w-50">
+          <img className=" " src={NotFund_img} alt="Top left circle" />
         </div>
 
         {/* Error Image and Text */}
@@ -37,7 +37,7 @@ const Notfund = () => {
         </div>
 
         {/* Bottom-right Circle Image */}
-        <div className="">
+        <div className="absolute bottom-4 right-0 ">
           <img className="" src={NotFond_img} alt="Bottom right circle" />
         </div>
       </div>
