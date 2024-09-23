@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { GoogleLogin } from "@react-oauth/google";
 // import { jwtDecode } from "jwt-decode";
@@ -15,7 +15,7 @@ import {
   faUser,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
-import RegisterImage from "../assets/signup.jpeg";
+
 import {
   validateName,
   isValidEmail,
@@ -137,83 +137,38 @@ const Register = () => {
   };
 
   return (
-    <div className="flex mt-10  sm:h-[100vh] items-center justify-center custom-padding">
-      <div className="bg-grey-500  p-5 rounded-xl shadow-xl flex items-center justify-center">
-        <div className="bg-[#fffcfd2d] sm:flex  rounded-2xl max-w-md sm:max-w-3xl">
-        <div className="p-3 sm:w-full   sm:flex w-full  ">
-            <img className="rounded-xl " src={RegisterImage} alt="Register" />
-            </div>
-          <div className="px-6   p-3 w-full  items-center">
-            <h2 className="font-bold text-2xl mt-5 text-blue-500 text-center">
-              Create Account
-            </h2>
-            <p className="text-sm mt-7 text-black text-opacity-70 text-center">
-              Don’t have an account? Sign up and unlock your potential!
-            </p>
+    <><div className="flex mt-10  sm:h-[100vh] items-center justify-center overflow-hidden ">
+    <div className="bg-grey-500  p-5 rounded-xl shadow-xl flex items-center justify-center">
+      <div className="bg-[#fffcfd2d] sm:flex  rounded-2xl max-w-md sm:max-w-3xl">
+      <div className="w-6/6 sm2:h-[400px] h-[360px] sm:h-auto mb-6  flex rounded-xl bg-[url('../assets/signup2.jpeg')] bg-center bg-cover  sm:flex  p-5">
+          <div className="mt-4 ">
+          <h1 className="text-black font-semibold text-2xl  ">Welcome Back!</h1>
+          <p className="text-white mt-3 sm:px-6 px-8  sm2:px-0  text-left  ">To keep connect with us enter your details</p>
+          </div>  
+          </div>
+        <div className="px-6 sm:px-10   w-5/  items-center">
+          <h2 className="font-bold text-2xl mt-5 text-blue-500 text-center">
+            Create Account
+          </h2>
+          <p className="text-sm mt-7 text-black text-opacity-70 text-center">
+            Don’t have an account? Sign up and unlock your potential!
+          </p>
 
-            <form className="flex flex-col  mt-2 gap-4" onSubmit={handleSubmit}>
-              <div className="relative">
-                <FontAwesomeIcon
-                  icon={faUser}
-                  className="absolute right-0 pr-2  top-10 transform -translate-y-1/2 text-blue-400"
-                />
-                <input
-                  className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
-                    errors.userName ? "border-red-500" : ""
-                  }`}
-                  type="text"
-                  name="userName"
-                  placeholder="Enter Name"
-                  value={userName}
-                  onChange={(e) => setUserName(e.target.value)}
-                  onBlur={(e) =>
-                    handleBlur(
-                      e.target.name,
-                      e.target.value,
-                      errors,
-                      setErrors,
-                      password
-                    )
-                  }
-                  autoComplete="name"
-                />
-                {errors.userName && (
-                  <div className="text-red-500 text-sm">{errors.userName}</div>
-                )}
-              </div>
-              <div className="relative">
-                <FontAwesomeIcon
-                  icon={faEnvelope}
-                  className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
-                />
-                <input
-                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
-                    errors.email ? "border-red-500" : ""
-                  }`}
-                  type="email"
-                  name="email"
-                  placeholder="Enter Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  onBlur={(e) =>
-                    handleBlur(
-                      e.target.name,
-                      e.target.value,
-                      errors,
-                      setErrors,
-                      password
-                    )
-                  }
-                  autoComplete="email"
-                />
-                {errors.email && (
-                  <div className="text-red-500 text-sm">{errors.email}</div>
-                )}
-              </div>
-              <PasswordInput
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                error={errors.password}
+          <form className="flex flex-col  mt-2 gap-4" onSubmit={handleSubmit}>
+            <div className="relative">
+              <FontAwesomeIcon
+                icon={faUser}
+                className="absolute right-0 pr-2  top-10 transform -translate-y-1/2 text-blue-400"
+              />
+              <input
+                className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  errors.userName ? "border-red-500" : ""
+                }`}
+                type="text"
+                name="userName"
+                placeholder="Enter Name"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
                 onBlur={(e) =>
                   handleBlur(
                     e.target.name,
@@ -223,120 +178,170 @@ const Register = () => {
                     password
                   )
                 }
+                autoComplete="name"
               />
-              <div className="relative">
-                <FontAwesomeIcon
-                  icon={faLock}
-                  className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
-                />
-                <input
-                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
-                    errors.confirmPassword ? "border-red-500" : ""
-                  }`}
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  onBlur={(e) =>
-                    handleBlur(
-                      e.target.name,
-                      e.target.value,
-                      errors,
-                      setErrors,
-                      password
-                    )
-                  }
-                  autoComplete="new-password"
-                />
-                {errors.confirmPassword && (
-                  <div className="text-red-500 text-sm">
-                    {errors.confirmPassword}
-                  </div>
-                )}
-              </div>
-              <div className="relative">
-                <FontAwesomeIcon
-                  icon={faPhone}
-                  className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
-                />
-                <input
-                  className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
-                    errors.phoneNumber ? "border-red-500" : ""
-                  }`}
-                  type="number"
-                  name="phoneNumber"
-                  placeholder="Phone Number"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  onBlur={(e) =>
-                    handleBlur(
-                      e.target.name,
-                      e.target.value,
-                      errors,
-                      setErrors,
-                      password
-                    )
-                  }
-                  autoComplete="tel"
-                />
-                {errors.phoneNumber && (
-                  <div className="text-red-500 text-sm">
-                    {errors.phoneNumber}
-                  </div>
-                )}
-              </div>
-              {/* <label
-                  htmlFor="otp"
-                  className=" text-md text-black text-center"
-                >
-                  Enter the verification c  ode
-                </label>
-                <div className="">
-                <OTPInput value={OTP} onChange={setOTP} autoFocus  OTPLength={6} otpType="number" disabled={false} secure className=" flex justify-between  border-black rounded-md  text-xl" separator={<span className="">-</span>}  placeholder="______  "  errorStyle="error"
-                      successStyle="success"  />
-                <ResendOTP onResendClick={() => console.log("Resend clicked")} />
-               </div> 
-               <button
-                 
-                  className="bg-blue-600 w-full flex gap-1 items-center justify-center p-2 text-white rounded"
-                >
-                  {loading && (
-                    <CgSpinner size={20} className="mt-1 animate-spin" />
-                  )}
-                  <span>Verify OTP</span>
-                </button> */}
-
-              <button
-                type="submit"
-                className="p-2 Login-button rounded-full bg-blue-500 text-white hover:shadow-lg"
+              {errors.userName && (
+                <div className="text-red-500 text-sm">{errors.userName}</div>
+              )}
+            </div>
+            <div className="relative">
+              <FontAwesomeIcon
+                icon={faEnvelope}
+                className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
+              />
+              <input
+                className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  errors.email ? "border-red-500" : ""
+                }`}
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={(e) =>
+                  handleBlur(
+                    e.target.name,
+                    e.target.value,
+                    errors,
+                    setErrors,
+                    password
+                  )
+                }
+                autoComplete="email"
+              />
+              {errors.email && (
+                <div className="text-red-500 text-sm">{errors.email}</div>
+              )}
+            </div>
+            <PasswordInput
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              error={errors.password}
+              onBlur={(e) =>
+                handleBlur(
+                  e.target.name,
+                  e.target.value,
+                  errors,
+                  setErrors,
+                  password
+                )
+              }
+            />
+            <div className="relative">
+              <FontAwesomeIcon
+                icon={faLock}
+                className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
+              />
+              <input
+                className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  errors.confirmPassword ? "border-red-500" : ""
+                }`}
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                onBlur={(e) =>
+                  handleBlur(
+                    e.target.name,
+                    e.target.value,
+                    errors,
+                    setErrors,
+                    password
+                  )
+                }
+                autoComplete="new-password"
+              />
+              {errors.confirmPassword && (
+                <div className="text-red-500 text-sm">
+                  {errors.confirmPassword}
+                </div>
+              )}
+            </div>
+            <div className="relative">
+              <FontAwesomeIcon
+                icon={faPhone}
+                className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
+              />
+              <input
+                className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                  errors.phoneNumber ? "border-red-500" : ""
+                }`}
+                type="number"
+                name="phoneNumber"
+                placeholder="Phone Number"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                onBlur={(e) =>
+                  handleBlur(
+                    e.target.name,
+                    e.target.value,
+                    errors,
+                    setErrors,
+                    password
+                  )
+                }
+                autoComplete="tel"
+              />
+              {errors.phoneNumber && (
+                <div className="text-red-500 text-sm">
+                  {errors.phoneNumber}
+                </div>
+              )}
+            </div>
+            {/* <label
+                htmlFor="otp"
+                className=" text-md text-black text-center"
               >
-                Register
-              </button>
-              <button className=" pl-20">
-                {/* <GoogleLogin 
-                  onSuccess={(credentialResponse) => {
-                    const credentialResponseDecoded = jwtDecode(
-                      credentialResponse.credential
-                    );
-                    console.log(credentialResponseDecoded);
-                  }}
-                  onError={() => {
-                    toast.error("Error signing up with Google");
-                    console.log("Login Failed");
-                  }}
-                 
-                /> */}
-              </button>
-            </form>
-          </div>
-      
-        
-      
+                Enter the verification c  ode
+              </label>
+              <div className="">
+              <OTPInput value={OTP} onChange={setOTP} autoFocus  OTPLength={6} otpType="number" disabled={false} secure className=" flex justify-between  border-black rounded-md  text-xl" separator={<span className="">-</span>}  placeholder="______  "  errorStyle="error"
+                    successStyle="success"  />
+              <ResendOTP onResendClick={() => console.log("Resend clicked")} />
+             </div> 
+             <button
+               
+                className="bg-blue-600 w-full flex gap-1 items-center justify-center p-2 text-white rounded"
+              >
+                {loading && (
+                  <CgSpinner size={20} className="mt-1 animate-spin" />
+                )}
+                <span>Verify OTP</span>
+              </button> */}
+
+            <button
+              type="submit"
+              className="p-2 Login-button rounded-full bg-blue-500 text-white hover:shadow-lg"
+            >
+              Register
+            </button>
+            <button className=" pl-20">
+              {/* <GoogleLogin 
+                onSuccess={(credentialResponse) => {
+                  const credentialResponseDecoded = jwtDecode(
+                    credentialResponse.credential
+                  );
+                  console.log(credentialResponseDecoded);
+                }}
+                onError={() => {
+                  toast.error("Error signing up with Google");
+                  console.log("Login Failed");
+                }}
+               
+              /> */}
+            </button>
+          </form>
         </div>
+    
+      
+    
       </div>
-      <ToastContainer autoClose={2000} />
     </div>
+   
+  </div>
+  
+  </>
   );
 };
 
