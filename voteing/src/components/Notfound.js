@@ -1,48 +1,44 @@
 import React from 'react';
-import NotFund_img from "../assets/errors2.png"; // Circle image
-import NotFound_img from "../assets/errors.png"; // 404 image
-import NotFond_img from "../assets/errors3.png";
+import NotFound_img from "../assets/pagenot 1.png"; // 404 image
+import NotFoud_img from "../assets/pagenot.png";
 import { NavLink } from 'react-router-dom';
-import '../css/Auth.css';
+import '../css/notfound.css';
 
-const Notfund = () => {
+const NotFound = () => {
   return (
     <>
       <div className="relative bg-white h-screen flex flex-col justify-center items-center">
 
-        {/* Top-left Circle Image */}
-        <div className="absolute top-1 left-0  h-50 w-50">
-          <img className=" " src={NotFund_img} alt="Top left circle" />
-        </div>
-
         {/* Error Image and Text */}
-        <div className="relative z-10 text-center p-5 px-16 shadow-2xl shadow-blue-600/50 bg-white">
-          <div className='sm:flex sm:justify-center mt-5'>
-            <img className="sm:w-4/6 h-[50vh] sm:h-auto w-full" src={NotFound_img} alt="Not found" />
+        <div className="relative text-center py-8 shadow-blue-600/50 bg-white w-full flex flex-col justify-center items-center">
+          
+          {/* Image Container */}
+          <div className="relative w-[500px] h-[500px]"> {/* Set a fixed width/height to the image container */}
+            {/* First image (bottom) */}
+            <img className="absolute inset-0 mx-auto w-full h-full object-contain" src={NotFound_img} alt="404 Not found" />
+            
+            {/* Second image (top, overlapping) */}
+            <img className="absolute inset-0 mx-auto w-full h-full object-contain" src={NotFoud_img} alt="404 Not found overlay" />
           </div>
           
-          <div className='mt-2'>
-            <h2>Something went wrong.</h2>
-            <p className='text-sm text-slate-700'>Sorry, we can't find the page you're looking for.</p>
+          {/* Text */}
+          <div className='mt-4'>
+            <h2 className="text-lg font-bold">Something went wrong.</h2>
+            <p className="text-sm text-slate-700">Sorry, we can't find the page you're looking for.</p>
           </div>
 
           {/* Go Back Button */}
-          <div className="mt-1 mb-2">
+          <div className="mt-6 flex justify-center">
             <NavLink to='/'>
-              <button className="px-4 py-1 bg-blue-500 shadow-lg shadow-blue-600/50 hover:bg-blue-700 text-white rounded-lg">
+              <button className="px-4 py-2 bg-blue-500 shadow-lg hover:bg-blue-700 text-white rounded-lg">
                 Go Back
               </button>
             </NavLink>
           </div>
-        </div>
-
-        {/* Bottom-right Circle Image */}
-        <div className="absolute bottom-4 right-0 ">
-          <img className="" src={NotFond_img} alt="Bottom right circle" />
         </div>
       </div>
     </>
   );
 }
 
-export default Notfund;
+export default NotFound;
