@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ForgotPassword from "./toolsforcom/forgotPassword";
-import SignUpForm from './SignUpForm.js';
+
 import {
   faEnvelope,
   faLock,
@@ -49,7 +49,7 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
   );
 };
 
-const Login = () => {
+const Login = ({ setIsSignUp }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -124,8 +124,21 @@ const Login = () => {
                   Create Account
                 </h1>
                 <p className="text-white mt-3  px-1 sm3:px-10 sm2:px-16 ">
-                  Enter the Details & Start journey with us
+                  Enter the Details & Start journey with us   <span
+                    onClick={() => setIsSignUp(true)}
+                    className="cursor-pointer rounded-lg duration-300 ease-in-out group"
+                  >
+                    <span className="inline-flex items-center">
+                      <span className="hover-effect inline-flex items-center">
+                        <span className=" blink-animation hover:text-[#0000ff]">
+                          Sign Up!
+                        </span>
+                      </span>
+                    </span>
+                  </span>
                 </p>
+              
+              
               </div>
             </div>
 
@@ -204,16 +217,27 @@ const Login = () => {
                 </div>
               </div>
             </div>
-            <div className="w-4/6 rounded-xl  px-10  hidden sm:flex justify-center bg-[url('../assets/girl.png')] bg-center bg-cover">
-              <div className="mt-4 ">
-                <h1 className="text-black font-semibold sm:text-2xl  ">
+            <div className="w-4/6 rounded-xl px-10 hidden sm:flex justify-center bg-[url('../assets/girl.png')] bg-center bg-cover">
+              <div className="mt-2">
+                <h1 className="text-black font-semibold sm:text-2xl">
                   Create Account
                 </h1>
-                <p className="text-white mt-3  sm750:px-6  ">
-                  Enter the Details & Start journey with us
+                <p className="text-white mt-3 sm750:px-6">
+                  Enter the Details & Start journey with us{" "} 
+                  <span
+                    onClick={() => setIsSignUp(true)}
+                    className="cursor-pointer rounded-lg duration-300 ease-in-out group"
+                  >
+                    <span className="inline-flex items-center">
+                      <span className="hover-effect inline-flex items-center">
+                        <span className=" blink-animation hover:text-[#0000ff]">
+                          Sign Up!
+                        </span>
+                      </span>
+                    </span>
+                  </span>
                 </p>
               </div>
-              {/* <img className="rounded-xl" src={login_img} alt="Login" /> */}
             </div>
           </div>
         </div>

@@ -46,3 +46,53 @@ input[type="password"]::-ms-reveal {
   display: none;
 }
 
+
+
+
+/* Hover underline effect */
+.hover-effect {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-effect::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: blue; /* Color of the underline */
+  transition: width 0.4s ease, left 0.4s ease;
+}
+
+.hover-effect:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+/* Blinking animation with 3 colors: light black, white, and blue */
+.blink-animation {
+  animation: blink-color 1s steps(3, start) infinite;
+}
+
+@keyframes blink-color {
+  0% {
+   
+  }
+  33% {
+    color: white;
+  }
+  66% {
+    color: blue;
+  }
+  100% {
+  color:blue;
+  }
+}
+
+/* Stop blinking on hover and remain blue */
+.blink-animation:hover {
+  animation: none;
+  color: #0000ff; /* Stay blue */
+}

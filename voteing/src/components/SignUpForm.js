@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { GoogleLogin } from "@react-oauth/google";
 // import { jwtDecode } from "jwt-decode";
@@ -55,7 +55,7 @@ const PasswordInput = ({ value, onChange, error, onBlur }) => {
   );
 };
 
-const Register = () => {
+const Register = ({ setIsSignUp }) => {
   // const [ loading, setLoading] =useState(false);
   // const [OTP, setOTP] = useState("");
 
@@ -137,159 +137,181 @@ const Register = () => {
   };
 
   return (
-    <><div className="flex mt-10  sm:h-[100vh] items-center justify-center overflow-hidden ">
-    <div className="bg-grey-500  p-5 rounded-xl shadow-xl flex items-center justify-center">
-      <div className="bg-[#fffcfd2d] sm:flex  rounded-2xl max-w-md sm:max-w-3xl">
-      <div className="w-6/6 sm2:h-[400px] h-[360px] sm:h-auto mb-6  flex rounded-xl bg-[url('../assets/signup2.jpeg')] bg-center bg-cover  sm:flex  p-5">
-          <div className="mt-4 ">
-          <h1 className="text-black font-semibold text-2xl  ">Welcome Back!</h1>
-          <p className="text-white mt-3 sm:px-6 px-8  sm2:px-0  text-left  ">To keep connect with us enter your details</p>
-          </div>  
-          </div>
-        <div className="px-6 sm:px-10   w-5/  items-center">
-          <h2 className="font-bold text-2xl mt-5 text-blue-500 text-center">
-            Create Account
-          </h2>
-          <p className="text-sm mt-7 text-black text-opacity-70 text-center">
-            Don’t have an account? Sign up and unlock your potential!
-          </p>
+    <>
+      <div className="flex   sm:h-[100vh] items-center justify-center overflow-hidden ">
+        <div className="bg-grey-500  p-5 rounded-xl shadow-xl flex items-center justify-center">
+          <div className="bg-[#fffcfd2d] sm:flex  rounded-2xl max-w-md sm:max-w-3xl">
+            <div className="w-6/6 sm2:h-[400px] relative h-[360px] sm:h-auto mb-6  flex rounded-xl bg-[url('../assets/signup.jpg')] bg-center bg-cover  sm:flex  p-5">
+              <div className="mt-8 ">
+                <h1 className="text-black font-semibold text-2xl  ">
+                  Welcome Back!
+                </h1>
+                <p className="text-white mt-5  sm:px-6 px-9 sm3:px-12  sm2:px-10  text-left  ">
+                  To keep connect with us enter your details and  <span
+               onClick={() => setIsSignUp(false)}
+                    className="cursor-pointer rounded-lg duration-300 ease-in-out group"
+                  >
+                    <span className="inline-flex items-center">
+                      <span className="hover-effect inline-flex items-center">
+                        <span className=" blink-animation hover:text-[#0000ff]">
+                          Sign in!
+                        </span>
+                      </span>
+                    </span>
+                  </span>
+                </p>
+                
+              </div>
+            </div>
+            <div className="px-6 sm:px-10   w-5/  items-center">
+              <h2 className="font-bold text-2xl mt-5 text-blue-500 text-center">
+                Create Account
+              </h2>
+              <p className="text-sm mt-7 text-black text-opacity-70 text-center">
+                Don’t have an account? Sign up and unlock your potential!
+              </p>
 
-          <form className="flex flex-col  mt-2 gap-4" onSubmit={handleSubmit}>
-            <div className="relative">
-              <FontAwesomeIcon
-                icon={faUser}
-                className="absolute right-0 pr-2  top-10 transform -translate-y-1/2 text-blue-400"
-              />
-              <input
-                className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
-                  errors.userName ? "border-red-500" : ""
-                }`}
-                type="text"
-                name="userName"
-                placeholder="Enter Name"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                onBlur={(e) =>
-                  handleBlur(
-                    e.target.name,
-                    e.target.value,
-                    errors,
-                    setErrors,
-                    password
-                  )
-                }
-                autoComplete="name"
-              />
-              {errors.userName && (
-                <div className="text-red-500 text-sm">{errors.userName}</div>
-              )}
-            </div>
-            <div className="relative">
-              <FontAwesomeIcon
-                icon={faEnvelope}
-                className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
-              />
-              <input
-                className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
-                  errors.email ? "border-red-500" : ""
-                }`}
-                type="email"
-                name="email"
-                placeholder="Enter Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onBlur={(e) =>
-                  handleBlur(
-                    e.target.name,
-                    e.target.value,
-                    errors,
-                    setErrors,
-                    password
-                  )
-                }
-                autoComplete="email"
-              />
-              {errors.email && (
-                <div className="text-red-500 text-sm">{errors.email}</div>
-              )}
-            </div>
-            <PasswordInput
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              error={errors.password}
-              onBlur={(e) =>
-                handleBlur(
-                  e.target.name,
-                  e.target.value,
-                  errors,
-                  setErrors,
-                  password
-                )
-              }
-            />
-            <div className="relative">
-              <FontAwesomeIcon
-                icon={faLock}
-                className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
-              />
-              <input
-                className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
-                  errors.confirmPassword ? "border-red-500" : ""
-                }`}
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                onBlur={(e) =>
-                  handleBlur(
-                    e.target.name,
-                    e.target.value,
-                    errors,
-                    setErrors,
-                    password
-                  )
-                }
-                autoComplete="new-password"
-              />
-              {errors.confirmPassword && (
-                <div className="text-red-500 text-sm">
-                  {errors.confirmPassword}
+              <form
+                className="flex flex-col  mt-2 gap-4"
+                onSubmit={handleSubmit}
+              >
+                <div className="relative">
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className="absolute right-0 pr-2  top-10 transform -translate-y-1/2 text-blue-400"
+                  />
+                  <input
+                    className={`p-2 pl-1 mt-5 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                      errors.userName ? "border-red-500" : ""
+                    }`}
+                    type="text"
+                    name="userName"
+                    placeholder="Enter Name"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    onBlur={(e) =>
+                      handleBlur(
+                        e.target.name,
+                        e.target.value,
+                        errors,
+                        setErrors,
+                        password
+                      )
+                    }
+                    autoComplete="name"
+                  />
+                  {errors.userName && (
+                    <div className="text-red-500 text-sm">
+                      {errors.userName}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-            <div className="relative">
-              <FontAwesomeIcon
-                icon={faPhone}
-                className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
-              />
-              <input
-                className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
-                  errors.phoneNumber ? "border-red-500" : ""
-                }`}
-                type="number"
-                name="phoneNumber"
-                placeholder="Phone Number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                onBlur={(e) =>
-                  handleBlur(
-                    e.target.name,
-                    e.target.value,
-                    errors,
-                    setErrors,
-                    password
-                  )
-                }
-                autoComplete="tel"
-              />
-              {errors.phoneNumber && (
-                <div className="text-red-500 text-sm">
-                  {errors.phoneNumber}
+                <div className="relative">
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
+                  />
+                  <input
+                    className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                      errors.email ? "border-red-500" : ""
+                    }`}
+                    type="email"
+                    name="email"
+                    placeholder="Enter Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onBlur={(e) =>
+                      handleBlur(
+                        e.target.name,
+                        e.target.value,
+                        errors,
+                        setErrors,
+                        password
+                      )
+                    }
+                    autoComplete="email"
+                  />
+                  {errors.email && (
+                    <div className="text-red-500 text-sm">{errors.email}</div>
+                  )}
                 </div>
-              )}
-            </div>
-            {/* <label
+                <PasswordInput
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  error={errors.password}
+                  onBlur={(e) =>
+                    handleBlur(
+                      e.target.name,
+                      e.target.value,
+                      errors,
+                      setErrors,
+                      password
+                    )
+                  }
+                />
+                <div className="relative">
+                  <FontAwesomeIcon
+                    icon={faLock}
+                    className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
+                  />
+                  <input
+                    className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                      errors.confirmPassword ? "border-red-500" : ""
+                    }`}
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    onBlur={(e) =>
+                      handleBlur(
+                        e.target.name,
+                        e.target.value,
+                        errors,
+                        setErrors,
+                        password
+                      )
+                    }
+                    autoComplete="new-password"
+                  />
+                  {errors.confirmPassword && (
+                    <div className="text-red-500 text-sm">
+                      {errors.confirmPassword}
+                    </div>
+                  )}
+                </div>
+                <div className="relative">
+                  <FontAwesomeIcon
+                    icon={faPhone}
+                    className="absolute right-0 pr-2  top-6 transform -translate-y-1/2 text-blue-400"
+                  />
+                  <input
+                    className={`p-2 pl-1 placeholder-small focus:shadow-lg border-b-2  pr-8 border-gray-300 hover:shadow-lg focus:outline-none w-full ${
+                      errors.phoneNumber ? "border-red-500" : ""
+                    }`}
+                    type="number"
+                    name="phoneNumber"
+                    placeholder="Phone Number"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    onBlur={(e) =>
+                      handleBlur(
+                        e.target.name,
+                        e.target.value,
+                        errors,
+                        setErrors,
+                        password
+                      )
+                    }
+                    autoComplete="tel"
+                  />
+                  {errors.phoneNumber && (
+                    <div className="text-red-500 text-sm">
+                      {errors.phoneNumber}
+                    </div>
+                  )}
+                </div>
+                {/* <label
                 htmlFor="otp"
                 className=" text-md text-black text-center"
               >
@@ -310,14 +332,14 @@ const Register = () => {
                 <span>Verify OTP</span>
               </button> */}
 
-            <button
-              type="submit"
-              className="p-2 Login-button rounded-full bg-blue-500 text-white hover:shadow-lg"
-            >
-              Register
-            </button>
-            <button className=" pl-20">
-              {/* <GoogleLogin 
+                <button
+                  type="submit"
+                  className="p-2 Login-button rounded-full bg-blue-500 text-white hover:shadow-lg"
+                >
+                  Register
+                </button>
+                <button className=" pl-20">
+                  {/* <GoogleLogin 
                 onSuccess={(credentialResponse) => {
                   const credentialResponseDecoded = jwtDecode(
                     credentialResponse.credential
@@ -330,18 +352,13 @@ const Register = () => {
                 }}
                
               /> */}
-            </button>
-          </form>
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
-    
-      
-    
       </div>
-    </div>
-   
-  </div>
-  
-  </>
+    </>
   );
 };
 
