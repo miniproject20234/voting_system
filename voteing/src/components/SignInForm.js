@@ -115,42 +115,56 @@ const Login = ({ setIsSignUp }) => {
 
   return (
     <>
-      <div className="p-5  flex sm:h-[100vh]   items-center justify-center">
-        <div className="bg-grey-500  p-5 shadow-xl  flex items-center justify-center">
+      <div className="p-5  flex sm:h-[95vh]   items-center justify-center">
+        <div className="bg-grey-500  p-5 shadow-xl h-5/6 rounded-lg flex items-center justify-center">
           <div className="bg-[#fffcfd2d]    sm:flex rounded-2xl sm:max-w-3xl">
-            <div className="w-6/6 sm2:h-[400px] h-[360px] mb-6  flex rounded-xl bg-[url('../assets/girl.png')] bg-center bg-cover  sm:hidden  p-5">
-              <div className="mt-4 ">
-                <h1 className="text-black font-semibold text-2xl  ">
+            <div className="w-6/6 sm2:h-[400px] h-[380px]   flex rounded-xl bg-[url('../assets/girl.png')] bg-center bg-cover  sm:hidden py-2 sm3:px-5">
+              <div className=" ">
+                <h1 className="text-black font-semibold text-2xl sm2:mt-2 ">
                   Create Account
                 </h1>
-                <p className="text-white mt-3  px-1 sm3:px-10 sm2:px-16 ">
-                  Enter the Details & Start journey with us   <span
-                    onClick={() => setIsSignUp(true)}
-                    className="cursor-pointer rounded-lg duration-300 ease-in-out group"
-                  >
-                    <span className="inline-flex items-center">
-                      <span className="hover-effect inline-flex items-center">
-                        <span className=" blink-animation hover:text-[#0000ff]">
-                          Sign Up!
-                        </span>
-                      </span>
-                    </span>
-                  </span>
+                <p className="text-white mt-1  px-1 sm3:px-6 sm2:mt-4 ">
+                  Enter the Details & Start journey with us
                 </p>
-              
-              
+                <button
+                  onClick={() => setIsSignUp(true)}
+                  className="group sm2:mt-2  sm:p-1 flex justify-center transform blink mt-1 outline-double outline-3 outline-offset-1 hover:outline-none font-semibold py-1 m-auto  p-2 sm:w-3/6 sm715:w-2/6 rounded-md shadow-white hover:shadow-lg duration-300 ease-in-out"
+                >
+                  <svg
+                    className="blinks "
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                    fill="none"
+                  >
+                    <path
+                      d="M13.485 10.7553L16.4892 10.7553M16.4892 10.7553H19.9954C20.8264 10.7553 21.5 10.083 21.5 9.25355C21.5 8.42415 20.8264 7.75178 19.9954 7.75178L14.531 7.75178M16.4892 10.7553L16.4624 11.8097C16.4443 12.5207 16.056 13.1373 15.4844 13.4776M14.531 7.75178L9.96807 7.75178M14.531 7.75178L11.7712 5.15834C9.90362 3.58588 8.54219 4.4122 7.78577 4.99245L5.34841 6.60732C3.28085 7.83214 2.5 9.2495 2.5 10.4418V15.3225C2.5 17.5886 4.88227 19.7016 7.06579 19.7016L12.2657 19.7497C13.2759 19.759 14.135 19.0163 14.27 18.017L14.4593 16.4766M13.4552 13.7589H14.4593C14.8335 13.7589 15.1842 13.6563 15.4844 13.4776M15.4844 13.4776L15.4297 14.8132C15.4021 15.8977 14.5134 16.7624 13.4266 16.7624H12.4226"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <span className="pl-1 font-bold    group-hover:text-white">
+                    Sign Up
+                  </span>
+                </button>
               </div>
             </div>
 
-            <div className="sm:px-16 px-4">
-              <h2 className="font-bold text-2xl text-blue-500 text-center">
+            <div className=" px-4   py-10 justify-center">
+              <h2 className="font-bold  text-2xl text-blue-500 text-center">
                 Login
               </h2>
-              <p className="text-sm mt-7 text-black text-opacity-70 text-center">
+              <p className="text-sm mt-8 text-black text-opacity-70 text-center">
                 Already a member? Let's get you logged in!
               </p>
 
-              <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+              <form
+                className="flex flex-col  mt-4 gap-4"
+                onSubmit={handleSubmit}
+              >
                 <div className="relative">
                   <FontAwesomeIcon
                     icon={faEnvelope}
@@ -217,26 +231,40 @@ const Login = ({ setIsSignUp }) => {
                 </div>
               </div>
             </div>
-            <div className="w-4/6 rounded-xl px-10 hidden sm:flex justify-center bg-[url('../assets/girl.png')] bg-center bg-cover">
-              <div className="mt-2">
-                <h1 className="text-black font-semibold sm:text-2xl">
-                  Create Account
-                </h1>
-                <p className="text-white mt-3 sm750:px-6">
-                  Enter the Details & Start journey with us{" "} 
-                  <span
+            <div className="w-4/6 rounded-xl px-9 hidden sm:flex justify-center bg-[url('../assets/girl.png')] bg-center bg-cover">
+              <div className="mt-3">
+                <div className="flex flex-col items-center">
+                  <h1 className="text-black font-semibold sm:text-2xl">
+                    Create Account
+                  </h1>
+                  <p className="text-white mt-3 sm750:px-3 text-center">
+                    Enter the Details & Start your journey with us
+                  </p>
+                  <button
                     onClick={() => setIsSignUp(true)}
-                    className="cursor-pointer rounded-lg duration-300 ease-in-out group"
+                    className="group justify-center flex transform blink mt-3 outline-double outline-3 outline-offset-1 hover:outline-none font-semibold py-1 p-1 w-3/6 sm715:w-2/6 rounded-md shadow-white hover:shadow-lg duration-300 ease-in-out"
                   >
-                    <span className="inline-flex items-center">
-                      <span className="hover-effect inline-flex items-center">
-                        <span className=" blink-animation hover:text-[#0000ff]">
-                          Sign Up!
-                        </span>
-                      </span>
+                    <svg
+                      className="blinks "
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                      fill="none"
+                    >
+                      <path
+                        d="M13.485 10.7553L16.4892 10.7553M16.4892 10.7553H19.9954C20.8264 10.7553 21.5 10.083 21.5 9.25355C21.5 8.42415 20.8264 7.75178 19.9954 7.75178L14.531 7.75178M16.4892 10.7553L16.4624 11.8097C16.4443 12.5207 16.056 13.1373 15.4844 13.4776M14.531 7.75178L9.96807 7.75178M14.531 7.75178L11.7712 5.15834C9.90362 3.58588 8.54219 4.4122 7.78577 4.99245L5.34841 6.60732C3.28085 7.83214 2.5 9.2495 2.5 10.4418V15.3225C2.5 17.5886 4.88227 19.7016 7.06579 19.7016L12.2657 19.7497C13.2759 19.759 14.135 19.0163 14.27 18.017L14.4593 16.4766M13.4552 13.7589H14.4593C14.8335 13.7589 15.1842 13.6563 15.4844 13.4776M15.4844 13.4776L15.4297 14.8132C15.4021 15.8977 14.5134 16.7624 13.4266 16.7624H12.4226"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    <span className="pl-1 font-bold    group-hover:text-white">
+                      Sign Up
                     </span>
-                  </span>
-                </p>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
