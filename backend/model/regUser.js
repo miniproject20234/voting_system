@@ -17,17 +17,8 @@ const reguserShema = new schema({
 
     password: { type: String, required: [true, 'Please enter a password'], minlength: [6, 'Minimum password length is 6 characters'] },
 
-    confirmPassword: {
-        type: String,
-        required: [true, 'Please confirm your password'],
-        validate: {
-            validator: function (value) {
-               
-                return value === this.password;
-            },
-            message: 'Passwords do not match'
-        }
-    }
+   
+     photo: { type: String }
 
 }, {
     timestamps: true
@@ -35,10 +26,14 @@ const reguserShema = new schema({
 
 // fire a function before doc saved to db  // pre refers to before
 reguserShema.pre('save', async function (next) {
-    const salt = await bcrypt.genSalt();
-    this.password = await bcrypt.hash(this.password, salt);
+    if (this.isModified('password')) {  // Only hash the password if it's new or modified
+        const salt = await bcrypt.genSalt();
+        this.password = await bcrypt.hash(this.password, salt);
+    }
     next();
 });
+
+
 //static method to login user
 
 reguserShema.statics.login = async function (email, password) {
@@ -59,3 +54,18 @@ reguserShema.statics.login = async function (email, password) {
 
 const regUsers = mongoose.model('Registered_users', reguserShema);
 module.exports = regUsers;
+
+
+
+// const Schema = mongoose.Schema;
+
+// const userSchema = new Schema({
+//     email: { type: String, required: true, unique: true },
+//     name: { type: String},
+//     photo: { type: String },
+//     password: { type: String },
+//     // confirmPassword should not be part of the schema for existing users
+//     // confirmPassword: { type: String } // Remove or comment this out if not needed for updates
+// });
+
+// module.exports = mongoose.model('Registered_users', userSchema);
