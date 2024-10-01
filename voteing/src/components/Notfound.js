@@ -7,24 +7,19 @@ import '../css/notfound.css';
 const NotFound = () => {
   return (
     <>
-      <div className="relative bg-white h-screen flex flex-col justify-center items-center">
+      <div className=" border-4 p-5 ">
 
-        {/* Error Image and Text */}
-        <div className="relative text-center py-8 shadow-blue-600/50 bg-white w-full flex flex-col justify-center items-center">
+      
           
-          {/* Image Container */}
-          <div className="relative w-[500px] h-[500px]"> {/* Set a fixed width/height to the image container */}
-            {/* First image (bottom) */}
-            <img className="absolute inset-0 mx-auto w-full h-full object-contain" src={NotFound_img} alt="404 Not found" />
-            
-            {/* Second image (top, overlapping) */}
-            <img className="absolute inset-0 mx-auto w-full h-full object-contain" src={NotFoud_img} alt="404 Not found overlay" />
+    
+          <div className=" ">   
+            <img className="w-1/2" src={NotFoud_img} alt="404 Not found overlay" />
           </div>
           
           {/* Text */}
-          <div className='mt-4'>
-            <h2 className="text-lg font-bold">Something went wrong.</h2>
-            <p className="text-sm text-slate-700">Sorry, we can't find the page you're looking for.</p>
+          <div className='mt-4 flex flex-col '>
+            <h2 className="text-lg flex justify-center   font-bold">Something went wrong.</h2>
+            <p className="text-sm flex justify-center  text-slate-700">Sorry, we can't find the page you're looking for.</p>
           </div>
 
           {/* Go Back Button */}
@@ -35,7 +30,7 @@ const NotFound = () => {
               </button>
             </NavLink>
           </div>
-        </div>
+        
       </div>
     </>
   );
