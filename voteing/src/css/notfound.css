@@ -1,45 +1,7 @@
-
-@media screen and (max-width: 500px){
-
-    .imgheight{
-     
-      padding-top: 20px;
-      padding-bottom: 20px;
-    
-    }
-   
-    }
-   
-    @media screen and (max-width: 420px){
-  
-      .imgheight{
-       
-        padding-top: 40px;
-        padding-bottom: 40px;
-      }
-     
-      }
-  
-      @media screen and (max-width: 420px){
-  
-        .imgheight2{
-         /* border: solid black; */
-          height: 65%;
-      
-        }
-       
-        }
-    
-  
-  
-  
-  
-  
-  
-  /* Add this to your Auth.css */
-  .img-small {
-    width: 40%; /* Adjust the percentage or use px for fixed size */
-    height: auto; /* Keep the aspect ratio */
-    align-items: center;
+@media only screen and (min-width:420) and (max-width:420px){
+  .txt_hight{
+padding-bottom: 50px;
+background-color: lightgreen;
+border-color: black;
   }
-  
+}
