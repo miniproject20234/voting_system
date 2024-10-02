@@ -1,6 +1,6 @@
 import React from 'react';
 import NotFound_img from "../assets/pagenot 1.png"; // 404 image
-import NotFoud_img from "../assets/pagenot.png";
+import NotFoud_img from "../assets/pagefound.png";
 import { NavLink } from 'react-router-dom';
 import '../css/notfound.css';
 
@@ -8,14 +8,10 @@ const NotFound = () => {
   return (
     <>
       <div className=" border-4 p-5 ">
-
-      
-          
-    
-          <div className=" ">   
-            <img className="w-1/2" src={NotFoud_img} alt="404 Not found overlay" />
+          <div className=" flex justify-center">   
+            <img className=" " src={NotFoud_img} alt="404 Not found overlay" />
           </div>
-          
+
           {/* Text */}
           <div className='mt-4 flex flex-col '>
             <h2 className="text-lg flex justify-center   font-bold">Something went wrong.</h2>
