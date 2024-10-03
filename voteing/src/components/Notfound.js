@@ -8,14 +8,16 @@ const NotFound = () => {
   return (
     <>
       <div className=" border-4 p-5 h-screen ">
-          <div className=" flex justify-center">   
+          <div className=" flex justify-center img_height">   
             <img className=" " src={NotFoud_img} alt="404 Not found overlay" />
           </div>
 
           {/* Text */}
+          <div className=''>
           <div className="mt-4 flex flex-col  ">
             <h2 className="text-lg flex justify-center    font-bold ">Something went wrong.</h2>
             <p className="text-sm flex justify-center  text-slate-700">Sorry, we can't find the page you're looking for.</p>
+          </div>
           </div>
 
           {/* Go Back Button */}
