@@ -45,39 +45,6 @@ input[type="password"]::-webkit-text-security {
 input[type="password"]::-ms-reveal {
   display: none;
 }
-/* 
-
-@keyframes blink {
-  0%, 100% {
-    background-color: white;
-    color: #1d4ed8;
-  }
-  50% {
-    background-color: #1d4ed8; 
-    color: white;
-  }
-}
-
-.blink {
-  animation: blink 1.5s infinite;
-}
 
 
 
-.blink:hover {
-  animation: none;
-  background-color: #1d4ed8;
-  color: white;
-}
-
-
-@keyframes blinks {
-  0% {
-   
-    color: #1d4ed8;
-  }
-  100% {
-
-    color: white;
-  }
-} */

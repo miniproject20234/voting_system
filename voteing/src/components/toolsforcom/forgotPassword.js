@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import axios from 'axios';
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function ForgotPassword() {
@@ -60,8 +60,8 @@ function ForgotPassword() {
 
   return (
     <Dialog.Root open>
-      <Dialog.Overlay className="fixed  inset-0 bg-black  bg-opacity-70" />
-      <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-md w-full border-none outline-none p-3">
+      <Dialog.Overlay className="fixed z-30 inset-0 bg-black  h-screen bg-opacity-70" />
+      <Dialog.Content className="fixed z-40 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-md w-full border-none outline-none p-3">
         <div className='bg-white p-5 shadow-lg  rounded-md'>
           <Dialog.Title className="text-2xl font-bold mb-4">Reset Your Password</Dialog.Title>
           <Dialog.Description className="text-sm text-gray-500 mb-6">
@@ -101,7 +101,7 @@ function ForgotPassword() {
           </div>
         </div>
       </Dialog.Content>
-      <ToastContainer autoClose={3000} />
+     
     </Dialog.Root>
   );
 }

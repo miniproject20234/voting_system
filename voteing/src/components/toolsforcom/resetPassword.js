@@ -4,7 +4,7 @@ import axios from "axios";
 import * as Dialog from "@radix-ui/react-dialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faUnlock } from "@fortawesome/free-solid-svg-icons";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function ResetPassword() {
@@ -192,7 +192,7 @@ function ResetPassword() {
           </form>
         </div> 
       </Dialog.Content>
-      <ToastContainer autoClose={3000} />
+     
     </Dialog.Root>
   );
 }

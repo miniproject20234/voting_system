@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Unknow from "../assets/Unknown.png";
 const colors = [
@@ -144,10 +144,10 @@ const Navvbars = ({ email }) => {
                     <NavLink
                       to="/"
                       className={({ isActive }) =>
-                        `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
+                        ` inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
                           isActive
                             ? "border-blue-600 text-gray-900"
-                            : "border-transparent text-gray-500 hover:border-blue-600 hover:text-blue-600"
+                            : "border-transparent text-gray-500 nav-link  hover:text-blue-600"
                         }`
                       }
                     >
@@ -157,10 +157,10 @@ const Navvbars = ({ email }) => {
                     <NavLink
                       to="/dashboard"
                       className={({ isActive }) =>
-                        `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
+                        ` inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
                           isActive
                             ? "border-blue-600 text-gray-900"
-                            : "border-transparent text-gray-500 hover:border-blue-600 hover:text-blue-600"
+                            : "border-transparent text-gray-500 nav-link hover:text-blue-600"
                         }`
                       }
                     >
@@ -169,10 +169,10 @@ const Navvbars = ({ email }) => {
                     <NavLink
                       to="/about"
                       className={({ isActive }) =>
-                        `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
+                        `  inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
                           isActive
-                            ? "border-blue-600 text-gray-900"
-                            : "border-transparent text-gray-500 hover:border-blue-600 hover:text-blue-600"
+                            ? "border-blue-600  text-gray-900"
+                            : "border-transparent text-gray-500 nav-link hover:text-blue-600"
                         }`
                       }
                     >
@@ -475,7 +475,7 @@ const Navvbars = ({ email }) => {
               </div>
             </div>
           </Disclosure.Panel>
-          <ToastContainer />
+    
         </div>
       )}
     </Disclosure>

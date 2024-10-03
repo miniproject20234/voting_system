@@ -3,7 +3,8 @@ import "./css/Auth.css";
 import "./css/SignUpForm.css";
 import "./css/SignInForm.css";
 import "./css/profile.css";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import React from "react";
 import { Routes, Route } from "react-router-dom";
@@ -17,6 +18,7 @@ import ResetPassword from "./pages/Resetpassword";
 import ProtectedRoute from "./components/toolsforcom/ProtectedRoute";
 function App() {
   return (
+    <>
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/auth" element={<Auth />} />
@@ -26,6 +28,8 @@ function App() {
       <Route path="*" element={<NotFound />} />
       <Route path="/reset_password/:id/:token" element={<ResetPassword />}></Route>
     </Routes>
+    <ToastContainer />
+    </>
   );
 }
 
