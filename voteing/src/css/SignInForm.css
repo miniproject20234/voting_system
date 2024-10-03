@@ -45,7 +45,7 @@ input[type="password"]::-webkit-text-security {
 input[type="password"]::-ms-reveal {
   display: none;
 }
-
+/* 
 
 @keyframes blink {
   0%, 100% {
@@ -63,14 +63,14 @@ input[type="password"]::-ms-reveal {
 }
 
 
-/* Disable blinking on hover and keep text color white */
+
 .blink:hover {
   animation: none;
   background-color: #1d4ed8;
   color: white;
 }
 
-/* for svg */
+
 @keyframes blinks {
   0% {
    
@@ -80,4 +80,4 @@ input[type="password"]::-ms-reveal {
 
     color: white;
   }
-}
+} */

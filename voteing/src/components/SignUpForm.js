@@ -125,12 +125,16 @@ const Register = ({ setIsSignUp }) => {
         }, 2000);
       } catch (error) {
         // Handle validation or server errors
-        if (error.response && error.response.data.errors) {
-          setErrors(error.response.data.errors);
+        if (error.response) {
+          console.error("Server responded with an error:", error.response.data); // Full error response
+          setErrors(error.response.data.errors); // Server validation errors
+        } else if (error.request) {
+          console.error("Request was made but no response received:", error.request);
         } else {
-          console.error("Something went wrong", error);
+          console.error("Error setting up the request:", error.message);
         }
       }
+      
     } else {
       toast.error(" Please enter the valid details before submitting👎");
     }
@@ -152,10 +156,10 @@ const Register = ({ setIsSignUp }) => {
                 </p>
                 <button
                   onClick={() => setIsSignUp(false)}
-                  className="group sm2:mt-2  sm:p-1 flex justify-center transform blink  outline-double outline-3 outline-offset-1 hover:outline-none font-semibold py-1 m-auto  p-2 sm:w-3/6 sm715:w-2/6 rounded-md shadow-white hover:shadow-lg duration-300 ease-in-out"
+                  className="group sm2:mt-2  sm:p-1 flex justify-center transform blink  outline-double outline-1 outline-offset-1 bg-white hover:bg-blue-300  hover:outline-none font-semibold py-1 m-auto  p-2 sm:w-3/6 sm715:w-2/6 rounded-md shadow-white hover:shadow-lg duration-300 ease-in-out"
                 >
                   <svg
-                    className="blinks "
+                    className="blinks  text-sky-600 group-hover:text-white"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     width="24"
@@ -170,7 +174,7 @@ const Register = ({ setIsSignUp }) => {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <span className="pl-1 font-bold    group-hover:text-white">
+                  <span className="pl-1 font-bold  text-sky-600   group-hover:text-white">
                   Sign in
                   </span>
                 </button>

@@ -20,7 +20,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/auth" element={<Auth />} />
-      <Route path="/votepage" element={<ProtectedRoute element={Votepage} />} />
+      <Route path="/dashboard" element={<ProtectedRoute element={Votepage} />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/about" element={<About />} />
       <Route path="*" element={<NotFound />} />

@@ -97,7 +97,7 @@ const Login = ({ setIsSignUp }) => {
           localStorage.setItem("email", email); // Store email
 
           setTimeout(() => {
-            navigate("/votepage");
+            navigate("/");
             window.location.reload();
           }, 2000);
         }
@@ -128,10 +128,10 @@ const Login = ({ setIsSignUp }) => {
                 </p>
                 <button
                   onClick={() => setIsSignUp(true)}
-                  className="group sm2:mt-2  sm:p-1 flex justify-center transform blink mt-1 outline-double outline-3 outline-offset-1 hover:outline-none font-semibold py-1 m-auto  p-2 sm:w-3/6 sm715:w-2/6 rounded-md shadow-white hover:shadow-lg duration-300 ease-in-out"
+                  className="group sm2:mt-2  sm:p-1 flex justify-center transform blink mt-1 outline-double outline-1 outline-offset-1 bg-white hover:bg-blue-300 hover:outline-none font-semibold py-1 m-auto  p-2 sm:w-3/6 sm715:w-2/6 rounded-md shadow-white hover:shadow-lg duration-300 ease-in-out"
                 >
                   <svg
-                    className="blinks "
+                    className="blinks text-sky-600 group-hover:text-white "
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     width="24"
@@ -146,7 +146,7 @@ const Login = ({ setIsSignUp }) => {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <span className="pl-1 font-bold    group-hover:text-white">
+                  <span className="pl-1 font-bold text-sky-600    group-hover:text-white">
                     Sign Up
                   </span>
                 </button>
@@ -242,10 +242,10 @@ const Login = ({ setIsSignUp }) => {
                   </p>
                   <button
                     onClick={() => setIsSignUp(true)}
-                    className="group justify-center flex transform blink mt-3 outline-double outline-3 outline-offset-1 hover:outline-none font-semibold py-1 p-1 w-3/6 sm715:w-2/6 rounded-md shadow-white hover:shadow-lg duration-300 ease-in-out"
+                    className="group justify-center flex transform blink mt-3 outline-double outline-1 outline-offset-1 bg-white hover:bg-blue-300 hover:outline-none font-semibold py-1 p-1 w-3/6 sm715:w-2/6 rounded-md shadow-white hover:shadow-lg duration-300 ease-in-out"
                   >
                     <svg
-                      className="blinks "
+                      className="blinks   text-sky-600 group-hover:text-white"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       width="24"
@@ -260,7 +260,7 @@ const Login = ({ setIsSignUp }) => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <span className="pl-1 font-bold    group-hover:text-white">
+                    <span className="pl-1 font-bold text-sky-600   group-hover:text-white">
                       Sign Up
                     </span>
                   </button>
