@@ -1,14 +1,43 @@
-@media screen and (min-width:350px) {
+@media screen and (min-width:350px) and (max-width:370px) {
 .img_height{
   padding-top: 20px;
-  max-width: 500px;
-  height:max-content;
+  max-width: 550px;
+  height:500px;
   margin: auto;
-  border: 3px solid #73AD21;
+
 
   
   }
-  h2{
-    padding-top: 100px;
+  .txt_height{
+    padding-top: 90px;
+    max-width: 520px;
+  height:180px;
+  margin: auto;
+    
   }
+  h2{
+    
+    padding-top: 1px;
+  }
+  p{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 500;
+  }
+}
+
+@media screen and (min-width:380px) and (max-width:455px) {
+  .img_height{
+    padding-top: 3px;
+    max-width: 540px;
+    height:410px;
+    margin: auto;
+  
+    }
+    .txt_height{
+      padding-top: 250px;
+      max-width: 520px;
+    height:180px;
+    margin: auto;
+      
+    }
 }
