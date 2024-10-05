@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback  } from "react";
 import { FaCamera } from "react-icons/fa";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
@@ -36,6 +36,7 @@ const Profile = () => {
   const emailId = localStorage.getItem("email");
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (!storedToken) {
@@ -47,25 +48,28 @@ const Profile = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/user", {
-          params: { email: emailId },
-        });
-        if (response.data.user) {
-          setUserDetails(response.data.user);
-        } else {
-          toast.error(response.data.message || "Error fetching user details");
-        }
-      } catch (err) {
-        toast.error(
-          err.response?.data?.message || "Network problem or Server issue"
-        );
+
+  const fetchUserDetails = useCallback(async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/user", {
+        params: { email: emailId },
+      });
+      if (response.data.user) {
+        setUserDetails(response.data.user);
+      } else {
+        toast.error(response.data.message || "Error fetching user details");
       }
-    };
-    fetchUserDetails();
+    } catch (err) {
+      toast.error(
+        err.response?.data?.message || "Network problem or Server issue"
+      );
+    }
   }, [emailId]);
+   
+    useEffect(() => {
+      fetchUserDetails(); 
+    }, [fetchUserDetails]);
+
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -83,7 +87,7 @@ const Profile = () => {
       try {
         await axios.post(
           `http://localhost:5000/upload-image?email=${emailId}`,
-          formData,  
+          formData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -91,9 +95,7 @@ const Profile = () => {
           }
         );
         toast.success("Photo uploaded successfully!");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        fetchUserDetails();
       } catch (err) {
         const errMsg = err.response ? err.response.data.error : err.message;
         toast.error("Error uploading photo: " + errMsg);
@@ -106,17 +108,13 @@ const Profile = () => {
     }
   };
 
-
-
   const handleRemoveImage = async () => {
     setLoading(true);
     try {
       await axios.delete(`http://localhost:5000/remove-image?email=${emailId}`);
       toast.success("Photo removed successfully!");
       setImage(null);
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
+      fetchUserDetails();
     } catch (err) {
       const errMsg = err.response ? err.response.data.error : err.message;
       toast.error("Error removing photo: " + errMsg);
@@ -126,54 +124,51 @@ const Profile = () => {
     }
   };
 
-
   const validate = () => {
     let validationErrors = {};
-  
+
     if (!username) {
       validationErrors.username = "Please enter your Name";
     } else if (!validateName(username)) {
-      validationErrors.username = "Please enter a valid Name (characters only A to Z)";
+      validationErrors.username =
+        "Please enter a valid Name (characters only A to Z)";
     }
-  
+
     if (!email) {
       validationErrors.email = "Please enter your Email";
     } else if (!isValidEmail(email)) {
       validationErrors.email = "Please enter a valid email address";
     }
-  
+
     if (!phonenumber) {
       validationErrors.phonenumber = "Please enter your Phone Number";
     } else if (!isValidPhoneNumber(phonenumber)) {
       validationErrors.phonenumber = "Please enter a valid phone number";
     }
-  
+
     if (!password) {
       validationErrors.password = "Please enter your Password";
     } else if (password.length < 6) {
       validationErrors.password = "Password must be at least 6 characters long";
     }
-  
+
     setErrors(validationErrors);
     return Object.keys(validationErrors).length === 0;
-
-  
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-  
+
     const userId = userDetails._id;
-  
+
     const formData = {
       username,
       email,
       phonenumber,
       password,
     };
-  
+
     // Ensure validation passes before submitting
     if (validate()) {
       try {
@@ -187,18 +182,17 @@ const Profile = () => {
         toast.success("Profile updated successfully!");
         localStorage.setItem("email", email);
         setUserDetails(response.data.updatedUser);
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        fetchUserDetails();
+        setShowPasswordModal(false);
       } catch (err) {
         const errorMessages = err.response?.data?.errors;
         if (errorMessages) {
           Object.values(errorMessages).forEach((error) => {
             toast.error(error);
           });
-        }else if (err.response?.data?.message) {
+        } else if (err.response?.data?.message) {
           toast.error(err.response.data.message);
-        }  else {
+        } else {
           toast.error("Failed to update profile");
         }
       } finally {
@@ -224,10 +218,7 @@ const Profile = () => {
 
   const handleEditClick = () => {
     setIsEditable(!isEditable);
-   
   };
-
-  
 
   return (
     <>
@@ -254,23 +245,27 @@ const Profile = () => {
             ) : (
               <img
                 className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
-                src={image ? URL.createObjectURL(image) : '/assets/Unknown.png'}
+                src={image ? URL.createObjectURL(image) : "/assets/Unknown.png"}
                 alt="profile"
               />
             )}
-           
-           {userDetails.photo ?( <label
-              onClick={handleRemoveImage}
-              htmlFor="remove-photo"
-              className="absolute bottom-1 right-0 p-1 bg-white  rounded-full shadow-lg cursor-pointer"
-            >
-              <IoMdRemoveCircleOutline className="text-blue-600" />
-            </label>):( <label
-              htmlFor="upload-photo"
-              className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-lg cursor-pointer"
-            >
-              <FaCamera className="text-blue-500" />
-            </label>)}
+
+            {userDetails.photo ? (
+              <label
+                onClick={handleRemoveImage}
+                htmlFor="remove-photo"
+                className="absolute bottom-1 right-0 p-1 bg-white  rounded-full shadow-lg cursor-pointer"
+              >
+                <IoMdRemoveCircleOutline className="text-blue-600" />
+              </label>
+            ) : (
+              <label
+                htmlFor="upload-photo"
+                className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-lg cursor-pointer"
+              >
+                <FaCamera className="text-blue-500" />
+              </label>
+            )}
             <input
               type="file"
               id="upload-photo"
@@ -293,7 +288,7 @@ const Profile = () => {
               <div className="flex flex-col mb-4">
                 <label className="font-semibold mb-1">Username</label>
                 <div className="flex items-center">
-                 {!isEditable ? (
+                  {!isEditable ? (
                     <input
                       type="text"
                       value={userDetails.username}
@@ -329,7 +324,7 @@ const Profile = () => {
                         }
                       }}
                     />
-                  )}  
+                  )}
                   <button
                     className="text-blue-500 absolute right-1 hover:bg-blue-100 hover:bg-opacity-30 focus:bg-blue-100 focus:bg-opacity-30"
                     onClick={handleEditClick}
@@ -513,6 +508,7 @@ const Profile = () => {
                       type="submit"
                       className="bg-blue-500 text-white flex  py-2 px-4 rounded"
                       disabled={loading}
+                      
                     >
                       {loading && (
                         <svg
@@ -551,11 +547,10 @@ const Profile = () => {
             <button
               type="button"
               onClick={() => {
-                setShowPasswordModal(true); 
+                setShowPasswordModal(true);
                 if (!isEditable) {
                   setIsEditable(true);
                 }
-                      
               }}
               className="bg-blue-500 text-white px-5 flex py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={loading}

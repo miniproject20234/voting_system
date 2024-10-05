@@ -29,7 +29,7 @@ function App() {
       <Route path="*" element={<NotFound />} />
       <Route path="/reset_password/:id/:token" element={<ResetPassword />}></Route>
     </Routes>
-    <ToastContainer />
+    <ToastContainer autoClose={2000} />
     </>
   );
 }

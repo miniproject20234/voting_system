@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
@@ -31,8 +31,8 @@ const Navvbars = ({ email }) => {
 
   const emailId = localStorage.getItem("email");
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
+ 
+    const fetchUserDetails = useCallback(async () => {
       try {
         if (emailId) {
           const response = await axios.get("http://localhost:5000/user", {
@@ -40,7 +40,10 @@ const Navvbars = ({ email }) => {
           });
 
           if (response.data.user) {
+            setLoading(false);
             setUserDetails(response.data.user);
+            
+            fetchUserDetails();
           } else {
             toast.error(response.data.message || "Error fetching user details");
           }
@@ -52,10 +55,11 @@ const Navvbars = ({ email }) => {
       } finally {
         setLoading(false);
       }
-    };
+    },[emailId]);
 
-    fetchUserDetails();
-  }, [emailId]);
+  useEffect(() => {
+    fetchUserDetails(); 
+  }, [fetchUserDetails]);
 
   //profile
   const username = userDetails.username;

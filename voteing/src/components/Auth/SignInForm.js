@@ -56,7 +56,9 @@ const Login = ({ setIsSignUp }) => {
   const handleForgotPasswordClick = () => {
     setShowForgotPassword(true);
   };
-
+  const handleBackToLogin = () => {
+    setShowForgotPassword(false);
+  };
   const validate = () => {
     let formErrors = {};
 
@@ -92,10 +94,7 @@ const Login = ({ setIsSignUp }) => {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("email", email); // Store email
 
-          setTimeout(() => {
             navigate("/");
-            window.location.reload();
-          }, 2000);
         }
       } catch (error) {
         if (error.response && error.response.data.errors) {
@@ -222,7 +221,7 @@ const Login = ({ setIsSignUp }) => {
                       Forgot Passwords?
                     </p>
                   ) : (
-                    <ForgotPassword />
+                    <ForgotPassword   onBackToLogin={handleBackToLogin} /> 
                   )}
                 </div>
               </div>

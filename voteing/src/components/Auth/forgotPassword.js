@@ -4,11 +4,14 @@ import axios from 'axios';
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function ForgotPassword() {
+
+function ForgotPassword({onBackToLogin}) {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [emailError, setEmailError] = useState('');
   const [loading, setLoading] = useState(false);
+
+
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,9 +38,7 @@ function ForgotPassword() {
         setLoading(false);
         if (res.data.Status === "Success") {
           toast.success('Check your mail for the reset link');
-          setTimeout(() => {
-            window.location.reload();
-          }, 3000);
+          onBackToLogin();
         }  else {
           toast.error('Error sending reset link');
         }
@@ -59,8 +60,8 @@ function ForgotPassword() {
   };
 
   return (
-    <Dialog.Root open>
-      <Dialog.Overlay className="fixed z-30 inset-0 bg-black  h-screen bg-opacity-70" />
+    <Dialog.Root  open>
+      <Dialog.Overlay className="fixed z-30 inset-0 bg-black  sm:h-screen bg-opacity-70" />
       <Dialog.Content className="fixed z-40 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-md w-full border-none outline-none p-3">
         <div className='bg-white p-5 shadow-lg  rounded-md'>
           <Dialog.Title className="text-2xl font-bold mb-4">Reset Your Password</Dialog.Title>
@@ -83,7 +84,7 @@ function ForgotPassword() {
           </div>
           {message && <div className="mt-4 text-red-500">{message}</div>}
           <div className="flex justify-end space-x-3 mt-6">
-            <button className="bg-gray-500 text-white py-2 px-4 rounded" onClick={() => window.location.reload()}>Cancel</button>
+            <button className="bg-gray-500 text-white py-2 px-4 rounded" onClick={onBackToLogin}>Cancel</button>
             <button
               className={`bg-blue-500 text-white py-2 px-4 rounded flex items-center ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
               onClick={handleSubmit}

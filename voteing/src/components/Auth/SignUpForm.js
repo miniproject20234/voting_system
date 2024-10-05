@@ -115,13 +115,11 @@ const Register = ({ setIsSignUp }) => {
           password: password,
           confirmPassword: confirmPassword,
           phonenumber: phoneNumber,
-          headers: {
-            "Content-Type": "application/json",
-          },
+
         });
         toast.success(" Registered successfully! 👍");
         setTimeout(() => {
-          window.location.reload(); // This will refresh the page
+          window.location.reload(); 
         }, 2000);
       } catch (error) {
         // Handle validation or server errors
