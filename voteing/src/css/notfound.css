@@ -1,43 +1,84 @@
-@media screen and (min-width:350px) and (max-width:370px) {
-.img_height{
-  padding-top: 20px;
-  max-width: 550px;
-  height:500px;
-  margin: auto;
-
-
-  
-  }
-  .txt_height{
-    padding-top: 90px;
-    max-width: 520px;
-  height:180px;
-  margin: auto;
-    
-  }
-  h2{
-    
-    padding-top: 1px;
-  }
-  p{
-    font-family:Arial, Helvetica, sans-serif;
-    font-weight: 500;
-  }
-}
-
-@media screen and (min-width:380px) and (max-width:455px) {
+ @media screen and (min-width:350px) and (max-width:370px) {
   .img_height{
-    padding-top: 3px;
-    max-width: 540px;
-    height:410px;
-    margin: auto;
-  
+  width: 350px;
+height:400px;
+
     }
     .txt_height{
-      padding-top: 250px;
-      max-width: 520px;
-    height:180px;
-    margin: auto;
-      
+      padding-top: 180px;
+        }
+        p{
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: xx-large;
+      font-weight: normal;
+        }
+  }
+  @media screen and (min-width:370px) and (max-width:418px) {
+    .img_height{
+    width: 380px;
+  height:500px;
+  
+      }
+      .txt_height{
+        padding-top: 100px;
+          }
+          p{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:larger;
+        font-weight: bolder;
+          }
+
     }
-}
+    @media screen and (min-width:418px) and (max-width:445px) {
+      .img_height{
+      width: 400px;
+    height:500px;
+    
+        }
+        .txt_height{
+          padding-top: 100px;
+
+            }
+            p{
+          font-family: Arial, Helvetica, sans-serif;
+          font-size:800px;
+          font-weight: bolder;
+            }
+  
+      }
+      @media screen and (min-width:445px) and (max-width:520px) {
+        .img_height{
+        width: 450px;
+      height:600px;
+      
+          }
+          .txt_height{
+            padding-top:5px;
+              }
+              p{
+                font-weight: bolder;
+              }
+        }
+        @media screen and (min-width:520px) and (max-width:545px) {
+          .img_height{
+          width: 450px;
+        height:600px;
+        
+            }
+            P{
+              font-weight: bolder;
+              font-size: larger;
+            }
+          }
+          @media screen and (min-width:546px) and (max-width:600px) {
+            .txt_height{
+            padding-top: 80px;
+            width: 500px;
+
+          
+              }
+              .img_height{
+                height: 500px;
+              }
+            }
+  

@@ -1,5 +1,4 @@
 import React from 'react';
-import NotFound_img from "../assets/pagenot 1.png"; // 404 image
 import NotFoud_img from "../assets/pagefound.png";
 import { NavLink } from 'react-router-dom';
 import '../css/notfound.css';
@@ -9,7 +8,7 @@ const NotFound = () => {
     <>
       <div className="  p-5 h-screen ">
           <div className=" flex justify-center img_height">   
-            <img className=" " src={NotFoud_img} alt="404 Not found overlay" />
+            <img className=" w-1/2" src={NotFoud_img} alt="404 Not found overlay" />
           </div>
 
           {/* Text */}
