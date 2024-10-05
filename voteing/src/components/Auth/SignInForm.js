@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ForgotPassword from "./toolsforcom/forgotPassword";
+import ForgotPassword from "./forgotPassword";
 
 import {
   faEnvelope,
@@ -11,11 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  isValidEmail,
-  isValidPassword,
-  handleBlur,
-} from "./toolsforcom/validationUtils";
+import { isValidEmail, isValidPassword, handleBlur } from "./validationUtils";
 import axios from "axios";
 
 const PasswordInput = ({ value, onChange, error, onBlur }) => {
@@ -118,7 +114,7 @@ const Login = ({ setIsSignUp }) => {
       <div className="p-5  flex sm:h-[95vh]   items-center justify-center">
         <div className="bg-grey-500  p-5 shadow-xl h-5/6 rounded-lg flex items-center justify-center">
           <div className="bg-[#fffcfd2d]    sm:flex rounded-2xl sm:max-w-3xl">
-            <div className="w-6/6 sm2:h-[400px] h-[380px]   flex rounded-xl bg-[url('../assets/girl.png')] bg-center bg-cover  sm:hidden py-2 sm3:px-5">
+            <div className="w-6/6 sm2:h-[400px] h-[380px]   flex rounded-xl bg-[url('/public/assets/girl.png')] bg-center bg-cover  sm:hidden py-2 sm3:px-5">
               <div className=" ">
                 <h1 className="text-black font-semibold text-2xl sm2:mt-2 ">
                   Create Account
@@ -231,7 +227,7 @@ const Login = ({ setIsSignUp }) => {
                 </div>
               </div>
             </div>
-            <div className="w-4/6 rounded-xl px-9 hidden sm:flex justify-center bg-[url('../assets/girl.png')] bg-center bg-cover">
+            <div className="w-4/6 rounded-xl px-9 hidden sm:flex justify-center bg-[url('/public/assets/girl.png')] bg-center bg-cover">
               <div className="mt-3">
                 <div className="flex flex-col items-center">
                   <h1 className="text-black font-semibold sm:text-2xl">

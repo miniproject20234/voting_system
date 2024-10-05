@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/navbar";
-import ResetPassword from "../components/toolsforcom/resetPassword";
+import ResetPassword from "../components/Auth/resetPassword";
 import Footer from "../components/footer";
 const Resetpassword = () => {
   return (

@@ -3,6 +3,7 @@ import "./css/Auth.css";
 import "./css/SignUpForm.css";
 import "./css/SignInForm.css";
 import "./css/profile.css";
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,7 +16,7 @@ import NotFound from "./pages/NotFound";
 import About from "./pages/Aboutpage";
 import Profile from "./pages/Profilepage";
 import ResetPassword from "./pages/Resetpassword";
-import ProtectedRoute from "./components/toolsforcom/ProtectedRoute";
+import ProtectedRoute from "./components/protectedroutes/ProtectedRoute";
 function App() {
   return (
     <>

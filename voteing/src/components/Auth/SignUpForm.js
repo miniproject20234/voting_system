@@ -22,7 +22,7 @@ import {
   isValidPhoneNumber,
   isValidPassword,
   handleBlur,
-} from "./toolsforcom/validationUtils";
+} from "./validationUtils";
 
 const PasswordInput = ({ value, onChange, error, onBlur }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -129,12 +129,14 @@ const Register = ({ setIsSignUp }) => {
           console.error("Server responded with an error:", error.response.data); // Full error response
           setErrors(error.response.data.errors); // Server validation errors
         } else if (error.request) {
-          console.error("Request was made but no response received:", error.request);
+          console.error(
+            "Request was made but no response received:",
+            error.request
+          );
         } else {
           console.error("Error setting up the request:", error.message);
         }
       }
-      
     } else {
       toast.error(" Please enter the valid details before submitting👎");
     }
@@ -145,14 +147,13 @@ const Register = ({ setIsSignUp }) => {
       <div className="flex   sm:h-[100vh] items-center justify-center overflow-hidden ">
         <div className="bg-grey-500  p-5 rounded-xl shadow-xl flex items-center justify-center">
           <div className="bg-[#fffcfd2d] sm:flex  rounded-2xl max-w-md sm:max-w-3xl">
-            <div className="w-6/6 sm2:h-[400px] relative h-[360px] sm:h-auto mb-6  flex rounded-xl bg-[url('../assets/signup.jpg')] bg-center bg-cover  sm:flex  p-5">
+            <div className="w-6/6 sm2:h-[400px] relative h-[360px] sm:h-auto mb-6  flex rounded-xl bg-[url('/public/assets/signup.jpg')] bg-center bg-cover  sm:flex  p-5">
               <div className="justify-center sm:mt-5 ">
                 <h1 className="text-black font-semibold text-2xl  ">
                   Welcome Back!
                 </h1>
                 <p className="text-white mt-5  sm:px-6 px-6 sm3:px-12 sm3:mb-5 mb-2 sm2:px-10  text-left  ">
-                Stay connected with us! Enter your details and join us.
-                 
+                  Stay connected with us! Enter your details and join us.
                 </p>
                 <button
                   onClick={() => setIsSignUp(false)}
@@ -175,7 +176,7 @@ const Register = ({ setIsSignUp }) => {
                     />
                   </svg>
                   <span className="pl-1 font-bold  text-sky-600   group-hover:text-white">
-                  Sign in
+                    Sign in
                   </span>
                 </button>
               </div>

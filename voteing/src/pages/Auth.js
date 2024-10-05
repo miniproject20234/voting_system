@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../components/navbar';
-import Authcom from '../components/auth';
+import Authcom from '../components/Auth/auth';
 
 
 

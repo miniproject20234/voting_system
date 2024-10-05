@@ -1,14 +1,14 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import logo from "../assets/blueLogo.jpeg";
+
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Unknow from "../assets/Unknown.png";
+
 const colors = [
   "#9370db", // medium Indigo
   "#D81B60", // Dark Pink
@@ -134,7 +134,7 @@ const Navvbars = ({ email }) => {
                   </div>
                   <div className="flex-shrink-0 flex items-center">
                     <img
-                      src={logo}
+                      src='/assets/blueLogo.jpeg'
                       alt="Logo"
                       className="w-14 mt-1 h-14 rounded-full"
                     />
@@ -241,7 +241,7 @@ const Navvbars = ({ email }) => {
                       ) : (
                         <img
                           className="h-10 w-10 rounded-full"
-                          src={Unknow} // Assuming `Unknown` is the path to the default image
+                          src='/assets/Unknown.png'
                           alt="Default"
                         />
                       )}
@@ -392,7 +392,7 @@ const Navvbars = ({ email }) => {
                       ) : (
                         <img
                           className="h-10 w-10 rounded-full"
-                          src={Unknow} // Assuming `Unknown` is the path to the default image
+                          src='/assets/Unknown.png'
                           alt="Default"
                         />
                       )}

@@ -10,7 +10,7 @@ import {
   faLock,
   faUnlock,
 } from "@fortawesome/free-solid-svg-icons";
-import Unknow from "../assets/Unknown.png";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -19,7 +19,7 @@ import {
   validateName,
   isValidEmail,
   isValidPhoneNumber,
-} from "./toolsforcom/validationUtils";
+} from "./Auth/validationUtils";
 
 const Profile = () => {
   const [userDetails, setUserDetails] = useState({});
@@ -254,7 +254,7 @@ const Profile = () => {
             ) : (
               <img
                 className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
-                src={image ? URL.createObjectURL(image) : Unknow}
+                src={image ? URL.createObjectURL(image) : '/assets/Unknown.png'}
                 alt="profile"
               />
             )}
