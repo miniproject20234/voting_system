@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback  } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { FaCamera } from "react-icons/fa";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
@@ -36,7 +36,6 @@ const Profile = () => {
   const emailId = localStorage.getItem("email");
   const navigate = useNavigate();
 
-  
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (!storedToken) {
@@ -47,7 +46,6 @@ const Profile = () => {
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
-
 
   const fetchUserDetails = useCallback(async () => {
     try {
@@ -65,11 +63,10 @@ const Profile = () => {
       );
     }
   }, [emailId]);
-   
-    useEffect(() => {
-      fetchUserDetails(); 
-    }, [fetchUserDetails]);
 
+  useEffect(() => {
+    fetchUserDetails();
+  }, [fetchUserDetails]);
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -222,65 +219,79 @@ const Profile = () => {
 
   return (
     <>
-      <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg pb-5 overflow-hidden mt-5">
-        <div className="bg-gradient-to-b from-[#1a45d7] to-[#79fcfa] text-center p-16 rounded-lg">
-          <h1 className="text-4xl font-extrabold text-blue-100 mb-2 tracking-wider drop-shadow-white">
-            Profile
-          </h1>
+      <div className="min-w-xl mx-auto sm:flex sm:justify-cente  bg-white  shadow-lg rounded-lg p-3 pb-5  overflow-hidden  sm:h-screen">
+        <div className="   sm:rounded-r-lg  sm890:mt-0 sm1000:w-3/6 sm890:w-4/6 p-6">
+          <div className="bg-gradient-to-b sm:bg-none   from-[#1a45d7] to-[#79fcfa] text-center  py-12 pb-20 sm:py-1 sm:pb- rounded-lg">
+            <h1 className="text-4xl font-extrabold text-blue-100 mb-2 tracking-wider drop-shadow-white sm:hidden">
+              Profile
+            </h1>
 
-          <button className="mt-2 px-4 py-2 bg-sky-900 cursor-text bg-opacity-30 rounded-full">
-            <span className="text-white">Update Status</span>
-          </button>
-        </div>
-
-        {/* Profile Picture */}
-        <div className="text-center -mt-12">
-          <div className="relative inline-block">
-            {userDetails.photo ? (
-              <img
-                className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
-                src={`http://localhost:5000/images/${userDetails.photo}`}
-                alt="profile"
-              />
-            ) : (
-              <img
-                className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
-                src={image ? URL.createObjectURL(image) : "/assets/Unknown.png"}
-                alt="profile"
-              />
-            )}
-
-            {userDetails.photo ? (
-              <label
-                onClick={handleRemoveImage}
-                htmlFor="remove-photo"
-                className="absolute bottom-1 right-0 p-1 bg-white  rounded-full shadow-lg cursor-pointer"
-              >
-                <IoMdRemoveCircleOutline className="text-blue-600" />
-              </label>
-            ) : (
-              <label
-                htmlFor="upload-photo"
-                className="absolute bottom-0 right-0 bg-white p-1 rounded-full shadow-lg cursor-pointer"
-              >
-                <FaCamera className="text-blue-500" />
-              </label>
-            )}
-            <input
-              type="file"
-              id="upload-photo"
-              className="hidden"
-              onChange={handleImageChange}
-            />
+            <button className="mt-2 sm:hidden px-4 py-2 bg-sky-900 cursor-text bg-opacity-30 rounded-full">
+              <span className="text-white">Update Status</span>
+            </button>
           </div>
-          <h1 className="text-xl font-semibold mt-4">{userDetails.username}</h1>
-          {/* <p className="text-gray-500 text-sm ">{userDetails._id}</p> */}
+
+          {/* Profile Picture */}
+          <h2 className="hidden sm:block text-center text-blue-500   drop-shadow-[0_4px_4px_rgba(0,0,0,0.4)]  font-extrabold text-3xl p-2"> profile </h2>
+          <div className="text-center  -mt-16 sm:mt-5">
+         
+            <div className="relative sm:static inline-block  ">
+              {userDetails.photo ? (
+                <img
+                  className="w-36 h-36 sm:w-96 sm:h-60 sm730:h-64 sm780:h-72 sm890:h-96 sm890:rounded-2xl  sm:rounded-4xl  rounded-full object-cover border-4 border-white shadow-md"
+                  src={`http://localhost:5000/images/${userDetails.photo}`}
+                  alt="profile"
+                />
+              ) : (
+                <img
+                  className="w-36 h-36 sm:w-96 sm:h-60 sm730:h-64 sm780:h-64 sm890:h-full sm1000:rounded-2xl   sm:rounded-4xl  rounded-full object-cover border-4 border-white shadow-md"
+                  src={
+                    image ? URL.createObjectURL(image) : "/assets/Unknown.png"
+                  }
+                  alt="profile"
+                />
+              )}
+
+              {userDetails.photo ? (
+                <label
+                  onClick={handleRemoveImage}
+                  htmlFor="remove-photo"
+                  className="absolute sm:static   bottom-4 sm:bottom-0 sm:right-80  right-0 p-1 bg-white  rounded-full sm:bg-transparent  cursor-pointer flex justify-center"
+                >
+                  <IoMdRemoveCircleOutline className="text-blue-600  sm:hidden" /> 
+                  <span className="hidden sm:block  bg-blue-500 p-2 px-6 rounded-lg  mt-5 text-slate-50">  Remove Photo</span>
+                  
+                </label>
+              ) : (
+                <label
+                  htmlFor="upload-photo"
+                  className="absolute sm:static bottom-4 sm:bottom-0 sm:right-80 right-0 bg-white p-1 rounded-full sm:bg-transparent  cursor-pointer flex justify-center"
+                >
+                  <FaCamera className="text-blue-500 sm:hidden" />
+                  <span className="hidden sm:block bg-blue-500 p-2 px-6 rounded-lg  mt-5 text-slate-50">  Upload Photo</span>
+                </label>
+              )}
+              <input
+                type="file"
+                id="upload-photo"
+                className="hidden"
+                onChange={handleImageChange}
+              />
+            </div>
+            <h1 className="text-xl font-semibold mt-4 sm:hidden">
+              {userDetails.username}
+            </h1>
+            {/* <p className="text-gray-500 text-sm ">{userDetails._id}</p> */}
+          </div>
         </div>
+
         {/* Profile Form */}
-        <div className="mt-6 space-y-4 px-6">
+        <div className="mt-6 sm:mt-10 sm:w-5/6 space-y-4 px-6  border- border-red-600">
+        <h2 className="hidden sm:block text-center text-blue-500   drop-shadow-[0_4px_4px_rgba(0,0,0,0.4)]  font-extrabold text-3xl p-2"> Update Status </h2>
+
           {/* Username */}
           <div>
-            <div className="relative ">
+            <div className="relative sm:mt-10">
               <FontAwesomeIcon
                 icon={faUser}
                 className="absolute left-3 bottom-1 transform -translate-y-1/2 text-blue-500"
@@ -508,7 +519,6 @@ const Profile = () => {
                       type="submit"
                       className="bg-blue-500 text-white flex  py-2 px-4 rounded"
                       disabled={loading}
-                      
                     >
                       {loading && (
                         <svg
@@ -552,7 +562,7 @@ const Profile = () => {
                   setIsEditable(true);
                 }
               }}
-              className="bg-blue-500 text-white px-5 flex py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-blue-500 text-white px-5 mt-5 flex py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={loading}
             >
               {!showPasswordModal && loading ? (
