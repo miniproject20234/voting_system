@@ -1,14 +1,14 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import logo from "../assets/blueLogo.jpeg";
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useState,useCallback } from "react";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Unknow from "../assets/Unknown.png";
+
 const colors = [
   "#9370db", // medium Indigo
   "#D81B60", // Dark Pink
@@ -31,8 +31,8 @@ const Navvbars = ({ email }) => {
 
   const emailId = localStorage.getItem("email");
 
-  useEffect(() => {
-    const fetchUserDetails = async () => {
+ 
+    const fetchUserDetails = useCallback(async () => {
       try {
         if (emailId) {
           const response = await axios.get("https://vote-backend-e92j.onrender.com/user", {
@@ -40,7 +40,10 @@ const Navvbars = ({ email }) => {
           });
 
           if (response.data.user) {
+            setLoading(false);
             setUserDetails(response.data.user);
+            
+            fetchUserDetails();
           } else {
             toast.error(response.data.message || "Error fetching user details");
           }
@@ -52,10 +55,11 @@ const Navvbars = ({ email }) => {
       } finally {
         setLoading(false);
       }
-    };
+    },[emailId]);
 
-    fetchUserDetails();
-  }, [emailId]);
+  useEffect(() => {
+    fetchUserDetails(); 
+  }, [fetchUserDetails]);
 
   //profile
   const username = userDetails.username;
@@ -134,7 +138,7 @@ const Navvbars = ({ email }) => {
                   </div>
                   <div className="flex-shrink-0 flex items-center">
                     <img
-                      src={logo}
+                      src='/assets/blueLogo.jpeg'
                       alt="Logo"
                       className="w-14 mt-1 h-14 rounded-full"
                     />
@@ -144,38 +148,39 @@ const Navvbars = ({ email }) => {
                     <NavLink
                       to="/"
                       className={({ isActive }) =>
-                        `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
+                        ` inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
                           isActive
                             ? "border-blue-600 text-gray-900"
-                            : "border-transparent text-gray-500 hover:border-blue-600 hover:text-blue-600"
+                            : "border-transparent text-gray-500 nav-link  hover:text-blue-600"
                         }`
                       }
                     >
                       Home
                     </NavLink>
+                  
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                        ` inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
+                          isActive
+                            ? "border-blue-600 text-gray-900"
+                            : "border-transparent text-gray-500 nav-link hover:text-blue-600"
+                        }`
+                      }
+                    >
+                      Dashboard
+                    </NavLink>
                     <NavLink
                       to="/about"
                       className={({ isActive }) =>
-                        `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
+                        `  inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
                           isActive
-                            ? "border-blue-600 text-gray-900"
-                            : "border-transparent text-gray-500 hover:border-blue-600 hover:text-blue-600"
+                            ? "border-blue-600  text-gray-900"
+                            : "border-transparent text-gray-500 nav-link hover:text-blue-600"
                         }`
                       }
                     >
                       About
-                    </NavLink>
-                    <NavLink
-                      to="/votepage"
-                      className={({ isActive }) =>
-                        `inline-flex items-center px-1 pt-1 border-b-2 text-md font-medium ${
-                          isActive
-                            ? "border-blue-600 text-gray-900"
-                            : "border-transparent text-gray-500 hover:border-blue-600 hover:text-blue-600"
-                        }`
-                      }
-                    >
-                      Vote
                     </NavLink>
                   </div>
                 </div>
@@ -240,7 +245,7 @@ const Navvbars = ({ email }) => {
                       ) : (
                         <img
                           className="h-10 w-10 rounded-full"
-                          src={Unknow} // Assuming `Unknown` is the path to the default image
+                          src='/assets/Unknown.png'
                           alt="Default"
                         />
                       )}
@@ -337,7 +342,7 @@ const Navvbars = ({ email }) => {
                 </NavLink>
 
                 <NavLink
-                  to="/votepage"
+                  to="/dashboard"
                   className={({ isActive }) =>
                     `border-transparent text-gray-500 hover:bg-gray-200 hover:border-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6 ${
                       isActive
@@ -346,7 +351,7 @@ const Navvbars = ({ email }) => {
                     }`
                   }
                 >
-                  Vote
+                  Dashboard
                 </NavLink>
                 <NavLink
                   to="/about"
@@ -391,7 +396,7 @@ const Navvbars = ({ email }) => {
                       ) : (
                         <img
                           className="h-10 w-10 rounded-full"
-                          src={Unknow} // Assuming `Unknown` is the path to the default image
+                          src='/assets/Unknown.png'
                           alt="Default"
                         />
                       )}
@@ -474,7 +479,7 @@ const Navvbars = ({ email }) => {
               </div>
             </div>
           </Disclosure.Panel>
-          <ToastContainer />
+    
         </div>
       )}
     </Disclosure>

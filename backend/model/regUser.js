@@ -57,15 +57,3 @@ module.exports = regUsers;
 
 
 
-// const Schema = mongoose.Schema;
-
-// const userSchema = new Schema({
-//     email: { type: String, required: true, unique: true },
-//     name: { type: String},
-//     photo: { type: String },
-//     password: { type: String },
-//     // confirmPassword should not be part of the schema for existing users
-//     // confirmPassword: { type: String } // Remove or comment this out if not needed for updates
-// });
-
-// module.exports = mongoose.model('Registered_users', userSchema);

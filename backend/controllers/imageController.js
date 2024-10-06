@@ -75,18 +75,16 @@ const removePhoto = async (req, res) => {
         if (!user || !user.photo) {
             return res.status(404).json({ error: 'User or photo not found' });
         }
-
-        // Get the image file path from the user's photo field
         const imagePath = path.join(__dirname, '..', 'images', user.photo);
 
-        // Remove the image file from the server
-        fs.unlink(imagePath, (err) => {
-            if (err) {
-                console.error('Error removing image file:', err);
-                return res.status(500).json({ error: 'Failed to remove image file' });
-            }
-        });
-        // Unset the photo field in MongoDB
+         // Check if the image file exists before trying to delete it
+         if (fs.existsSync(imagePath)) {
+           
+            await fs.promises.unlink(imagePath); 
+        } else {
+            console.warn('File does not exist:', imagePath); 
+        }
+
         await User.findOneAndUpdate({ email }, { $unset: { photo: '' } });
 
         res.status(200).json({ message: 'Image removed successfully' });

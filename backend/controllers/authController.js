@@ -41,25 +41,29 @@ module.exports.register_post = async (req, res) => {
     });
     const token = createToken(reguser._id);
 
-    // console.log('Generated Token during Registration:', token);
-    res.localstorage("jwt", token, {
-      httpOnly: true,
+    
+    res.cookie("jwt", token, {
+      httpOnly: true, 
       maxAge: maxAge * 1000,
-      sameSite: "None",
+      sameSite: "None", 
+      secure: true, 
     });
+    
 
     // Send the token in the response body as well
     res.status(201).json({ reguser: reguser._id, token });
   } catch (err) {
-    if (err.code === 11000) {
-      errors.email = "This email is already registered";
-    } else if (err.message.includes("Reg_users validation failed")) {
-      Object.values(err.errors).forEach(({ properties }) => {
-        errors[properties.path] = properties.message;
-      });
-    }
-    res.status(400).json({ errors });
+  console.error("Error during registration:", err); // Log the error for debugging
+  if (err.code === 11000) {
+    errors.email = "This email is already registered";
+  } else if (err.message.includes("validation failed")) {
+    Object.values(err.errors).forEach(({ properties }) => {
+      errors[properties.path] = properties.message;
+    });
   }
+  res.status(400).json({ errors });
+}
+
 };
 
 

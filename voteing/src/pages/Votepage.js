@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../components/navbar';
-import Vote from '../components/votepage';
+import Vote from '../components/Dashboard/dashboard';
 import Footer from '../components/footer';
 
 

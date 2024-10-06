@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../components/navbar';
-import NotFound from '../components/Notfound';
+import NotFound from '../components/protectedroutes/Notfound';
 import Footer from '../components/footer';
 
 
