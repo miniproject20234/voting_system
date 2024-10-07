@@ -239,7 +239,7 @@ const Profile = () => {
               {userDetails.photo ? (
                 <img
                   className="w-36 h-36 sm:w-96 sm:h-60 sm730:h-64 sm780:h-72 sm890:h-96 sm890:rounded-2xl  sm:rounded-4xl  rounded-full object-cover border-4 border-white shadow-md"
-                  src={`http://localhost:5000/images/${userDetails.photo}`}
+                  src={`https://vote-backend-e92j.onrender.com/images/${userDetails.photo}`}
                   alt="profile"
                 />
               ) : (
