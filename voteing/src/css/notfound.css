@@ -1,4 +1,4 @@
- @media screen and (min-width:350px) and (max-width:370px) {
+ /* @media screen and (min-width:350px) and (max-width:370px) {
   .img_height{
   width: 350px;
 height:400px;
@@ -81,4 +81,13 @@ height:400px;
                 height: 500px;
               }
             }
-  
+   */
+
+
+   .bg-image{
+    background-image: url('../assets/errors2.png');
+    background-position: center;
+     
+    background-repeat: no-repeat;
+    background-size:20%;
+   }
