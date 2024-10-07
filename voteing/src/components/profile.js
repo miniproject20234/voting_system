@@ -219,7 +219,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className="min-w-xl mx-auto sm:flex sm:justify-cente  bg-white  shadow-lg rounded-lg p-3 pb-5  overflow-hidden  sm:h-screen">
+      <div className="min-w-xl mx-auto sm:flex sm:justify-cente  bg-white  shadow-lg rounded-lg p-3 pb-5  overflow-hidden  h-screen">
         <div className="   sm:rounded-r-lg  sm890:mt-0 sm1000:w-3/6 sm890:w-4/6 p-6">
           <div className="bg-gradient-to-b sm:bg-none   from-[#1a45d7] to-[#79fcfa] text-center  py-12 pb-20 sm:py-1 sm:pb- rounded-lg">
             <h1 className="text-4xl font-extrabold text-blue-100 mb-2 tracking-wider drop-shadow-white sm:hidden">
