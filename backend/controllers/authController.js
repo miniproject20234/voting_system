@@ -8,17 +8,17 @@ const nodemailer=require("nodemailer")
 require('dotenv').config(); 
 
 
-// JWT token creation
-const maxAge = 3 * 24 * 60 * 60; // 3 days in seconds
+
+const maxAge = '3d'; // 3 days in seconds
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.ACCESS_TOKEN, {
     expiresIn: maxAge,
   });
 };
 
-//register post method
+// Register post method
 module.exports.register_post = async (req, res) => {
-  const { username, email, password, phonenumber} = req.body;
+  const { name, email, password, mobileNumber, aadharNumber } = req.body;
   let errors = {};
 
   try {
@@ -28,42 +28,47 @@ module.exports.register_post = async (req, res) => {
     const emailVerificationResponse = await axios.get(hunterApiUrl);
 
     if (emailVerificationResponse.data.data.result !== "deliverable") {
-      errors.email = "It is not a valid Email";
+      errors.email = "It is not a valid email";
       return res.status(400).json({ errors });
+    }
+
+    const existingUser = await regUser.findOne({ aadharNumber });
+    if (existingUser) {
+        errors.aadharNumber = "This Aadhar number is already registered";
+        return res.status(400).json({ errors });
     }
 
     // Create user
     const reguser = await regUser.create({
-      username,
+      name,
       email,
       password,
-      phonenumber,
-    });
-    const token = createToken(reguser._id);
+      mobileNumber,
+      aadharNumber,
+      isActive: true,
+      isVerified: false,
+      role:  'user' // Default role to user
+  });
 
-    
-    res.cookie("jwt", token, {
-      httpOnly: true, 
-      maxAge: maxAge * 1000,
-      sameSite: "None", 
-      secure: true, 
-    });
-    
+  const token = createToken(reguser.id);
 
-    // Send the token in the response body as well
-    res.status(201).json({ reguser: reguser._id, token });
-  } catch (err) {
-  console.error("Error during registration:", err); // Log the error for debugging
-  if (err.code === 11000) {
-    errors.email = "This email is already registered";
-  } else if (err.message.includes("validation failed")) {
-    Object.values(err.errors).forEach(({ properties }) => {
-      errors[properties.path] = properties.message;
-    });
+  res.cookie("jwt", token, {
+      httpOnly: true,
+      maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days
+      sameSite: "None",
+      secure: true,
+  });
+
+  res.status(201).json({ reguser: reguser.id, token });
+} catch (err) {
+  console.error("Error during registration:", err);
+ if (err.message.includes("validation failed")) {
+      Object.values(err.errors).forEach(({ properties }) => {
+          errors[properties.path] = properties.message;
+      });
   }
   res.status(400).json({ errors });
 }
-
 };
 
 
