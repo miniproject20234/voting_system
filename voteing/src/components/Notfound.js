@@ -11,11 +11,11 @@ const NotFound = () => {
       <div className=" relative sm:px-16  sm:h-full    ">
         <div className="shadow-xl p-5">
           <div className="absolute top-8 left-0">
-          <span class="relative flex h-3 w-3">
-  <span class="animate-ping absolute  h-6 w-full top-14 rounded-full bg-blue-500 opacity-75"></span>
+            <span class="relative flex h-3 w-3">
+              <span class="animate-ping absolute  h-6 w-full top-14 rounded-full bg-blue-500 opacity-75 hidden sm:block"></span>
 
-</span>
-            <img src={Error1} className="w-5/6 h-/6 " alt="" />
+            </span>
+            <img src={Error1} className="w-5/6 h-/6 hidden sm:block " alt="" />
           </div>
           <div className=" flex justify-center mt-10   ">
             <img
@@ -43,20 +43,20 @@ const NotFound = () => {
                   Go Back
                 </button>
               </NavLink>
-                        </div>
+            </div>
           </div>
           <div className="absolute buttom-0 right-0">
-          <span class="relative flex h-3 w-3 absolute bottom-0 right-0 ">
-  <span class="animate-ping absolute  h-6 w-full bottom-1 rounded-full bg-blue-500 opacity-75"></span>
+            <span class="relative flex h-3 w-3 absolute bottom-0 right-0 ">
+              <span class="animate-ping absolute  h-6 w-full bottom-1 rounded-full bg-blue-500 opacity-75 hidden sm:block"></span>
 
-</span>
-            <img src={Error2} className="w-6/6 h-/9 absolute bottom-12 left-0 right-(-6) relative h-full w-60" alt="" />
+            </span>
+            <img src={Error2} className="w-6/6 h-/9 absolute bottom-12 left-0  relative h-full w-60 hidden sm:block" alt="" />
           </div>
 
- 
+
         </div>
       </div>
-          </>
+    </>
   );
 };
 
